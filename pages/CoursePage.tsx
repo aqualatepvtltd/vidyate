@@ -20,7 +20,7 @@ const CoursePage: React.FC = () => {
       </div>
       <h1 className="text-4xl font-bold mb-2 text-orange-400">{courseData.name}</h1>
       <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">Select a resource type to continue.</p>
-      
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {resources.map(([key, resource]) => (
           <div
