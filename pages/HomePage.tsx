@@ -125,18 +125,21 @@ const HomePage: React.FC = () => {
                 <div className="max-w-2xl mx-auto bg-gray-50 dark:bg-slate-800 rounded-lg p-8 border border-gray-200 dark:border-slate-700">
                     <h2 className="text-3xl font-bold text-center mb-6">Feedback</h2>
                     <p className="text-center text-gray-500 dark:text-gray-400 mb-8">We'd love to hear from you! Your feedback helps us improve.</p>
-                    <form className="space-y-6">
+                    <form className="space-y-6" action="https://api.web3forms.com/submit" method="POST">
+
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
-                            <input type="text" id="name" className="w-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md py-2 px-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                              <input type="hidden" name="access_key" value="0503cb46-1236-44cd-895a-25f61aad3650"/>
+
+                            <input name="name" type="text" id="name" className="w-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md py-2 px-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500" />
                         </div>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" className="w-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md py-2 px-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                            <input name="email" type="email" id="email" className="w-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md py-2 px-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500" />
                         </div>
                         <div>
                             <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                            <textarea id="message" rows={4} className="w-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md py-2 px-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                            <textarea name="message" id="message" rows={4} className="w-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md py-2 px-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
                         </div>
                         <button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-6 rounded-md hover:from-orange-600 hover:to-orange-700 transition-all duration-300">
                             Submit Feedback
