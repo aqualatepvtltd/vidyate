@@ -1,7 +1,7 @@
+import logoImage from '../assets/vidyate_hero_logo.png';
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeSwitcher from './ThemeSwitcher';
-import logoImage from '../assets/vidyate_hero_logo.png';
 
 const Header: React.FC = () => {
   const location = useLocation();
