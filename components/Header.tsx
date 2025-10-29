@@ -21,7 +21,7 @@ const Header: React.FC = () => {
     <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-slate-900/10 dark:shadow-slate-900/20 border-b border-gray-200 dark:border-slate-800">
       <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold flex items-center gap-2">
-            <img src="./vidyate_hero_logo.png" alt="Vidyate Logo" className="h-11 rounded" />
+            <img src="/vidyate_hero_logo.png" alt="Vidyate Logo" className="h-11 rounded" />
         </Link>
         <div className="flex items-center space-x-2 md:space-x-6">
           <ThemeSwitcher />
