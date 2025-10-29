@@ -73,7 +73,7 @@ const HomePage: React.FC = () => {
             </section>
             
             {/* Why Vidyate? */}
-            <section id="features" className="container mx-auto px-6 text-center">
+            <section id="features" className="container mx-auto px-6 text-center scroll-mt-20">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Why <span className="text-orange-400">Vidyate</span>?</h2>
                 <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">We provide a streamlined, easy-to-use platform that brings all essential academic resources right to your fingertips.</p>
                 <div className="grid md:grid-cols-3 gap-8">
@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
             </section>
 
             {/* Feedback Section */}
-            <section id="feedback" className="container mx-auto px-6">
+            <section id="feedback" className="container mx-auto px-6 scroll-mt-20">
                 <div className="max-w-2xl mx-auto bg-gray-50 dark:bg-slate-800 rounded-lg p-8 border border-gray-200 dark:border-slate-700">
                     <h2 className="text-3xl font-bold text-center mb-6">Feedback</h2>
                     <p className="text-center text-gray-500 dark:text-gray-400 mb-8">We'd love to hear from you! Your feedback helps us improve.</p>
