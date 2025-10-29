@@ -6,6 +6,7 @@ import YearSelectionPage from './pages/YearSelectionPage';
 import SubjectsPage from './pages/SubjectsPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import CareerPage from './pages/CareerPage';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/course/:courseName" element={<CoursePage />} />
+            <Route path="/career" element={<CareerPage />} />
             <Route path="/course/:courseName/:resourceType" element={<YearSelectionPage />} />
             <Route path="/course/:courseName/:resourceType/:year" element={<SubjectsPage />} />
           </Routes>

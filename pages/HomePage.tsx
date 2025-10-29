@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
                         Welcome to Vidyate
                     </h1>
                     <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-                        Your ultimate companion for Pharmacy studies. Access notes, syllabi, past papers, and career guidance, all in one place.
+                        Your ultimate companion for Pharmacy studies. Access notes, syllabus, past papers, and career guidance, all in one place.
                     </p>
                     <a href="#courses" onClick={(e) => handleScrollClick(e, 'courses')} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-8 rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 inline-block">
                         Get Started
@@ -114,9 +114,9 @@ const HomePage: React.FC = () => {
             <section id="testimonials" className="container mx-auto px-6">
                  <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Student Testimonials</h2>
                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <TestimonialCard quote="Vidyate has been a lifesaver during my exams. All the question papers in one place is just amazing!" name="Priya Sharma" course="B. Pharm, 3rd Year" avatarUrl="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
-                    <TestimonialCard quote="The notes are so well-structured and easy to understand. It really helped me grasp complex topics." name="Rohan Verma" course="Pharm. D, 2nd Year" avatarUrl="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
-                    <TestimonialCard quote="Finally, a single platform for everything I need. From syllabus to career advice, Vidyate has it all." name="Anjali Mehta" course="B. Pharm, 4th Year" avatarUrl="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
+                    <TestimonialCard quote="Vidyate has been a lifesaver during my exams. All the question papers in one place is just amazing!" name="Priya Sharma" course="Student" avatarUrl="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
+                    <TestimonialCard quote="The notes are so well-structured and easy to understand. It really helped me grasp complex topics." name="Rohan Verma" course="Student" avatarUrl="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
+                    <TestimonialCard quote="Finally, a single platform for everything I need. From syllabus to career advice, Vidyate has it all." name="Anjali Mehta" course="Student" avatarUrl="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
                  </div>
             </section>
 
