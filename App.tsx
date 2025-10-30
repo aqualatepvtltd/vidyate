@@ -12,21 +12,22 @@ import ScrollToTop from './components/ScrollToTop';
 const App: React.FC = () => {
   return (
     <HashRouter>
-      <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/course/:courseName" element={<CoursePage />} />
-            <Route path="/career" element={<CareerPage />} />
-            <Route path="/course/:courseName/:resourceType" element={<YearSelectionPage />} />
-            <Route path="/course/:courseName/:resourceType/:year" element={<SubjectsPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </HashRouter>
-  );
-};
-
-export default App;
++      <ScrollToTop />
+       <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+         <Header />
+         <main className="flex-grow">
+           <Routes>
+             <Route path="/" element={<HomePage />} />
+             <Route path="/course/:courseName" element={<CoursePage />} />
+             <Route path="/career" element={<CareerPage />} />
+             <Route path="/course/:courseName/:resourceType" element={<YearSelectionPage />} />
+             <Route path="/course/:courseName/:resourceType/:year" element={<SubjectsPage />} />
+           </Routes>
+         </main>
+         <Footer />
+       </div>
+     </HashRouter>
+   );
+ };
+ 
+ export default App;
