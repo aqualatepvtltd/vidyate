@@ -121,33 +121,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Technology & AI Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#405cff]/5 to-[#8B5CF6]/5 rounded-3xl md:rounded-[2.5rem] -z-10"></div>
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-[#8B5CF6]/20 mb-8">
-            <span className="material-symbols-rounded text-[#8B5CF6] text-lg">auto_awesome</span>
-            <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--text-main)' }}>Powered by Gemini 2.5 Pro</span>
-          </div>
-          <h2 className="text-2xl md:text-4xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
-            The AI <span className="text-[#8B5CF6]">Counselor</span>.
-          </h2>
-          <p className="text-base md:text-lg opacity-60 font-medium mb-10 leading-relaxed" style={{ color: 'var(--text-main)' }}>
-            Vidyate isn't just about static files. We've integrated the world's most advanced reasoning model, specialized with a custom pharmaceutical context, to provide 24/7 career and academic guidance to every student.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-            <div className="glass p-5 rounded-2xl border border-white/5 flex gap-4">
-              <span className="material-symbols-rounded text-[#8B5CF6]">clinical_notes</span>
-              <p className="text-xs md:text-sm font-bold opacity-80" style={{ color: 'var(--text-main)' }}>Subject-wise exam strategies and weightage analysis.</p>
-            </div>
-            <div className="glass p-5 rounded-2xl border border-white/5 flex gap-4">
-              <span className="material-symbols-rounded text-[#8B5CF6]">work_history</span>
-              <p className="text-xs md:text-sm font-bold opacity-80" style={{ color: 'var(--text-main)' }}>Direct mapping of academic modules to industry roles.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Future Roadmap Section */}
       <section className="py-20">
         <div className="glass p-8 md:p-12 rounded-2xl md:rounded-3xl border shadow-xl relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>

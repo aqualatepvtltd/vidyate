@@ -59,7 +59,7 @@ const Home: React.FC = () => {
       <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade py-12 md:py-0">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border text-[10px] md:text-xs font-bold mb-6 md:mb-8 uppercase tracking-[0.1em]" style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}>
           <span className="flex h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
-          <span className="opacity-80">New: 2024 Question Bank is Live</span>
+          <span className="opacity-80">New: 2025 Question Bank is Live</span>
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-4 md:mb-6 leading-[1.1] md:leading-[1.05]" style={{ color: 'var(--text-main)' }}>
           Elevate Your <br/>
