@@ -1,4 +1,4 @@
-import React;
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Privacy: React.FC = () => {
