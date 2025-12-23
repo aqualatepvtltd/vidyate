@@ -26,23 +26,6 @@ const About: React.FC = () => {
         <p className="opacity-60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium mb-12" style={{ color: 'var(--text-main)' }}>
           Vidyate is a high-performance academic ecosystem designed to accelerate the learning curve for Pharmacy students globally.
         </p>
-        
-        <div className="flex justify-center items-center gap-12 opacity-30">
-          <div className="flex flex-col items-center">
-            <span className="text-2xl font-black">2024</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest">Founded</span>
-          </div>
-          <div className="w-px h-10 bg-current"></div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl font-black">10K+</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest">Nodes</span>
-          </div>
-          <div className="w-px h-10 bg-current"></div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl font-black">PCI</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest">Standard</span>
-          </div>
-        </div>
       </section>
 
       {/* Story & Philosophy Section */}
