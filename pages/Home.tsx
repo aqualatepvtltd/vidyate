@@ -179,7 +179,6 @@ const Home: React.FC = () => {
                 <div className="w-10 h-10 rounded-lg bg-[#10B981]/10 flex items-center justify-center text-[#10B981] mb-5 md:mb-6">
                   <span className="material-symbols-rounded text-xl md:text-2xl">verified</span>
                 </div>
-                <span className="text-3xl md:text-4xl font-black block mb-1 md:mb-2 tracking-tighter" style={{ color: 'var(--text-main)' }}>10k+</span>
                 <h3 className="text-xs font-bold mb-1 md:mb-2 opacity-90 uppercase tracking-widest text-[9px] md:text-[10px]" style={{ color: 'var(--text-main)' }}>Verified Resources</h3>
                 <p className="opacity-40 leading-relaxed font-medium text-xs" style={{ color: 'var(--text-main)' }}>Every note is audited by academic high-achievers.</p>
               </div>
@@ -190,7 +189,6 @@ const Home: React.FC = () => {
                 <div className="w-10 h-10 rounded-lg bg-[#405cff]/10 flex items-center justify-center text-[#405cff] mb-5 md:mb-6">
                   <span className="material-symbols-rounded text-xl md:text-2xl">local_library</span>
                 </div>
-                <span className="text-3xl md:text-4xl font-black block mb-1 md:mb-2 tracking-tighter" style={{ color: 'var(--text-main)' }}>50+</span>
                 <h3 className="text-xs font-bold mb-1 md:mb-2 opacity-90 uppercase tracking-widest text-[9px] md:text-[10px]" style={{ color: 'var(--text-main)' }}>Core Subjects</h3>
                 <p className="opacity-40 leading-relaxed font-medium text-xs" style={{ color: 'var(--text-main)' }}>Deep-coverage learning materials for all modules.</p>
               </div>
@@ -201,7 +199,6 @@ const Home: React.FC = () => {
                 <div className="w-10 h-10 rounded-lg bg-[#8B5CF6]/10 flex items-center justify-center text-[#8B5CF6] mb-5 md:mb-6">
                   <span className="material-symbols-rounded text-xl md:text-2xl">psychology</span>
                 </div>
-                <span className="text-3xl md:text-4xl font-black block mb-1 md:mb-2 tracking-tighter" style={{ color: 'var(--text-main)' }}>AI</span>
                 <h3 className="text-xs font-bold mb-1 md:mb-2 opacity-90 uppercase tracking-widest text-[9px] md:text-[10px]" style={{ color: 'var(--text-main)' }}>Career Specialist</h3>
                 <p className="opacity-40 leading-relaxed font-medium text-xs" style={{ color: 'var(--text-main)' }}>Gemini-powered guidance specialized in Pharmacy.</p>
               </div>
@@ -212,7 +209,6 @@ const Home: React.FC = () => {
                 <div className="w-10 h-10 rounded-lg bg-[#FF6B6B]/10 flex items-center justify-center text-[#FF6B6B] mb-5 md:mb-6">
                   <span className="material-symbols-rounded text-xl md:text-2xl">sync_saved_locally</span>
                 </div>
-                <span className="text-3xl md:text-4xl font-black block mb-1 md:mb-2 tracking-tighter" style={{ color: 'var(--text-main)' }}>24/7</span>
                 <h3 className="text-xs font-bold mb-1 md:mb-2 opacity-90 uppercase tracking-widest text-[9px] md:text-[10px]" style={{ color: 'var(--text-main)' }}>Global Access</h3>
                 <p className="opacity-40 leading-relaxed font-medium text-xs" style={{ color: 'var(--text-main)' }}>Completely free and optimized for low-bandwidth.</p>
               </div>
@@ -309,16 +305,6 @@ const Home: React.FC = () => {
             <p className="opacity-50 text-sm md:text-base font-medium leading-relaxed mb-8" style={{ color: 'var(--text-main)' }}>
               Our expert counselors and support team are available to help you with resource access, course selection, and exam preparation strategies. No robots here—just real pharmacists who care.
             </p>
-            <div className="flex items-center gap-6 mt-auto">
-               <div className="flex -space-x-3">
-                 {[1,2,3].map(i => (
-                   <div key={i} className="w-10 h-10 rounded-full border-2 border-white/10 overflow-hidden glass">
-                     <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Support Team" className="w-full h-full object-cover" />
-                   </div>
-                 ))}
-               </div>
-               <span className="text-[10px] font-black uppercase tracking-widest opacity-40" style={{ color: 'var(--text-main)' }}>Experts Online Now</span>
-            </div>
           </div>
 
           <div className="glass p-8 md:p-12 rounded-3xl border flex flex-col items-center justify-center text-center relative overflow-hidden bg-gradient-to-br from-[#10B981]/5 via-transparent to-transparent" style={{ borderColor: 'var(--glass-border)' }}>

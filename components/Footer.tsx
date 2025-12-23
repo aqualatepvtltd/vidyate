@@ -89,11 +89,10 @@ const Footer: React.FC = () => {
         className="max-w-7xl mx-auto px-4 md:px-6 mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.2em]"
         style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
       >
-        <p className="opacity-30">&copy; 2024 Vidyate Ecosystem. Built for the Community.</p>
+        <p className="opacity-30">&copy; 2025 Vidyate. Built for the Community.</p>
         <div className="flex gap-8 opacity-30">
           <Link to="/privacy" className="hover:opacity-100 transition-opacity">Privacy</Link>
           <Link to="/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
-          <span className="cursor-default">Cookies</span>
         </div>
       </div>
     </footer>

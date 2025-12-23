@@ -20,7 +20,7 @@ const Header: React.FC = () => {
       // Set default explicitly if first time
       if (!savedTheme) localStorage.setItem('vidyate-theme', 'light');
     }
-    
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -66,23 +66,22 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <nav 
-        className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
-          isScrolled 
-            ? 'py-4 backdrop-blur-xl border-b' 
+      <nav
+        className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${isScrolled
+            ? 'py-4 backdrop-blur-xl border-b'
             : 'py-7 bg-transparent border-b border-transparent'
-        }`} 
-        style={{ 
+          }`}
+        style={{
           backgroundColor: isScrolled ? 'var(--glass-bg)' : 'transparent',
           borderColor: isScrolled ? 'var(--glass-border)' : 'transparent'
         }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group relative z-[70]">
-            <img 
-              src={logoSrc} 
-              alt="Vidyate Logo" 
-              className="w-12 h-12 object-cover rounded-full group-hover:scale-110 transition-transform duration-300 shadow-lg" 
+            <img
+              src={logoSrc}
+              alt="Vidyate Logo"
+              className="w-12 h-12 object-cover rounded-full group-hover:scale-110 transition-transform duration-300 shadow-lg"
             />
             <span className="text-xl font-black tracking-tighter" style={{ color: 'var(--text-main)' }}>
               VIDYATE<span className="text-[#405cff]">.</span>
@@ -93,9 +92,9 @@ const Header: React.FC = () => {
           <div className="hidden md:flex items-center gap-6">
             <div className="flex items-center gap-6">
               {navLinks.map((link) => (
-                <Link 
+                <Link
                   key={link.path}
-                  to={link.path} 
+                  to={link.path}
                   className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group`}
                   style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
                 >
@@ -108,9 +107,9 @@ const Header: React.FC = () => {
                 </Link>
               ))}
             </div>
-            
+
             <div className="flex items-center gap-4 border-l pl-6" style={{ borderColor: 'var(--glass-border)' }}>
-              <button 
+              <button
                 onClick={toggleTheme}
                 className="w-10 h-10 rounded-xl glass flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-90 group overflow-hidden"
               >
@@ -123,7 +122,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Toggle Icons */}
           <div className="flex items-center gap-2 md:hidden relative z-[70]">
-            <button 
+            <button
               onClick={toggleTheme}
               className="w-10 h-10 rounded-xl glass flex items-center justify-center transition-transform active:scale-90"
               aria-label="Toggle Theme"
@@ -132,7 +131,7 @@ const Header: React.FC = () => {
                 {isDarkMode ? 'dark_mode' : 'light_mode'}
               </span>
             </button>
-            <button 
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="w-10 h-10 rounded-xl glass flex items-center justify-center transition-all active:scale-90 relative overflow-hidden"
               style={{ color: 'var(--text-main)' }}
@@ -149,37 +148,34 @@ const Header: React.FC = () => {
       </nav>
 
       {/* Modern Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ease-in-out ${
-          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+      <div
+        className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ease-in-out ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         {/* Backdrop Blur */}
-        <div 
+        <div
           className="absolute inset-0 backdrop-blur-3xl bg-black/40 dark:bg-black/60"
           onClick={() => setIsMenuOpen(false)}
         ></div>
 
         {/* Menu Content Drawer */}
-        <div 
-          className={`absolute top-0 right-0 h-full w-[80%] max-w-xs shadow-2xl glass border-l transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        <div
+          className={`absolute top-0 right-0 h-full w-[80%] max-w-xs shadow-2xl glass border-l transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
           style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)' }}
         >
           <div className="flex flex-col h-full pt-24 px-6 pb-10">
             <div className="space-y-1 mb-10">
               <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30 ml-2 mb-4 block" style={{ color: 'var(--text-main)' }}>Navigation</span>
               {navLinks.map((link, idx) => (
-                <Link 
+                <Link
                   key={link.path}
                   to={link.path}
-                  className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group ${
-                    location.pathname === link.path 
-                      ? 'bg-[#405cff]/10 text-[#405cff]' 
+                  className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group ${location.pathname === link.path
+                      ? 'bg-[#405cff]/10 text-[#405cff]'
                       : 'hover:bg-white/5 opacity-60 hover:opacity-100'
-                  }`}
-                  style={{ 
+                    }`}
+                  style={{
                     transitionDelay: `${idx * 40}ms`,
                     color: location.pathname === link.path ? '#405cff' : 'var(--text-main)'
                   }}
@@ -194,21 +190,7 @@ const Header: React.FC = () => {
                 </Link>
               ))}
             </div>
-
-            <div className="mt-auto space-y-6">
-              <div className="p-5 rounded-2xl bg-[#405cff]/5 border border-[#405cff]/10">
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#405cff] mb-2">Academic Help</p>
-                <p className="text-xs opacity-50 font-medium mb-4" style={{ color: 'var(--text-main)' }}>Talk to our Career Counselor for expert advice.</p>
-                <Link 
-                  to="/contact" 
-                  className="flex items-center justify-center gap-2 py-3 w-full bg-[#405cff] text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-lg active:scale-95 transition-all"
-                >
-                  <span className="material-symbols-rounded text-sm">psychology</span>
-                  Talk to Team
-                </Link>
-              </div>
-
-              
+            <div className="mt-auto">
               <p className="text-[8px] text-center font-black uppercase tracking-[0.3em] opacity-20" style={{ color: 'var(--text-main)' }}>
                 Vidyate Ecosystem &copy; 2024
               </p>
