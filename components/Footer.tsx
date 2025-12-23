@@ -1,71 +1,99 @@
-import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('vidyate-theme');
+    // Default to false (Light) if savedTheme is not 'dark'
+    return savedTheme === 'dark';
+  });
 
-  const handleNavClick = (sectionId: string) => {
-    if (location.pathname === '/') {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate(`/#${sectionId}`);
-    }
-  };
+  useEffect(() => {
+    const handleThemeChange = () => {
+      const savedTheme = localStorage.getItem('vidyate-theme');
+      setIsDarkMode(savedTheme === 'dark');
+    };
+    window.addEventListener('theme-change', handleThemeChange);
+    return () => window.removeEventListener('theme-change', handleThemeChange);
+  }, []);
+
+  const logoSrc = "https://i.ibb.co/KzzH7zZ3/vidyate-logo.png";
 
   return (
-    <footer id="contact" className="bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Vidyata</h3>
-            <p className="text-gray-600 dark:text-gray-400">Your one-stop solution for pharmacy studies. Simplifying education for a brighter future, an initiative by Aqualate Pvt. Ltd.</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Quick Links</h3>
-            <ul className="text-gray-600 dark:text-gray-400 space-y-2">
-              <li><Link to="/course/b-pharm" className="hover:text-orange-400 transition-colors">B. Pharm</Link></li>
-              <li><Link to="/course/d-pharm" className="hover:text-orange-400 transition-colors">D. Pharm</Link></li>
-              <li><Link to="/career" className="hover:text-orange-400 transition-colors">Careers</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Contact Details</h3>
-            <ul className="text-gray-600 dark:text-gray-400 space-y-2">
-              <li className="flex items-center">
-                <span className="material-symbols-outlined mr-2 text-orange-400">mail</span>
-                <span>contact@vidyata.com</span>
-              </li>
-              <li className="flex items-center">
-                <span className="material-symbols-outlined mr-2 text-orange-400">call</span>
-                <span>+91 12345 67890</span>
-              </li>
-              <li className="flex items-center">
-                <span className="material-symbols-outlined mr-2 text-orange-400">location_on</span>
-                <span>Knowledge Park, India</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-orange-400 transition-colors duration-300 text-2xl" aria-label="Instagram">
-                <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new--v1.png" alt="instagram icon" className="w-6 h-6 dark:invert" />
-              </a>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-orange-400 transition-colors duration-300 text-2xl" aria-label="Facebook">
-                <img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" alt="facebook icon" className="w-6 h-6 dark:invert" />
-              </a>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-orange-400 transition-colors duration-300 text-2xl" aria-label="Twitter">
-                <img src="https://img.icons8.com/ios-filled/50/000000/twitterx--v1.png" alt="twitter icon" className="w-6 h-6 dark:invert" />
-              </a>
-              <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-orange-400 transition-colors duration-300 text-2xl" aria-label="LinkedIn">
-                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="linkedin icon" className="w-6 h-6 dark:invert" />
-              </a>
-            </div>
-          </div>
+    <footer 
+      className="glass border-t py-12 mt-16 transition-colors duration-400"
+      style={{ borderColor: 'var(--glass-border)' }}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="col-span-1 md:col-span-2">
+          <Link to="/" className="flex items-center gap-3 mb-5 group">
+            <img 
+              src={logoSrc} 
+              alt="Vidyate Logo" 
+              className="w-12 h-12 object-cover rounded-full group-hover:scale-105 transition-transform duration-300 shadow-md" 
+            />
+            <span className="text-2xl font-black tracking-tighter" style={{ color: 'var(--text-main)' }}>
+              VIDYATE<span className="text-[#405cff]">.</span>
+            </span>
+          </Link>
+          <p className="text-sm max-w-sm leading-relaxed opacity-60 font-medium" style={{ color: 'var(--text-main)' }}>
+            Empowering the next generation of pharmacists with curated high-quality resources, verified academic materials, and specialized AI career guidance.
+          </p>
         </div>
-        <div className="mt-12 border-t border-gray-200 dark:border-slate-800 pt-6 text-center text-gray-500 dark:text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Vidyata. All rights reserved. Designed for students, by educators.</p>
+        
+        <div>
+          <h4 className="font-black mb-5 uppercase tracking-[0.15em] text-xs opacity-40" style={{ color: 'var(--text-main)' }}>Navigation</h4>
+          <ul className="space-y-3.5 text-sm font-bold">
+            <li>
+              <Link to="/" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Home</Link>
+            </li>
+            <li>
+              <Link to="/about" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>About Us</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/books" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Store</Link>
+            </li>
+            <li>
+              <Link to="/feedback" className="text-[#405cff] hover:opacity-80 transition-all flex items-center gap-2">
+                Feedback
+                <span className="material-symbols-rounded text-sm">open_in_new</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="font-black mb-5 uppercase tracking-[0.15em] text-xs opacity-40" style={{ color: 'var(--text-main)' }}>Academic Tracks</h4>
+          <ul className="space-y-3.5 text-sm font-bold">
+            <li>
+              <Link to="/b-pharm" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>B.Pharmacy</Link>
+            </li>
+            <li>
+              <Link to="/d-pharm" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>D.Pharmacy</Link>
+            </li>
+            <li>
+              <span className="opacity-20 flex items-center gap-2 cursor-not-allowed" style={{ color: 'var(--text-main)' }}>
+                Pharm.D
+                <span className="text-[9px] bg-white/5 px-2 py-0.5 rounded border border-white/5">SOON</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div 
+        className="max-w-7xl mx-auto px-4 md:px-6 mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.2em]"
+        style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
+      >
+        <p className="opacity-30">&copy; 2024 Vidyate Ecosystem. Built for the Community.</p>
+        <div className="flex gap-8 opacity-30">
+          <Link to="/privacy" className="hover:opacity-100 transition-opacity">Privacy</Link>
+          <Link to="/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
+          <span className="cursor-default">Cookies</span>
         </div>
       </div>
     </footer>

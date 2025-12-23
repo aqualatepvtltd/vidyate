@@ -1,34 +1,222 @@
-import logoImage from '../assets/vidyate_hero_logo.png';
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import ThemeSwitcher from './ThemeSwitcher';
+
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const handleNavClick = (sectionId: string) => {
-    // If we are on the homepage, scroll smoothly.
-    if (location.pathname === '/') {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('vidyate-theme');
+    // Default to light mode if no theme is saved or if explicitly set to light
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+      document.documentElement.classList.remove('light-mode');
     } else {
-      // If we are on another page, navigate to the homepage with the hash.
-      // The HomePage component will handle the scrolling.
-      navigate(`/#${sectionId}`);
+      setIsDarkMode(false);
+      document.documentElement.classList.add('light-mode');
+      // Set default explicitly if first time
+      if (!savedTheme) localStorage.setItem('vidyate-theme', 'light');
     }
+    
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleTheme = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    if (newMode) {
+      document.documentElement.classList.remove('light-mode');
+      localStorage.setItem('vidyate-theme', 'dark');
+    } else {
+      document.documentElement.classList.add('light-mode');
+      localStorage.setItem('vidyate-theme', 'light');
+    }
+    window.dispatchEvent(new Event('theme-change'));
   };
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
+  const navLinks = [
+    { name: 'Home', path: '/', icon: 'home' },
+    { name: 'Library', path: '/b-pharm', icon: 'auto_stories' },
+    { name: 'Book Store', path: '/books', icon: 'shopping_cart' },
+    { name: 'About', path: '/about', icon: 'info' },
+    { name: 'Contact', path: '/contact', icon: 'alternate_email' },
+    { name: 'Feedback', path: '/feedback', icon: 'rate_review' },
+  ];
+
+  const logoSrc = "https://i.ibb.co/KzzH7zZ3/vidyate-logo.png";
+
   return (
-    <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-slate-900/10 dark:shadow-slate-900/20 border-b border-gray-200 dark:border-slate-800">
-      <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold flex items-center gap-2">
-            <img src={logoImage} alt="Vidyate Logo" className="h-11 rounded" />
-        </Link>
-        <div className="flex items-center space-x-2 md:space-x-6">
-          <ThemeSwitcher />
+    <>
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
+          isScrolled 
+            ? 'py-4 backdrop-blur-xl border-b' 
+            : 'py-7 bg-transparent border-b border-transparent'
+        }`} 
+        style={{ 
+          backgroundColor: isScrolled ? 'var(--glass-bg)' : 'transparent',
+          borderColor: isScrolled ? 'var(--glass-border)' : 'transparent'
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 group relative z-[70]">
+            <img 
+              src={logoSrc} 
+              alt="Vidyate Logo" 
+              className="w-12 h-12 object-cover rounded-full group-hover:scale-110 transition-transform duration-300 shadow-lg" 
+            />
+            <span className="text-xl font-black tracking-tighter" style={{ color: 'var(--text-main)' }}>
+              VIDYATE<span className="text-[#405cff]">.</span>
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group`}
+                  style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
+                >
+                  <span className={location.pathname === link.path ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}>
+                    {link.name}
+                  </span>
+                  {location.pathname === link.path && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#405cff] rounded-full"></span>
+                  )}
+                </Link>
+              ))}
+            </div>
+            
+            <div className="flex items-center gap-4 border-l pl-6" style={{ borderColor: 'var(--glass-border)' }}>
+              <button 
+                onClick={toggleTheme}
+                className="w-10 h-10 rounded-xl glass flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-90 group overflow-hidden"
+              >
+                <span className="material-symbols-rounded text-xl" style={{ color: isDarkMode ? '#8B5CF6' : '#EAB308' }}>
+                  {isDarkMode ? 'dark_mode' : 'light_mode'}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Toggle Icons */}
+          <div className="flex items-center gap-2 md:hidden relative z-[70]">
+            <button 
+              onClick={toggleTheme}
+              className="w-10 h-10 rounded-xl glass flex items-center justify-center transition-transform active:scale-90"
+              aria-label="Toggle Theme"
+            >
+              <span className="material-symbols-rounded text-lg" style={{ color: isDarkMode ? '#8B5CF6' : '#EAB308' }}>
+                {isDarkMode ? 'dark_mode' : 'light_mode'}
+              </span>
+            </button>
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="w-10 h-10 rounded-xl glass flex items-center justify-center transition-all active:scale-90 relative overflow-hidden"
+              style={{ color: 'var(--text-main)' }}
+            >
+              <span className={`material-symbols-rounded text-2xl transition-all duration-300 ${isMenuOpen ? 'rotate-90 scale-0' : 'rotate-0 scale-100'}`}>
+                menu
+              </span>
+              <span className={`material-symbols-rounded text-2xl absolute transition-all duration-300 ${isMenuOpen ? 'rotate-0 scale-100' : '-rotate-90 scale-0'}`}>
+                close
+              </span>
+            </button>
+          </div>
         </div>
       </nav>
-    </header>
+
+      {/* Modern Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ease-in-out ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Backdrop Blur */}
+        <div 
+          className="absolute inset-0 backdrop-blur-3xl bg-black/40 dark:bg-black/60"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+
+        {/* Menu Content Drawer */}
+        <div 
+          className={`absolute top-0 right-0 h-full w-[80%] max-w-xs shadow-2xl glass border-l transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)' }}
+        >
+          <div className="flex flex-col h-full pt-24 px-6 pb-10">
+            <div className="space-y-1 mb-10">
+              <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30 ml-2 mb-4 block" style={{ color: 'var(--text-main)' }}>Navigation</span>
+              {navLinks.map((link, idx) => (
+                <Link 
+                  key={link.path}
+                  to={link.path}
+                  className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group ${
+                    location.pathname === link.path 
+                      ? 'bg-[#405cff]/10 text-[#405cff]' 
+                      : 'hover:bg-white/5 opacity-60 hover:opacity-100'
+                  }`}
+                  style={{ 
+                    transitionDelay: `${idx * 40}ms`,
+                    color: location.pathname === link.path ? '#405cff' : 'var(--text-main)'
+                  }}
+                >
+                  <span className={`material-symbols-rounded text-xl ${location.pathname === link.path ? 'text-[#405cff]' : 'opacity-40'}`}>
+                    {link.icon}
+                  </span>
+                  <span className="text-sm font-black tracking-tight">{link.name}</span>
+                  {location.pathname === link.path && (
+                    <div className="ml-auto w-1 h-4 bg-[#405cff] rounded-full"></div>
+                  )}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-auto space-y-6">
+              <div className="p-5 rounded-2xl bg-[#405cff]/5 border border-[#405cff]/10">
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#405cff] mb-2">Academic Help</p>
+                <p className="text-xs opacity-50 font-medium mb-4" style={{ color: 'var(--text-main)' }}>Talk to our Career Counselor for expert advice.</p>
+                <Link 
+                  to="/contact" 
+                  className="flex items-center justify-center gap-2 py-3 w-full bg-[#405cff] text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-lg active:scale-95 transition-all"
+                >
+                  <span className="material-symbols-rounded text-sm">psychology</span>
+                  Talk to Team
+                </Link>
+              </div>
+
+              
+              <p className="text-[8px] text-center font-black uppercase tracking-[0.3em] opacity-20" style={{ color: 'var(--text-main)' }}>
+                Vidyate Ecosystem &copy; 2024
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

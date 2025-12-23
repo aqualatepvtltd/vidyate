@@ -1,25 +1,8 @@
 {
-  "title": "Vidyate - Student Hub | Pharmacy Notes, Syllabus, Papers & Career Guidance",
-  "charset": "UTF-8",
-  "viewport": "width=device-width, initial-scale=1.0",
-  "favicon": "./assets/vidyate_logo.png",
-  "description": "Vidyate Student Hub is India’s trusted platform for pharmacy students offering comprehensive notes, syllabus, previous exam papers, and career guidance. Study smart, succeed faster.",
-  "keywords": "Vidyate, Pharmacy Student Hub, Pharmacy Notes, Exam Papers, Pharmacy Syllabus, Career Guidance, B Pharm, Pharm D, Pharmacy Education India",
-  "author": "Vidyate Team",
-  "robots": "index, follow",
-  "og": {
-    "title": "Vidyate - Pharmacy Student Hub | Notes & Career Guidance",
-    "description": "Access expertly curated academic resources and career support at Vidyate — empowering pharmacy students across India.",
-    "type": "website",
-    "url": "https://vidyate-student-hub.vercel.app/",
-    "image": "https://vidyate-student-hub.vercel.app/assets/vidyate_hero_logo.png",
-    "image_alt": "Vidyate Student Hub Logo"
-  },
-  "twitter": {
-    "card": "summary_large_image",
-    "title": "Vidyate - Pharmacy Student Hub | Study Notes & Career Support",
-    "description": "Your go-to portal for pharmacy academic notes, syllabus, previous papers, and guidance to boost your career in pharmacy.",
-    "image": "https://vidyate-student-hub.vercel.app/assets/vidyate_hero_logo.png",
-    "image_alt": "Vidyate Student Hub Logo"
-  }
+  "name": "Vidyate - Pharmacy Academic Hub",
+  "description": "A high-performance academic hub for Pharmacy students featuring curated resources for B.Pharm and Pharm.D.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
 }

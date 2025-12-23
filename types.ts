@@ -1,27 +1,46 @@
 
 export interface Subject {
+  id: string;
   name: string;
-  link: string;
+  link?: string;
+  description?: string;
+  verified?: boolean;
 }
 
-export interface YearData {
+export interface Year {
+  id: string;
   name: string;
   subjects: Subject[];
 }
 
-export interface ResourceTypeData {
+export interface ResourceType {
+  id: string;
   name: string;
   icon: string;
-  description: string;
-  years: { [key: string]: YearData };
+  color: string;
+  years: Year[];
 }
 
-export interface CourseData {
+export interface Course {
+  id: string;
   name: string;
   description: string;
-  resources: { [key: string]: ResourceTypeData };
+  resources: Record<string, ResourceType>;
 }
 
-export interface Courses {
-  [key: string]: CourseData;
+export interface ChatMessage {
+  role: 'user' | 'model';
+  text: string;
+}
+
+export interface Book {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  writer: string;
+  description: string;
+  pages: number;
+  format: 'Paperback' | 'Hardcover' | 'E-Book';
+  publisher: string;
 }
