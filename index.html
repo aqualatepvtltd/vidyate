@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidyate | Pharmacy Academic Hub</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="https://i.ibb.co/KzzH7zZ3/vidyate-logo.png" />
+    <title>Vidyate - Student Hub | Pharmacy Notes, Syllabus, Papers & Career Guidance</title>
+    <meta name="description"
+        content="Vidyate Student Hub is India’s trusted platform for pharmacy students offering comprehensive notes, syllabus, previous exam papers, and career guidance. Study smart, succeed faster." />
+    <meta name="keywords"
+        content="Vidyate, Pharmacy Student Hub, Pharmacy Notes, Exam Papers, Pharmacy Syllabus, Career Guidance, B Pharm, Pharm D, Pharmacy Education India" />
+    <meta name="author" content="Vidyate Team" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Vidyate - Pharmacy Student Hub | Notes & Career Guidance" />
+    <meta property="og:description"
+        content="Access expertly curated academic resources and career support at Vidyate — empowering pharmacy students across India." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vidyate-student-hub.vercel.app/" />
+    <meta property="og:image" content="https://i.ibb.co/KzzH7zZ3/vidyate-logo.png" />
+    <meta property="og:image:alt" content="Vidyate Student Hub Logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vidyate - Pharmacy Student Hub | Study Notes & Career Support" />
+    <meta name="twitter:description"
+        content="Your go-to portal for pharmacy academic notes, syllabus, previous papers, and guidance to boost your career in pharmacy." />
+    <meta name="twitter:image" content="https://i.ibb.co/KzzH7zZ3/vidyate-logo.png" />
+    <meta name="twitter:image:alt" content="Vidyate Student Hub Logo" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         :root {
             --brand-blue: #405cff;
@@ -13,8 +35,9 @@
             --emerald: #10B981;
             --sunset-orange: #FF6B6B;
             --violet: #8B5CF6;
-            
-            --bg-color: #03040b; /* Deeper midnight black */
+
+            --bg-color: #03040b;
+            /* Deeper midnight black */
             --text-main: #ffffff;
             --text-muted: rgba(255, 255, 255, 0.6);
             --glass-bg: rgba(255, 255, 255, 0.03);
@@ -34,11 +57,25 @@
         }
 
         /* Global opacity adjustments for Light Mode */
-        .light-mode .opacity-70 { opacity: 0.9 !important; }
-        .light-mode .opacity-60 { opacity: 0.85 !important; }
-        .light-mode .opacity-50 { opacity: 0.8 !important; }
-        .light-mode .opacity-40 { opacity: 0.75 !important; }
-        .light-mode .opacity-30 { opacity: 0.65 !important; }
+        .light-mode .opacity-70 {
+            opacity: 0.9 !important;
+        }
+
+        .light-mode .opacity-60 {
+            opacity: 0.85 !important;
+        }
+
+        .light-mode .opacity-50 {
+            opacity: 0.8 !important;
+        }
+
+        .light-mode .opacity-40 {
+            opacity: 0.75 !important;
+        }
+
+        .light-mode .opacity-30 {
+            opacity: 0.65 !important;
+        }
 
         body {
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -60,7 +97,7 @@
             left: -10%;
             width: 120%;
             height: 120%;
-            background: 
+            background:
                 radial-gradient(at 10% 10%, rgba(64, 92, 255, var(--mesh-opacity)) 0px, transparent 50%),
                 radial-gradient(at 90% 15%, rgba(139, 92, 246, calc(var(--mesh-opacity) * 0.4)) 0px, transparent 40%),
                 radial-gradient(at 85% 90%, rgba(16, 185, 129, calc(var(--mesh-opacity) * 0.35)) 0px, transparent 50%),
@@ -78,6 +115,7 @@
                 transform: scale(1) translate(0, 0);
                 opacity: 0.8;
             }
+
             100% {
                 transform: scale(1.1) translate(-2%, 2%);
                 opacity: 1;
@@ -98,7 +136,12 @@
             transition: opacity 0.4s ease;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: inherit;
             letter-spacing: -0.025em;
         }
@@ -119,30 +162,48 @@
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: var(--brand-blue);
             border-radius: 4px;
         }
 
-        .text-theme-muted { color: var(--text-muted); }
-        
-        @keyframes subtle-fade-in {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        .text-theme-muted {
+            color: var(--text-muted);
         }
-        
+
+        @keyframes subtle-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes scale-up {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .animate-subtle-fade {
             animation: subtle-fade-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
-        
+
         .animate-scale-up {
             animation: scale-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -150,6 +211,7 @@
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -160,15 +222,18 @@
             border-color: rgba(255, 255, 255, 0.15);
             background: rgba(255, 255, 255, 0.05);
         }
+
         .light-mode .glass:hover {
             border-color: rgba(64, 92, 255, 0.3);
             background: rgba(255, 255, 255, 0.85);
         }
     </style>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
+
 <body class="min-h-screen">
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
