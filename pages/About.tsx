@@ -14,8 +14,8 @@ const About: React.FC = () => {
       {/* Hero Section */}
       <section className="py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-20 pointer-events-none">
-          <div className="absolute top-0 left-0 w-64 h-64 bg-[#405cff] rounded-full blur-[120px] animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#8B5CF6] rounded-full blur-[120px] animate-pulse delay-700"></div>
+          <div className="absolute top-0 left-0 w-64 h-64  rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-64 h-64  rounded-full blur-[120px] animate-pulse delay-700"></div>
         </div>
         
         <span className="text-[#405cff] font-black text-[10px] tracking-[0.4em] uppercase mb-6 block">The Vidyate Manifest</span>
