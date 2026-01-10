@@ -62,7 +62,7 @@ const Header: React.FC = () => {
     { name: 'Feedback', path: '/feedback', icon: 'rate_review' },
   ];
 
-  const logoSrc = "https://i.ibb.co/KzzH7zZ3/vidyate-logo.png";
+  const logoSrc = "https://i.ibb.co/DfQg89ZY/Vidyate.png";
 
   return (
     <>

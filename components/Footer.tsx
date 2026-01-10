@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     return () => window.removeEventListener('theme-change', handleThemeChange);
   }, []);
 
-  const logoSrc = "https://i.ibb.co/KzzH7zZ3/vidyate-logo.png";
+  const logoSrc = "https://i.ibb.co/DfQg89ZY/Vidyate.png";
 
   return (
     <footer 
