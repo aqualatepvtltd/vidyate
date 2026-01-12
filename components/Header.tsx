@@ -84,9 +84,9 @@ const Header: React.FC = () => {
               alt="Vidyate Logo"
               className="w-12 h-12 object-cover rounded-full group-hover:scale-110 transition-transform duration-300 shadow-lg"
             />
-            <span className="text-xl font-black tracking-tighter" style={{ color: 'var(--text-main)' }}>
+            {/* <span className="text-xl font-black tracking-tighter" style={{ color: 'var(--text-main)' }}>
               VIDYATE<span className="text-[#405cff]">.</span>
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop Nav */}
