@@ -132,9 +132,9 @@ const About: React.FC = () => {
               </p>
               <div className="space-y-5">
                 {[
-                  { title: 'Interactive Quizzes', desc: 'Real-time self-assessment for every B.Pharm subject.', date: 'Q4 2024' },
-                  { title: 'Live Mentorship', desc: 'Direct access to industry professionals via workshops.', date: 'Q1 2025' },
-                  { title: 'GPAT Mock Hub', desc: 'A dedicated high-pressure testing environment.', date: 'Q2 2025' }
+                  { title: 'Interactive Quizzes', desc: 'Real-time self-assessment for every B.Pharm subject.', date: 'Q4 2026' },
+                  { title: 'Live Mentorship', desc: 'Direct access to industry professionals via workshops.', date: 'Q1 2027' },
+                  { title: 'GPAT Mock Hub', desc: 'A dedicated high-pressure testing environment.', date: 'Q2 2027' }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4 items-start">
                     <div className="text-[9px] font-black text-[#405cff] bg-[#405cff]/10 px-2 py-0.5 rounded border border-[#405cff]/20 flex-shrink-0">{item.date}</div>
