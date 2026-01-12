@@ -183,8 +183,9 @@ IMPORTANT: PLEASE ATTACH YOUR PAYMENT SCREENSHOT TO THIS EMAIL BEFORE SENDING!
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 animate-subtle-fade">
       <SEO 
-        title={`Request: ${subject.name}`} 
-        description={`Request academic materials for ${subject.name}. Fast verification and direct email delivery.`}
+        title={`Request Material: ${subject.name} | Vidyate Academic Hub`} 
+        description={`Request verified study materials for ${subject.name}. Get high-quality notes and resources delivered directly to your email after verification.`}
+        keywords={`Request ${subject.name}, Pharmacy Notes, Study Material Request, ${subject.name} PDF, Academic Resources, B.Pharm Notes`}
       />
       <div className="mb-8 flex justify-between items-center">
         <button 

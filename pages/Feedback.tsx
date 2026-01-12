@@ -106,8 +106,9 @@ const Feedback: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <SEO 
-        title="Feedback & Support" 
-        description="Share your suggestions, report bugs, or request new academic resources to help Vidyate Pro grow."
+        title="Feedback & Suggestions | Help Us Improve Vidyate" 
+        description="Your voice matters. Share your feedback, report bugs, or request new study materials to help us build the ultimate pharmacy education platform."
+        keywords="Vidyate Feedback, Report Bug, Request Resources, Student Suggestions, Improve Education Platform, Pharmacy Community Feedback"
       />
       <div className="text-center mb-12">
         <span className="text-[#405cff] font-black text-[11px] tracking-[0.2em] uppercase mb-3 block">Help Us Grow</span>

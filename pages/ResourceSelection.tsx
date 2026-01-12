@@ -32,14 +32,15 @@ const ResourceSelection: React.FC = () => {
   };
 
   const seoTitle = selectedYear 
-    ? `${resource.name} - ${selectedYear.name} | ${course.name}`
-    : `${resource.name} | ${course.name}`;
+    ? `${resource.name} for ${selectedYear.name} - ${course.name} | Verified Resources`
+    : `${resource.name} for ${course.name} | Select Academic Year`;
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-10">
       <SEO 
         title={seoTitle} 
-        description={`Access high-quality ${resource.name.toLowerCase()} for ${course.name}. Pick your academic year to view verified subjects.`}
+        description={`Download high-quality ${resource.name.toLowerCase()} for ${course.name}. Select your year to access verified subjects, notes, and question papers.`}
+        keywords={`${course.name} ${resource.name}, Pharmacy ${resource.name}, B.Pharm ${resource.name}, D.Pharm ${resource.name}, Academic Resources, Study Material`}
       />
       <div className="flex flex-col gap-4 mb-8">
         <nav className="flex items-center flex-wrap gap-2 text-[9px] font-bold uppercase tracking-widest opacity-40" style={{ color: 'var(--text-main)' }}>

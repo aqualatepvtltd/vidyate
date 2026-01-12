@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Privacy: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 animate-subtle-fade">
+      <SEO 
+        title="Privacy Policy | Vidyate Data Protection" 
+        description="Read Vidyate's Privacy Policy to understand how we collect, use, and protect your personal information and academic data."
+        keywords="Privacy Policy, Data Protection, Student Data Privacy, Vidyate Terms, User Rights, Information Security"
+      />
       <Link to="/" className="inline-flex items-center gap-2 text-theme-muted hover:text-[#405cff] transition-all font-black text-[10px] uppercase tracking-widest mb-8">
         <span className="material-symbols-rounded text-sm">arrow_back</span>
         Return to Dashboard

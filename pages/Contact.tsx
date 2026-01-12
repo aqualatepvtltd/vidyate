@@ -108,8 +108,9 @@ const Contact: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 animate-subtle-fade">
       <SEO 
-        title="Contact Support" 
-        description="Need help with academic resources or technical issues? Contact Vidyate Pro's dedicated support team."
+        title="Contact Vidyate Support | Academic & Technical Assistance" 
+        description="Reach out to the Vidyate team for support regarding academic resources, book orders, or technical queries. We are here to assist pharmacy students 24/7."
+        keywords="Contact Vidyate, Student Support, Pharmacy Academic Help, Technical Support, Customer Service, Education Query, Vidyate Helpline"
       />
       {/* Hero Header */}
       <div className="text-center mb-16">

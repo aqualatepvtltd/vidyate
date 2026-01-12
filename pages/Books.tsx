@@ -8,8 +8,9 @@ const Books: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
       <SEO 
-        title="Library Store" 
-        description="Access the most recommended textbooks for Pharmacy students, hand-picked by academic experts."
+        title="Pharmacy Book Store | Curated Textbooks for B.Pharm & D.Pharm" 
+        description="Explore our curated collection of essential pharmacy textbooks. From K.D. Tripathi to standard reference books, find everything you need for your academic success at student-friendly prices."
+        keywords="Pharmacy Book Store, Buy B.Pharm Books, D.Pharm Textbooks, Medical Books India, Pharmacy Reference Books, GPAT Preparation Books, Online Book Store"
       />
       <div className="text-center mb-12 animate-subtle-fade">
         <span className="text-[#405cff] font-black text-[10px] tracking-[0.3em] uppercase mb-3 block">Store</span>

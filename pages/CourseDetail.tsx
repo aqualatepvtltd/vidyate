@@ -23,9 +23,9 @@ const CourseDetail: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <SEO 
-        title={course.name} 
-        description={course.description} 
-        keywords={`Pharmacy Course, ${course.name}, Pharmacy Notes, Academic Tracks`}
+        title={`${course.name} Syllabus & Resources | Complete Academic Guide`} 
+        description={`Access comprehensive resources for ${course.name}. Get verified notes, question banks, and syllabus details tailored for ${course.name} students.`} 
+        keywords={`${course.name}, Pharmacy Course, ${course.name} Syllabus, ${course.name} Notes, B.Pharm Subjects, D.Pharm Curriculum, Pharmacy Study Material`}
       />
       <div className="mb-10">
         <Link to="/" className="text-theme-muted hover:text-[#405cff] transition-colors flex items-center gap-2 mb-4 text-[10px] font-black uppercase tracking-widest">

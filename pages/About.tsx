@@ -7,8 +7,9 @@ const About: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <SEO 
-        title="About Us" 
-        description="Learn more about Vidyate's mission to bridge the gap between complex pharmaceutical sciences and digital accessibility."
+        title="About Vidyate | Revolutionizing Pharmacy Education" 
+        description="Discover Vidyate's mission to transform pharmaceutical education through digital accessibility, expert-verified resources, and a student-centric academic ecosystem."
+        keywords="About Vidyate, Pharmacy Education, Digital Learning, B.Pharm Resources, D.Pharm Guide, Academic Ecosystem, Pharmacy Students India"
       />
       
       {/* Hero Section */}

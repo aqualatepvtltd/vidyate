@@ -21,9 +21,9 @@ const BookDetail: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-12">
       <SEO 
-        title={`${book.name} by ${book.writer}`} 
-        description={book.description} 
-        keywords={`Pharmacy Book, ${book.name}, ${book.writer}, Pharmacology, Pharmaceutics`}
+        title={`Buy ${book.name} by ${book.writer} | Best Pharmacy Books Store`} 
+        description={`Get the best deal on ${book.name} by ${book.writer}. ${book.description.substring(0, 120)}... Essential textbook for Pharmacy students. Fast delivery available.`} 
+        keywords={`Buy ${book.name}, ${book.writer}, Pharmacy Textbooks, B.Pharm Books, D.Pharm Books, Pharmacology Books, Pharmaceutics, Medical Books Online`}
       />
       <Link to="/books" className="inline-flex items-center gap-2 text-theme-muted hover:text-[#405cff] transition-all font-black text-[10px] uppercase tracking-widest mb-8 md:mb-12">
         <span className="material-symbols-rounded text-sm">arrow_back</span>

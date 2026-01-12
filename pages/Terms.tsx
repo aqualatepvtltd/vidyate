@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Terms: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 animate-subtle-fade">
+      <SEO 
+        title="Terms & Conditions | Vidyate Usage Policy" 
+        description="Review the Terms and Conditions for using Vidyate's academic platform, resources, and services."
+        keywords="Terms of Service, Usage Policy, Academic Disclaimer, Vidyate Rules, Student Agreement"
+      />
       <Link to="/" className="inline-flex items-center gap-2 text-theme-muted hover:text-[#405cff] transition-all font-black text-[10px] uppercase tracking-widest mb-8">
         <span className="material-symbols-rounded text-sm">arrow_back</span>
         Return to Dashboard

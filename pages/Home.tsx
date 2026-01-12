@@ -52,8 +52,9 @@ const Home: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6">
       <SEO 
-        title="Home" 
-        description="The ultimate digital ecosystem for Pharmacy students. Access verified notes, clinical resources, and career guidance."
+        title="Vidyate - The Ultimate Digital Ecosystem for Pharmacy Students" 
+        description="Vidyate is India's premier academic hub for B.Pharm and D.Pharm students. Access verified notes, buy textbooks, get career guidance, and prepare for GPAT/NIPER exams."
+        keywords="Pharmacy Education, B.Pharm Notes, D.Pharm Resources, GPAT Preparation, Pharmacy Books, Medical Education, Vidyate, Pharmacy Career, Study Material"
       />
       {/* Hero Section - Full Height Fold */}
       <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade py-12 md:py-0">

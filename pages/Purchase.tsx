@@ -201,7 +201,11 @@ IMPORTANT: PLEASE ATTACH YOUR PAYMENT SCREENSHOT TO THIS EMAIL BEFORE SENDING!
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 animate-subtle-fade">
-      <SEO title={`Order: ${book.name}`} />
+      <SEO 
+        title={`Secure Checkout - ${book.name} | Vidyate Store`} 
+        description={`Complete your purchase for ${book.name}. Secure payment processing and fast shipping for pharmacy students.`}
+        keywords="Checkout, Buy Book, Secure Payment, Pharmacy Book Order, Online Store"
+      />
       <div className="mb-8 flex justify-between items-center">
         <Link to={`/books/${bookId}`} className="text-theme-muted hover:text-[#405cff] flex items-center gap-2 font-black text-[11px] uppercase tracking-widest transition-colors">
           <span className="material-symbols-rounded text-sm">arrow_back</span>

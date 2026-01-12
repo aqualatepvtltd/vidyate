@@ -96,8 +96,9 @@ const AdmissionEnquiry: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 animate-subtle-fade">
       <SEO 
-        title="Admission Enquiry" 
-        description="Fill out the admission enquiry form to get expert guidance on pharmacy college admissions. Personalized help for B.Pharm, D.Pharm, and more."
+        title="College Admission Enquiry | Expert Pharmacy Career Guidance" 
+        description="Get personalized counseling for B.Pharm, D.Pharm, and Pharm.D admissions. Fill out our enquiry form to connect with expert academic counselors for top pharmacy colleges."
+        keywords="Pharmacy Admission, B.Pharm Admission, D.Pharm Colleges, Pharmacy Career Counseling, College Enquiry, Pharmacy Entrance Exams, Education Guidance"
       />
       
       {/* Header */}
