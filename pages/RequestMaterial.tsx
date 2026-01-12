@@ -96,7 +96,7 @@ const RequestMaterial: React.FC = () => {
 
     setIsProcessing(true);
 
-    const recipient = "2020aqualatepvt@gmail.com";
+    const recipient = "vidyatestudenthub@gmail.com";
     const emailSubject = `MATERIAL REQUEST: ${subject.name} - ${formData.name}`;
     
     const emailBody = `

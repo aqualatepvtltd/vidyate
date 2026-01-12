@@ -28,7 +28,7 @@ const Home: React.FC = () => {
         },
         body: JSON.stringify({
           email: email,
-          access_key: "e4935443-1b7a-4307-809e-c36882e4fc77",
+          access_key: "bfe80316-38d8-4190-a6a0-1ced2791c960",
           subject: "New Newsletter Subscription - Vidyate",
           from_name: "Vidyate Ecosystem",
           message: `New student subscription request from: ${email}`
@@ -53,20 +53,20 @@ const Home: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 md:px-6">
       <SEO 
         title="Home" 
-        description="The ultimate digital ecosystem for Pharmacy students. Access verified notes, clinical resources, and AI-driven career guidance."
+        description="The ultimate digital ecosystem for Pharmacy students. Access verified notes, clinical resources, and career guidance."
       />
       {/* Hero Section - Full Height Fold */}
       <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade py-12 md:py-0">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border text-[10px] md:text-xs font-bold mb-6 md:mb-8 uppercase tracking-[0.1em]" style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}>
           <span className="flex h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
-          <span className="opacity-80">New: 2025 Question Bank is Live</span>
+          <span className="opacity-80">New: 2026 Question Bank is Live</span>
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-4 md:mb-6 leading-[1.1] md:leading-[1.05]" style={{ color: 'var(--text-main)' }}>
           Elevate Your <br/>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#405cff] via-[#8B5CF6] to-[#10B981] drop-shadow-sm">Pharmacy</span> Journey.
         </h1>
         <p className="opacity-60 text-sm md:text-lg max-w-xl mb-8 md:mb-10 font-medium leading-relaxed px-2" style={{ color: 'var(--text-main)' }}>
-          The ultimate digital ecosystem for pharmaceutical students. Access verified notes, clinical resources, and AI-driven career guidance.
+          The ultimate digital ecosystem for pharmaceutical students. Access verified notes, question banks and career guidance.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
           <button 
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
               Digitally <span className="text-[#405cff]">Perfected.</span>
             </h2>
             <p className="opacity-50 text-sm md:text-lg leading-relaxed mb-6 md:mb-10 max-w-lg font-medium text-center md:text-left" style={{ color: 'var(--text-main)' }}>
-              Vidyate isn't just a website; it's a meticulously engineered learning hub. We combine academic rigor with cutting-edge technology.
+              Vidyate is more than just a website; it's a complete learning hub. We combine trusted academic content with modern technology.
             </p>
             
             <div className="flex flex-col gap-3 md:gap-4 mb-8 md:mb-10">
@@ -200,7 +200,7 @@ const Home: React.FC = () => {
                   <span className="material-symbols-rounded text-xl md:text-2xl">psychology</span>
                 </div>
                 <h3 className="text-xs font-bold mb-1 md:mb-2 opacity-90 uppercase tracking-widest text-[9px] md:text-[10px]" style={{ color: 'var(--text-main)' }}>Career Specialist</h3>
-                <p className="opacity-40 leading-relaxed font-medium text-xs" style={{ color: 'var(--text-main)' }}>Gemini-powered guidance specialized in Pharmacy.</p>
+                <p className="opacity-40 leading-relaxed font-medium text-xs" style={{ color: 'var(--text-main)' }}>Career guidance specialized in Pharmacy.</p>
               </div>
             </div>
 
@@ -243,7 +243,7 @@ const Home: React.FC = () => {
             <div className="text-[9px] font-black uppercase tracking-[0.2em] opacity-30 mb-4 block" style={{ color: 'var(--text-main)' }}>Academic Precision</div>
             <span className="material-symbols-rounded text-3xl md:text-4xl text-[#8B5CF6] mb-5 md:mb-6">hub</span>
             <h3 className="text-lg md:text-xl font-black mb-2 md:mb-3" style={{ color: 'var(--text-main)' }}>Integrated Ecosystem</h3>
-            <p className="opacity-40 text-[11px] md:text-xs leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>Connect notes with past papers and AI advice seamlessly for a circular experience.</p>
+            <p className="opacity-40 text-[11px] md:text-xs leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>Connect notes with past papers and advice seamlessly for a circular experience.</p>
           </div>
         </div>
       </section>
@@ -395,7 +395,7 @@ const Home: React.FC = () => {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="future.pharmacist@email.com"
+                      placeholder="example@gmail.com"
                       className="w-full glass border rounded-xl py-4 md:py-5 px-5 md:px-6 placeholder-slate-400 focus:outline-none focus:border-[#405cff]/50 focus:ring-4 focus:ring-[#405cff]/5 transition-all text-sm md:text-base font-medium"
                       style={{ backgroundColor: 'var(--glass-bg)', borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
                     />

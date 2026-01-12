@@ -18,6 +18,7 @@ const Privacy = lazy(() => import('./pages/Privacy.tsx'));
 const Terms = lazy(() => import('./pages/Terms.tsx'));
 const RequestMaterial = lazy(() => import('./pages/RequestMaterial.tsx'));
 const Contact = lazy(() => import('./pages/Contact.tsx'));
+const AdmissionEnquiry = lazy(() => import('./pages/AdmissionEnquiry.tsx'));
 
 const App: React.FC = () => {
   const LoadingFallback = (
@@ -44,6 +45,7 @@ const App: React.FC = () => {
               <Route path="/books/:bookId/purchase" element={<Purchase />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+               <Route path="/admission-enquiry" element={<AdmissionEnquiry />} />
 
               {/* Flattened Dynamic Course & Resource Routes */}
               {/* This prevents greedy matching or index collisions in nested structures */}

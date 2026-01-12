@@ -47,7 +47,7 @@ const CourseDetail: React.FC = () => {
             onClick={() => navigate(`/${courseId}/${resource.id}`)}
             footer={
               <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-[0.15em] opacity-40" style={{ color: 'var(--text-main)' }}>
-                <span>{resource.years.length} Academic Years</span>
+                <span>{resource.years.length} Section</span>
                 <span className="material-symbols-rounded text-sm">chevron_right</span>
               </div>
             }

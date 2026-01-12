@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     return () => window.removeEventListener('theme-change', handleThemeChange);
   }, []);
 
-  const logoSrc = "https://i.ibb.co/DfQg89ZY/Vidyate.png";
+  const logoSrc = "/vidyate-logo-main.webp";
 
   return (
     <footer 
@@ -38,18 +38,21 @@ const Footer: React.FC = () => {
             </span>
           </Link>
           <p className="text-sm max-w-sm leading-relaxed opacity-60 font-medium" style={{ color: 'var(--text-main)' }}>
-            Empowering the next generation of pharmacists with curated high-quality resources, verified academic materials, and specialized AI career guidance.
+            Empowering the next generation of pharmacists with curated high-quality resources, verified academic materials, and specialized career guidance.
           </p>
         </div>
         
         <div>
           <h4 className="font-black mb-5 uppercase tracking-[0.15em] text-xs opacity-40" style={{ color: 'var(--text-main)' }}>Navigation</h4>
           <ul className="space-y-3.5 text-sm font-bold">
-            <li>
+            {/* <li>
               <Link to="/" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Home</Link>
             </li>
             <li>
               <Link to="/about" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>About Us</Link>
+            </li> */}
+            <li>
+              <Link to="/admission-enquiry" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Admission Enquiry</Link>
             </li>
             <li>
               <Link to="/contact" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Contact Us</Link>
@@ -58,9 +61,9 @@ const Footer: React.FC = () => {
               <Link to="/books" className="opacity-60 hover:opacity-100 transition-all hover:translate-x-1 inline-block" style={{ color: 'var(--text-main)' }}>Store</Link>
             </li>
             <li>
-              <Link to="/feedback" className="text-[#405cff] hover:opacity-80 transition-all flex items-center gap-2">
+              <Link to="/feedback" className="opacity-60 hover:opacity-100 transition-all flex items-center gap-2">
                 Feedback
-                <span className="material-symbols-rounded text-sm">open_in_new</span>
+                
               </Link>
             </li>
           </ul>

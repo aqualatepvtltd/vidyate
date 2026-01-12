@@ -38,7 +38,7 @@ const Feedback: React.FC = () => {
       ...formData,
       rating: rating > 0 ? `${rating} Stars` : 'No rating',
       category: category.toUpperCase(),
-      access_key: "e4935443-1b7a-4307-809e-c36882e4fc77",
+      access_key: "bfe80316-38d8-4190-a6a0-1ced2791c960",
       subject: `Vidyate Feedback: ${category.toUpperCase()}`,
       from_name: "Vidyate Feedback System",
     };

@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
 
     const payload = {
       ...formData,
-      access_key: "212ef3c4-2e76-4971-ba1c-d7e462d9abfa",
+      access_key: "bfe80316-38d8-4190-a6a0-1ced2791c960",
       from_name: "Vidyate Contact Hub",
       subject_line: `New Inquiry: ${formData.subject}`
     };
@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
   const contactInfo = [
     {
       title: 'Email Support',
-      value: 'support@vidyate.pro',
+      value: 'vidyatestudenthub@gmail.com',
       icon: 'alternate_email',
       color: '#405cff',
       description: 'Standard support for all resource-related queries.'
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
     },
     {
       title: 'Headquarters',
-      value: 'Pune, Maharashtra, IN',
+      value: 'Bihar, India',
       icon: 'location_on',
       color: '#8B5CF6',
       description: 'Our central academic content and technology hub.'
@@ -184,7 +184,7 @@ const Contact: React.FC = () => {
                   type="email"
                   name="email"
                   required
-                  placeholder="hello@example.com"
+                  placeholder="hello@gmail.com"
                   className={inputClasses}
                   value={formData.email}
                   onChange={handleInputChange}
@@ -235,9 +235,6 @@ const Contact: React.FC = () => {
                 </>
               )}
             </button>
-            <p className="text-center text-[9px] font-black uppercase tracking-widest opacity-30" style={{ color: 'var(--text-main)' }}>
-              Response typical within 1-2 hours
-            </p>
           </form>
         </div>
       </div>

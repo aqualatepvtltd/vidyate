@@ -55,14 +55,15 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', icon: 'home' },
-    { name: 'Library', path: '/b-pharm', icon: 'auto_stories' },
+    { name: 'Material', path: '/b-pharm', icon: 'auto_stories' },
     { name: 'Book Store', path: '/books', icon: 'shopping_cart' },
+    { name: 'Admission', path: '/admission-enquiry', icon: 'school' },
     { name: 'About', path: '/about', icon: 'info' },
     { name: 'Contact', path: '/contact', icon: 'alternate_email' },
     { name: 'Feedback', path: '/feedback', icon: 'rate_review' },
   ];
 
-  const logoSrc = "https://i.ibb.co/DfQg89ZY/Vidyate.png";
+  const logoSrc = "/vidyate-logo-main.webp";
 
   return (
     <>
@@ -192,7 +193,7 @@ const Header: React.FC = () => {
             </div>
             <div className="mt-auto">
               <p className="text-[8px] text-center font-black uppercase tracking-[0.3em] opacity-20" style={{ color: 'var(--text-main)' }}>
-                Vidyate Ecosystem &copy; 2024
+                Vidyate &copy; 2025
               </p>
             </div>
           </div>

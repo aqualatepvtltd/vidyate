@@ -20,7 +20,7 @@ const About: React.FC = () => {
         
         <span className="text-[#405cff] font-black text-[10px] tracking-[0.4em] uppercase mb-6 block">The Vidyate Manifest</span>
         <h1 className="text-4xl md:text-7xl font-black mb-6 leading-[1.1] tracking-tighter" style={{ color: 'var(--text-main)' }}>
-          Engineering <br/>
+          Providing <br/>
           <span className="text-[#405cff]">Academic</span> Clarity.
         </h1>
         <p className="opacity-60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium mb-12" style={{ color: 'var(--text-main)' }}>
@@ -45,7 +45,7 @@ const About: React.FC = () => {
                 At Vidyate, we believe in <b>Resource Minimalism</b>. By filtering out the noise and providing only high-yield, verified content, we help students master their curriculum in half the time.
               </p>
               <p>
-                Our ecosystem is built on the pillars of AKTU/PCI standards, ensuring that every note, past paper, and AI response is academically relevant and practically useful.
+                Our ecosystem is built on the pillars of PCI standards, ensuring that every note, past paper, and AI response is academically relevant and practically useful.
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ const About: React.FC = () => {
             {
               step: '01',
               title: 'Source Collection',
-              desc: 'We aggregate materials from university toppers and leading professors across AKTU affiliated colleges.',
+              desc: 'We aggregate materials from university toppers and leading professors across colleges.',
               icon: 'cloud_sync',
               color: '#405cff'
             },
@@ -170,7 +170,7 @@ const About: React.FC = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
-                to="/"
+                to="/contact"
                 className="px-8 py-4 rounded-xl bg-[#405cff] text-white font-black text-base hover:shadow-[0_20px_40px_rgba(64,92,255,0.4)] hover:-translate-y-1 transition-all active:scale-95"
               >
                 Enter Workspace

@@ -111,7 +111,7 @@ const Purchase: React.FC = () => {
 
     setIsProcessing(true);
 
-    const recipient = "2020aqualatepvt@gmail.com";
+    const recipient = "vidyatestudenthub@gmail.com";
     const emailSubject = `BOOK ORDER: ${book.name} - ${formData.name}`;
     
     const emailBody = `
