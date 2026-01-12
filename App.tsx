@@ -1,6 +1,6 @@
 
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header.tsx';
 import Footer from './components/Footer.tsx';
 import ScrollToTop from './components/ScrollToTop.tsx';
@@ -28,7 +28,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Header />
@@ -63,7 +63,7 @@ const App: React.FC = () => {
           <Footer />
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
