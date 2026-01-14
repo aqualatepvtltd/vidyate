@@ -17,7 +17,7 @@ const B_PHARM_YEARS = [
         id: "pa-1", 
         name: "Pharmaceutical Analysis – I", 
         verified: true,
-        links: { notes: "", questionBank: "", pyq: "", syllabus: "" }
+        links: { notes: "", questionBank: "https://drive.google.com/drive/folders/1HOM5Md0jeB10buQLBCXdSXD7_arub5kL?usp=drive_link", pyq: "", syllabus: "" }
       },
       { 
         id: "ph-1", 
@@ -239,7 +239,7 @@ const B_PHARM_YEARS = [
         id: "ima", 
         name: "Instrumental Methods of Analysis", 
         verified: true,
-        links: { notes: "", questionBank: "https://drive.google.com/drive/folders/1HOM5Md0jeB10buQLBCXdSXD7_arub5kL?usp=drive_link", pyq: "", syllabus: "" }
+        links: { notes: "", questionBank: "", pyq: "", syllabus: "" }
       },
       { 
         id: "ip-2", 
