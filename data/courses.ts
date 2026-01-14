@@ -11,7 +11,7 @@ const B_PHARM_YEARS = [
         id: "hap-1", 
         name: "Human Anatomy & Physiology – I", 
         verified: true,
-        links: { notes: "", questionBank: "", pyq: "", syllabus: "" }
+        links: { notes: "", questionBank: "https://drive.google.com/drive/folders/1iCiQ2yu5YCSiOXJlW6lw817zqjJQ95YB?usp=sharing", pyq: "", syllabus: "" }
       },
       { 
         id: "pa-1", 
@@ -23,7 +23,7 @@ const B_PHARM_YEARS = [
         id: "ph-1", 
         name: "Pharmaceutics – I", 
         verified: true,
-        links: { notes: "", questionBank: "", pyq: "", syllabus: "" }
+        links: { notes: "", questionBank: "https://drive.google.com/drive/folders/1coEzXQxv4qmD5tGvu3JDfLBlR3oZs0Nk?usp=drive_link", pyq: "", syllabus: "" }
       },
       { 
         id: "pic", 
