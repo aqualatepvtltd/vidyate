@@ -1,6 +1,7 @@
 
 import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header.tsx';
 import Footer from './components/Footer.tsx';
 import ScrollToTop from './components/ScrollToTop.tsx';
@@ -63,6 +64,7 @@ const App: React.FC = () => {
           <Footer />
         </div>
       </div>
+      <Analytics />
     </HashRouter>
   );
 };
