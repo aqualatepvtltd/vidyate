@@ -2,24 +2,24 @@
 import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
-import Header from './components/Header.tsx';
-import Footer from './components/Footer.tsx';
-import ScrollToTop from './components/ScrollToTop.tsx';
-import Home from './pages/Home.tsx';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import Home from './pages/Home';
 
-// Lazy load pages with explicit extensions
-const CourseDetail = lazy(() => import('./pages/CourseDetail.tsx'));
-const ResourceSelection = lazy(() => import('./pages/ResourceSelection.tsx'));
-const About = lazy(() => import('./pages/About.tsx'));
-const Feedback = lazy(() => import('./pages/Feedback.tsx'));
-const Books = lazy(() => import('./pages/Books.tsx'));
-const BookDetail = lazy(() => import('./pages/BookDetail.tsx'));
-const Purchase = lazy(() => import('./pages/Purchase.tsx'));
-const Privacy = lazy(() => import('./pages/Privacy.tsx'));
-const Terms = lazy(() => import('./pages/Terms.tsx'));
-const RequestMaterial = lazy(() => import('./pages/RequestMaterial.tsx'));
-const Contact = lazy(() => import('./pages/Contact.tsx'));
-const AdmissionEnquiry = lazy(() => import('./pages/AdmissionEnquiry.tsx'));
+// Lazy load pages. It's best practice to omit file extensions for bundler compatibility.
+const CourseDetail = lazy(() => import('./pages/CourseDetail'));
+const ResourceSelection = lazy(() => import('./pages/ResourceSelection'));
+const About = lazy(() => import('./pages/About'));
+const Feedback = lazy(() => import('./pages/Feedback'));
+const Books = lazy(() => import('./pages/Books'));
+const BookDetail = lazy(() => import('./pages/BookDetail'));
+const Purchase = lazy(() => import('./pages/Purchase'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const RequestMaterial = lazy(() => import('./pages/RequestMaterial'));
+const Contact = lazy(() => import('./pages/Contact'));
+const AdmissionEnquiry = lazy(() => import('./pages/AdmissionEnquiry'));
 
 const App: React.FC = () => {
   const LoadingFallback = (
