@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     return () => window.removeEventListener('theme-change', handleThemeChange);
   }, []);
 
-  const logoSrc = "/vidyate-logo-main.webp";
+  const logoSrc = "https://vidyate-student-hub.vercel.app/vidyate-logo-main.webp";
 
   return (
     <footer 

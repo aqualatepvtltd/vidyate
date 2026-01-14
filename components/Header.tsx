@@ -63,7 +63,7 @@ const Header: React.FC = () => {
     { name: 'Feedback', path: '/feedback', icon: 'rate_review' },
   ];
 
-  const logoSrc = "/vidyate-logo-main.webp";
+  const logoSrc = "https://vidyate-student-hub.vercel.app/vidyate-logo-main.webp";
 
   return (
     <>

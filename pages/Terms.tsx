@@ -26,7 +26,7 @@ const Terms: React.FC = () => {
           <section>
             <h2 className="text-xl font-black mb-4 opacity-100 uppercase tracking-tight" style={{ color: 'var(--text-main)' }}>1. Academic Use Only</h2>
             <p>
-              All resources provided on Vidyate Pro (Notes, PYQs, Syllabus) are intended for educational purposes only. These materials should supplement, not replace, official university textbooks and classroom lectures.
+              All resources provided on Vidyate (Notes, PYQs, Syllabus) are intended for educational purposes only. These materials should supplement, not replace, official university textbooks and classroom lectures.
             </p>
           </section>
 
@@ -40,7 +40,7 @@ const Terms: React.FC = () => {
           <section>
             <h2 className="text-xl font-black mb-4 opacity-100 uppercase tracking-tight" style={{ color: 'var(--text-main)' }}>3. Intellectual Property</h2>
             <p>
-              The "Vidyate" brand, logo, and custom-curated notes are the property of the Vidyate Ecosystem. Users are granted a limited license to download and print materials for personal, non-commercial use. Redistribution of these materials for profit is strictly prohibited.
+              The "Vidyate" brand, logo, and custom-curated notes are the property of the Vidyate. Users are granted a limited license to download and print materials for personal, non-commercial use. Redistribution of these materials for profit is strictly prohibited.
             </p>
           </section>
 
@@ -60,7 +60,7 @@ const Terms: React.FC = () => {
 
           <section className="pt-8 border-t border-dashed" style={{ borderColor: 'var(--glass-border)' }}>
             <p className="text-xs font-bold opacity-40 uppercase tracking-widest text-center">
-              Last Updated: October 2024 • Academic Excellence First
+              Last Updated: January 2026 • Academic Excellence First
             </p>
           </section>
         </div>

@@ -58,7 +58,7 @@ const Privacy: React.FC = () => {
 
           <section className="pt-8 border-t border-dashed" style={{ borderColor: 'var(--glass-border)' }}>
             <p className="text-xs font-bold opacity-40 uppercase tracking-widest text-center">
-              Last Updated: October 2024 • Vidyate Ecosystem Legal Team
+              Last Updated: January 2026 • Vidyate Legal Team
             </p>
           </section>
         </div>
