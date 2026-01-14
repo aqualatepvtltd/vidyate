@@ -29,7 +29,7 @@ const B_PHARM_YEARS = [
         id: "pic", 
         name: "Pharmaceutical Inorganic Chemistry", 
         verified: true,
-        links: { notes: "", questionBank: "", pyq: "", syllabus: "" }
+        links: { notes: "", questionBank: "https://drive.google.com/drive/folders/1i_Vqd-t48ycj-gA5sZoBXPQHR77TRiu9?usp=drive_link", pyq: "", syllabus: "" }
       },
       { 
         id: "cs", 
@@ -239,7 +239,7 @@ const B_PHARM_YEARS = [
         id: "ima", 
         name: "Instrumental Methods of Analysis", 
         verified: true,
-        links: { notes: "", questionBank: "", pyq: "", syllabus: "" }
+        links: { notes: "", questionBank: "https://drive.google.com/drive/folders/1HOM5Md0jeB10buQLBCXdSXD7_arub5kL?usp=drive_link", pyq: "", syllabus: "" }
       },
       { 
         id: "ip-2", 
