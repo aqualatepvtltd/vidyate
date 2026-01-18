@@ -117,6 +117,11 @@ const ResourceSelection: React.FC = () => {
                             Verified
                           </span>
                         )}
+                        {(subject.coming && resourceId === 'notes') && (
+                          <span className="bg-yellow-500/10 text-yellow-500 text-[8px] font-black uppercase px-2 py-0.5 rounded border border-yellow-500/20">
+                            Coming Soon
+                          </span>
+                        )}
                         {!isPaidResource && (
                           <span className="bg-[#405cff]/10 text-[#405cff] text-[8px] font-black uppercase px-2 py-0.5 rounded border border-[#405cff]/20">
                             Free

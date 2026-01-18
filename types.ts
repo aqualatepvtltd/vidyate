@@ -5,6 +5,7 @@ export interface Subject {
   link?: string;
   description?: string;
   verified?: boolean;
+  coming?: boolean;
 }
 
 export interface Year {
