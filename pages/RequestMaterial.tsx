@@ -226,7 +226,7 @@ IMPORTANT: PLEASE ATTACH YOUR PAYMENT SCREENSHOT TO THIS EMAIL BEFORE SENDING!
               </a>
             </div>
             
-            <p className="text-[11px] font-bold opacity-60 mb-8" style={{ color: 'var(--text-main)' }}>Scan QR</p>
+            <p className="text-[11px] font-bold opacity-60 mb-8" style={{ color: 'var(--text-main)' }}>Scan QR Code or</p>
              
             <div className="md:hidden w-full mb-8">
                <div className="flex items-center gap-2 mb-3 opacity-50 justify-center">
