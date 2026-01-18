@@ -245,6 +245,37 @@ IMPORTANT: PLEASE ATTACH YOUR PAYMENT SCREENSHOT TO THIS EMAIL BEFORE SENDING!
             
             <p className="text-[11px] font-bold opacity-60 mb-8 " style={{ color: 'var(--text-main)' }}>Scan QR</p>
             
+            <div className="md:hidden w-full mb-8">
+               <div className="flex items-center gap-2 mb-3 opacity-50 justify-center">
+                 <span className="h-px w-6 bg-current"></span>
+                 <span className="text-[10px] font-black uppercase tracking-widest">Pay via</span>
+                 <span className="h-px w-6 bg-current"></span>
+               </div>
+               <div className="grid grid-cols-1 gap-2">
+                 <a href={`tez://upi/pay?pa=godowner1976@okicici&pn=Vidyate&am=${book.selling_price + book.delivery_cost}&cu=INR`} className="flex items-center justify-between p-3 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
+                   <div className="flex items-center gap-3">
+                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKDT3FviQFGcOuDXlMa7i5Dq6Jjh1T8lc5eA&s" className="w-6 h-6 rounded-full" alt="GPay" />
+                     <span className="text-xs font-bold" style={{ color: 'var(--text-main)' }}>Pay via GPay</span>
+                   </div>
+                   <span className="material-symbols-rounded text-sm opacity-50 group-hover:translate-x-1 transition-transform" style={{ color: 'var(--text-main)' }}>arrow_forward</span>
+                 </a>
+                 <a href={`phonepe://pay?pa=godowner1976@okicici&pn=Vidyate&am=${book.selling_price + book.delivery_cost}&cu=INR`} className="flex items-center justify-between p-3 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
+                   <div className="flex items-center gap-3">
+                     <img src="https://eu-images.contentstack.com/v3/assets/blt7dacf616844cf077/blt85b08b4917701bc0/67997d68d8a86f00203713cc/phonepe-logo-icon.jpg?width=1280&auto=webp&quality=80&format=jpg&disable=upscale" className="w-6 h-6 rounded-full" alt="PhonePe" />
+                     <span className="text-xs font-bold" style={{ color: 'var(--text-main)' }}>Pay via PhonePe</span>
+                   </div>
+                   <span className="material-symbols-rounded text-sm opacity-50 group-hover:translate-x-1 transition-transform" style={{ color: 'var(--text-main)' }}>arrow_forward</span>
+                 </a>
+                 <a href={`paytmmp://pay?pa=godowner1976@okicici&pn=Vidyate&am=${book.selling_price + book.delivery_cost}&cu=INR`} className="flex items-center justify-between p-3 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
+                   <div className="flex items-center gap-3">
+                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2pquF8Mipu7bnOZ1m2hvOOiOV36J-Hv6RYA&s" className="w-6 h-6 rounded-full" alt="Paytm" />
+                     <span className="text-xs font-bold" style={{ color: 'var(--text-main)' }}>Pay via Paytm</span>
+                   </div>
+                   <span className="material-symbols-rounded text-sm opacity-50 group-hover:translate-x-1 transition-transform" style={{ color: 'var(--text-main)' }}>arrow_forward</span>
+                 </a>
+               </div>
+            </div>
+
             <div className="p-4 rounded-xl bg-white/5 border border-dashed text-left" style={{ borderColor: 'var(--glass-border)' }}>
               <p className="text-[11px] font-black uppercase tracking-widest opacity-30 mb-2">Order Summary</p>
               <div className="flex justify-between items-center font-bold mb-1">
