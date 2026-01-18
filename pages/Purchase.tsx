@@ -120,7 +120,6 @@ VIDYATE BOOK STORE - ORDER FORM
 ORDER DETAILS
 -------------
 Book: ${book.name}
-Author: ${book.writer}
 Price: ₹${book.price}
 
 SHIPPING INFORMATION

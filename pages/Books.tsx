@@ -47,9 +47,6 @@ const Books: React.FC = () => {
             </div>
             
             <div className="p-6 flex flex-col flex-grow">
-              <span className="text-[9px] font-black uppercase tracking-[0.1em] opacity-40 mb-2" style={{ color: 'var(--text-main)' }}>
-                {book.writer}
-              </span>
               <h3 className="text-lg font-black mb-3 tracking-tight leading-snug line-clamp-2" style={{ color: 'var(--text-main)' }}>
                 {book.name}
               </h3>

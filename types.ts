@@ -38,9 +38,7 @@ export interface Book {
   name: string;
   price: number;
   image: string;
-  writer: string;
   description: string;
-  pages: number;
-  format: 'Paperback' | 'Hardcover' | 'E-Book';
+  format: string;
   publisher: string;
 }

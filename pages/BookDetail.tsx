@@ -21,9 +21,9 @@ const BookDetail: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-12">
       <SEO 
-        title={`Buy ${book.name} by ${book.writer} | Best Pharmacy Books Store`} 
-        description={`Get the best deal on ${book.name} by ${book.writer}. ${book.description.substring(0, 120)}... Essential textbook for Pharmacy students. Fast delivery available.`} 
-        keywords={`Buy ${book.name}, ${book.writer}, Pharmacy Textbooks, B.Pharm Books, D.Pharm Books, Pharmacology Books, Pharmaceutics, Medical Books Online`}
+        title={`Buy ${book.name} | Best Pharmacy Books Store`} 
+        description={`Get the best deal on ${book.name}. ${book.description.substring(0, 120)}... Essential textbook for Pharmacy students. Fast delivery available.`} 
+        keywords={`Buy ${book.name}, Pharmacy Textbooks, B.Pharm Books, D.Pharm Books, Pharmacology Books, Pharmaceutics, Medical Books Online`}
       />
       <Link to="/books" className="inline-flex items-center gap-2 text-theme-muted hover:text-[#405cff] transition-all font-black text-[10px] uppercase tracking-widest mb-8 md:mb-12">
         <span className="material-symbols-rounded text-sm">arrow_back</span>
@@ -48,15 +48,6 @@ const BookDetail: React.FC = () => {
             {book.name}
           </h1>
           
-          <div className="flex items-center gap-3 mb-6 md:mb-8">
-            <div className="w-10 h-10 rounded-full bg-[#405cff]/10 flex items-center justify-center text-[#405cff]">
-              <span className="material-symbols-rounded text-xl">person</span>
-            </div>
-            <div>
-              <p className="text-[9px] uppercase font-black tracking-widest opacity-40" style={{ color: 'var(--text-main)' }}>Author</p>
-              <p className="font-bold text-base" style={{ color: 'var(--text-main)' }}>{book.writer}</p>
-            </div>
-          </div>
 
           <p className="text-xl md:text-2xl font-black text-[#405cff] mb-6 md:mb-8">₹{book.price}</p>
 
@@ -68,12 +59,7 @@ const BookDetail: React.FC = () => {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-12">
-            <div className="glass p-4 rounded-xl text-center border" style={{ borderColor: 'var(--glass-border)' }}>
-              <span className="material-symbols-rounded text-[#10B981] mb-2 text-xl">auto_stories</span>
-              <p className="text-[9px] uppercase font-black opacity-30">Pages</p>
-              <p className="font-bold text-xs md:text-sm">{book.pages}</p>
-            </div>
+          <div className="grid grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-12">
             <div className="glass p-4 rounded-xl text-center border" style={{ borderColor: 'var(--glass-border)' }}>
               <span className="material-symbols-rounded text-[#8B5CF6] mb-2 text-xl">book</span>
               <p className="text-[9px] uppercase font-black opacity-30">Format</p>
