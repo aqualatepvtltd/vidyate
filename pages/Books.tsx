@@ -52,9 +52,15 @@ const Books: React.FC = () => {
               </h3>
               
               <div className="mt-auto flex items-center justify-between gap-3">
-                <span className="text-xl font-black text-[#405cff]">
-                  ₹{book.price}
-                </span>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-theme-muted line-through">₹{book.original_price}</span>
+                    <span className="text-[10px] font-black text-[#10B981] bg-[#10B981]/10 px-1.5 py-0.5 rounded">
+                      {Math.round(((book.original_price - book.selling_price) / book.original_price) * 100)}% OFF
+                    </span>
+                  </div>
+                  <span className="text-xl font-black text-[#405cff]">₹{book.selling_price}</span>
+                </div>
                 <Link 
                   to={`/books/${book.id}`}
                   className="px-5 py-2 rounded-lg glass border border-transparent hover:border-[#405cff]/30 text-[10px] font-black uppercase tracking-widest transition-all"

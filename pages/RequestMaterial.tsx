@@ -214,18 +214,20 @@ IMPORTANT: PLEASE ATTACH YOUR PAYMENT SCREENSHOT TO THIS EMAIL BEFORE SENDING!
               <h3 className="text-lg font-black" style={{ color: 'var(--text-main)' }}>Complete Payment</h3>
             </div>
             
-            <div className="w-44 h-44 bg-white p-4 rounded-2xl mx-auto mb-6 shadow-xl border border-[#eee] flex items-center justify-center relative overflow-hidden group">
-              <div className="w-full h-full bg-[#f8f9fa] flex items-center justify-center relative rounded-lg border border-dashed border-gray-200">
-                 <span className="material-symbols-rounded text-6xl text-black group-hover:scale-110 transition-transform">qr_code_scanner</span>
-                 <div className="absolute top-0 right-0 p-1 bg-[#405cff] rounded-bl-lg text-white">
+            <div className="w-44 h-44 bg-white p-2 rounded-2xl mx-auto mb-6 shadow-xl border border-[#eee] flex items-center justify-center relative overflow-hidden group">
+              <div className="w-full h-full bg-[#f8f9fa] flex items-center justify-center relative rounded-lg border border-dashed border-gray-200 overflow-hidden">
+                 <img src="/GooglePay_QR.png" alt="Payment QR" className="w-full h-full object-contain group-hover:scale-90 transition-transform" />
+                 <div className="absolute top-0 right-0 p-1 bg-[#405cff] rounded-bl-lg text-white z-10">
                    <span className="material-symbols-rounded text-[8px]">verified</span>
                  </div>
               </div>
+              <a href="/GooglePay_QR.png" download="Vidyate_Payment_QR" className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-black hover:bg-gray-50 transition-colors z-20" title="Download QR">
+                <span className="material-symbols-rounded text-sm">download</span>
+              </a>
             </div>
             
-            <p className="text-[11px] font-bold opacity-60 mb-1" style={{ color: 'var(--text-main)' }}>Scan QR or Pay to:</p>
-            <p className="text-lg font-black text-[#405cff] mb-8 select-all bg-[#405cff]/5 py-2 px-4 rounded-lg inline-block">vidyate.pay@okaxis</p>
-            
+            <p className="text-[11px] font-bold opacity-60 mb-8" style={{ color: 'var(--text-main)' }}>Scan QR</p>
+             
             <div className="p-4 rounded-xl bg-white/5 border border-dashed text-left" style={{ borderColor: 'var(--glass-border)' }}>
               <div className="flex justify-between items-center font-black text-sm" style={{ color: 'var(--text-main)' }}>
                 <span>Material Fee:</span>

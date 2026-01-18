@@ -36,7 +36,9 @@ export interface ChatMessage {
 export interface Book {
   id: string;
   name: string;
-  price: number;
+  original_price: number;
+  selling_price: number;
+  delivery_cost: number;
   image: string;
   description: string;
   format: string;

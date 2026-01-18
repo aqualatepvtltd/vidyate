@@ -49,7 +49,13 @@ const BookDetail: React.FC = () => {
           </h1>
           
 
-          <p className="text-xl md:text-2xl font-black text-[#405cff] mb-6 md:mb-8">₹{book.price}</p>
+          <div className="flex items-baseline gap-3 mb-6 md:mb-8">
+            <p className="text-xl md:text-2xl font-black text-[#405cff]">₹{book.selling_price}</p>
+            <p className="text-sm md:text-base font-bold text-theme-muted line-through">₹{book.original_price}</p>
+            <span className="px-2 py-1 rounded-md bg-[#10B981]/10 text-[#10B981] text-[10px] font-black uppercase tracking-widest">
+              {Math.round(((book.original_price - book.selling_price) / book.original_price) * 100)}% OFF
+            </span>
+          </div>
 
           <div className="glass p-6 md:p-8 rounded-2xl border mb-8" style={{ borderColor: 'var(--glass-border)' }}>
             <h3 className="text-[10px] uppercase font-black tracking-widest opacity-40 mb-3" style={{ color: 'var(--text-main)' }}>Description</h3>
