@@ -63,7 +63,7 @@ const Books: React.FC = () => {
                 </div>
                 <Link 
                   to={`/books/${book.id}`}
-                  className="px-5 py-2 rounded-lg glass border border-transparent hover:border-[#405cff]/30 text-[10px] font-black uppercase tracking-widest transition-all"
+                  className="px-5 py-2 rounded-lg glass border border-[#405cff]/20 hover:border-[#405cff]/50 text-[10px] font-black uppercase tracking-widest transition-all"
                   style={{ color: 'var(--text-main)' }}
                 >
                   Buy
