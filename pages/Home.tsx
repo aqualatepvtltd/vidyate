@@ -128,7 +128,7 @@ const Home: React.FC = () => {
         
         <div className="flex flex-col xl:flex-row gap-10 md:gap-16 items-start">
           <div className="w-full xl:w-2/5 xl:sticky xl:top-40">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#405cff]/10 border border-[#405cff]/20 text-[#405cff] text-[10px] font-black uppercase tracking-[0.2em] mb-4 md:mb-6">
+            <div className="flex w-fit mx-auto md:mx-0 items-center gap-2 px-3 py-1 rounded-full bg-[#405cff]/10 border border-[#405cff]/20 text-[#405cff] text-[10px] font-black uppercase tracking-[0.2em] mb-4 md:mb-6">
               <span className="material-symbols-rounded text-sm">verified</span>
               The Vidyate Standard
             </div>
