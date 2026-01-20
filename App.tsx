@@ -25,7 +25,7 @@ const WorkInProgress = lazy(() => import('./pages/WorkInProgress'));
 const App: React.FC = () => {
   // --- Maintenance Mode Flag ---
   // Set to true to show the Work in Progress page for the entire site.
-  const maintenanceMode = true;
+  const maintenanceMode = false;
 
   const LoadingFallback = (
     <div className="h-screen flex items-center justify-center bg-[var(--bg-color)]">
