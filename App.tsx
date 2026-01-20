@@ -20,13 +20,26 @@ const Terms = lazy(() => import('./pages/Terms'));
 const RequestMaterial = lazy(() => import('./pages/RequestMaterial'));
 const Contact = lazy(() => import('./pages/Contact'));
 const AdmissionEnquiry = lazy(() => import('./pages/AdmissionEnquiry'));
+const WorkInProgress = lazy(() => import('./pages/WorkInProgress'));
 
 const App: React.FC = () => {
+  // --- Maintenance Mode Flag ---
+  // Set to true to show the Work in Progress page for the entire site.
+  const maintenanceMode = true;
+
   const LoadingFallback = (
     <div className="h-screen flex items-center justify-center bg-[var(--bg-color)]">
       <div className="w-12 h-12 border-4 border-[#405cff] border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
+
+  if (maintenanceMode) {
+    return (
+      <Suspense fallback={LoadingFallback}>
+        <WorkInProgress />
+      </Suspense>
+    );
+  }
 
   return (
     <HashRouter>
