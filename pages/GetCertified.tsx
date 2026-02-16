@@ -23,7 +23,7 @@ const GetCertified: React.FC = () => {
     {
       id: 'ipr',
       name: 'Intellectual Property Rights (IPR)',
-      materialLink: 'https://drive.google.com/file/d/1_MvJlV-oam8NWXHkpqlqe4aPl67X7g_S/view?usp=drive_link',
+      materialLink: 'https://drive.google.com/file/d/1tNBpe-Bfg_JAJJcheb-lCT4YT-HHLNAx/view?usp=drive_link',
       testLink: 'https://forms.gle/18iveUh2RfEafTaX8'
     },
   ], []);
