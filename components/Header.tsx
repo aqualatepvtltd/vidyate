@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMaterialOpen, setIsMaterialOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
 
@@ -57,6 +58,7 @@ const Header: React.FC = () => {
     { name: 'Home', path: '/', icon: 'home' },
     { name: 'Material', path: '/b-pharm', icon: 'auto_stories' },
     { name: 'Book Store', path: '/books', icon: 'shopping_cart' },
+    { name: 'Get Certified', path: '/get-certified', icon: 'verified' },
     { name: 'Admission', path: '/admission-enquiry', icon: 'school' },
     { name: 'About', path: '/about', icon: 'info' },
     { name: 'Contact', path: '/contact', icon: 'alternate_email' },
@@ -69,8 +71,8 @@ const Header: React.FC = () => {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${isScrolled
-            ? 'py-4 backdrop-blur-xl border-b'
-            : 'py-7 bg-transparent border-b border-transparent'
+          ? 'py-4 backdrop-blur-xl border-b'
+          : 'py-7 bg-transparent border-b border-transparent'
           }`}
         style={{
           backgroundColor: isScrolled ? 'var(--glass-bg)' : 'transparent',
@@ -90,22 +92,47 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-5">
+            <div className="flex items-center gap-5">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group`}
-                  style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
-                >
-                  <span className={location.pathname === link.path ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}>
-                    {link.name}
-                  </span>
-                  {location.pathname === link.path && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#405cff] rounded-full"></span>
-                  )}
-                </Link>
+                link.name === 'Material' ? (
+                  <div
+                    key={link.path}
+                    className="relative"
+                    onMouseEnter={() => setIsMaterialOpen(true)}
+                    onMouseLeave={() => setIsMaterialOpen(false)}
+                  >
+                    <button
+                      className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group flex items-center gap-2`}
+                      style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
+                      onClick={() => setIsMaterialOpen((s) => !s)}
+                    >
+                      <span className={location.pathname === link.path ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}>{link.name}</span>
+                      <span className="px-0 material-symbols-rounded text-m text-[#405cff]">
+                        arrow_drop_down
+                      </span>
+                    </button>
+
+                    <div className={`absolute right-0 left-0 mt-0 w-36 rounded-xl shadow-lg glass border p-2 ${isMaterialOpen ? 'block' : 'hidden'}`} style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)', color: '#303030' }}>
+                      <Link to="/b-pharm" className="block px-3 py-2 rounded-md font-semibold hover:bg-white/5">B.Pharm</Link>
+                      <Link to="/d-pharm" className="block px-3 py-2 rounded-md font-semibold hover:bg-white/5">D.Pharm</Link>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group`}
+                    style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
+                  >
+                    <span className={location.pathname === link.path ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}>
+                      {link.name}
+                    </span>
+                    {location.pathname === link.path && (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#405cff] rounded-full"></span>
+                    )}
+                  </Link>
+                )
               ))}
             </div>
 
@@ -169,26 +196,49 @@ const Header: React.FC = () => {
             <div className="space-y-1 mb-10">
               <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30 ml-2 mb-4 block" style={{ color: 'var(--text-main)' }}>Navigation</span>
               {navLinks.map((link, idx) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group ${location.pathname === link.path
+                link.name === 'Material' ? (
+                  <div
+                    key={link.path}
+                    className={`px-4 py-3.5 rounded-xl transition-all duration-300 ${location.pathname === link.path ? 'bg-[#405cff]/10 text-[#405cff]' : 'hover:bg-white/5 opacity-60 hover:opacity-100'}`}
+                    style={{ transitionDelay: `${idx * 40}ms`, color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
+                  >
+                    <div className="flex items-center justify-between" onClick={() => setIsMaterialOpen((s) => !s)}>
+                      <div className="flex items-center gap-4">
+                        <span className={`material-symbols-rounded text-xl ${location.pathname === link.path ? 'text-[#405cff]' : 'opacity-40'}`}>{link.icon}</span>
+                        <span className="text-sm font-black tracking-tight">{link.name}</span>
+                      </div>
+                      <span className="material-symbols-rounded">{isMaterialOpen ? 'expand_less' : 'expand_more'}</span>
+                    </div>
+
+                    {isMaterialOpen && (
+                      <div className="mt-2 pl-10 space-y-1">
+                        <Link to="/b-pharm" className="block px-3 py-2 rounded-lg font-semibold hover:bg-white/5">B.Pharm</Link>
+                        <Link to="/d-pharm" className="block px-3 py-2 rounded-lg font-semibold hover:bg-white/5">D.Pharm</Link>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group ${location.pathname === link.path
                       ? 'bg-[#405cff]/10 text-[#405cff]'
                       : 'hover:bg-white/5 opacity-60 hover:opacity-100'
-                    }`}
-                  style={{
-                    transitionDelay: `${idx * 40}ms`,
-                    color: location.pathname === link.path ? '#405cff' : 'var(--text-main)'
-                  }}
-                >
-                  <span className={`material-symbols-rounded text-xl ${location.pathname === link.path ? 'text-[#405cff]' : 'opacity-40'}`}>
-                    {link.icon}
-                  </span>
-                  <span className="text-sm font-black tracking-tight">{link.name}</span>
-                  {location.pathname === link.path && (
-                    <div className="ml-auto w-1 h-4 bg-[#405cff] rounded-full"></div>
-                  )}
-                </Link>
+                      }`}
+                    style={{
+                      transitionDelay: `${idx * 40}ms`,
+                      color: location.pathname === link.path ? '#405cff' : 'var(--text-main)'
+                    }}
+                  >
+                    <span className={`material-symbols-rounded text-xl ${location.pathname === link.path ? 'text-[#405cff]' : 'opacity-40'}`}>
+                      {link.icon}
+                    </span>
+                    <span className="text-sm font-black tracking-tight">{link.name}</span>
+                    {location.pathname === link.path && (
+                      <div className="ml-auto w-1 h-4 bg-[#405cff] rounded-full"></div>
+                    )}
+                  </Link>
+                )
               ))}
             </div>
             <div className="mt-auto">
