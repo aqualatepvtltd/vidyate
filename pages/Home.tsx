@@ -70,11 +70,21 @@ const Home: React.FC = () => {
           The ultimate digital ecosystem for pharmaceutical students. Access verified notes, question banks and career guidance.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
-          <button 
-            onClick={() => document.getElementById('tracks')?.scrollIntoView({ behavior: 'smooth' })}
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 rounded-xl bg-[#405cff] text-white font-black text-sm md:text-base hover:shadow-[0_15px_30px_rgba(64,92,255,0.3)] hover:-translate-y-1 transition-all active:scale-95"
+          <Link
+            to="/get-certified"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 rounded-xl bg-[#10B981] text-white font-black text-sm md:text-base hover:shadow-[0_15px_30px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2"
+            style={{ textDecoration: 'none' }}
           >
-            Explore Courses
+            <span className="material-symbols-rounded text-lg">verified</span>
+            <span>Get Certified</span>
+          </Link>
+
+          <button
+            onClick={() => document.getElementById('tracks')?.scrollIntoView({ behavior: 'smooth' })}
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 rounded-xl bg-[#405cff] text-white font-black text-sm md:text-base hover:shadow-[0_15px_30px_rgba(64,92,255,0.3)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-rounded text-lg">school</span>
+            <span>Explore Courses</span>
           </button>
           <Link 
             to="/books"
