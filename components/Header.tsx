@@ -113,7 +113,7 @@ const Header: React.FC = () => {
                       </span>
                     </button>
 
-                    <div className={`absolute right-0 left-0 mt-0 w-36 rounded-xl shadow-lg glass border p-2 ${isMaterialOpen ? 'block' : 'hidden'}`} style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)', color: '#303030' }}>
+                    <div className={`absolute right-0 left-0 mt-0 w-36 rounded-xl shadow-lg glass border p-2 ${isMaterialOpen ? 'block' : 'hidden'}`} style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)' }}>
                       <Link to="/b-pharm" className="block px-3 py-2 rounded-md font-semibold hover:bg-white/5">B.Pharm</Link>
                       <Link to="/d-pharm" className="block px-3 py-2 rounded-md font-semibold hover:bg-white/5">D.Pharm</Link>
                     </div>
