@@ -26,6 +26,12 @@ const GetCertified: React.FC = () => {
       materialLink: 'https://drive.google.com/file/d/1tNBpe-Bfg_JAJJcheb-lCT4YT-HHLNAx/view?usp=drive_link',
       testLink: 'https://forms.gle/18iveUh2RfEafTaX8'
     },
+    {
+      id: 'bls',
+      name: 'BLS & Emergency Care',
+      materialLink: 'https://drive.google.com/file/d/1b7mvuUFMciexqHSpsO1I7pg5qI8g-XG8/view?usp=drive_link',
+      testLink: 'https://forms.gle/tP2rShD76VfGf36r9'
+    },
   ], []);
 
   const steps = [
