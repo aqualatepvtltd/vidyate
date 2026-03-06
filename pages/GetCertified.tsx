@@ -17,7 +17,7 @@ const GetCertified: React.FC = () => {
     {
       id: 'nped-quiz-contest-2026',
       name: 'NPED Quiz Contest 2026',
-      materialLink: '#',
+      materialLink: 'https://www.instagram.com/p/DVigIDnGZdD/',
       testLink: 'https://forms.gle/JLhUCHe7mo917BV88'
     },
     {
