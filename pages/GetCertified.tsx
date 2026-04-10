@@ -15,12 +15,6 @@ const GetCertified: React.FC = () => {
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
     {
-      id: 'nped-quiz-contest-2026',
-      name: 'NPED Quiz Contest 2026',
-      materialLink: 'https://www.instagram.com/p/DVigIDnGZdD/',
-      testLink: 'https://forms.gle/JLhUCHe7mo917BV88'
-    },
-    {
       id: 'pharmacovigilance',
       name: 'Pharmacovigilance',
       materialLink: 'https://drive.google.com/file/d/1_MvJlV-oam8NWXHkpqlqe4aPl67X7g_S/view?usp=drive_link',
@@ -43,6 +37,12 @@ const GetCertified: React.FC = () => {
       name: 'HPL Chromatography',
       materialLink: 'https://drive.google.com/file/d/19rZFmblhpbPDtOjVI1JBhzllXYg_s2HS/view?usp=drive_link',
       testLink: 'https://forms.gle/afAvnEfT4wdaGJRCA'
+    },
+    {
+      id: 'nped-quiz-contest-2026',
+      name: 'NPED Quiz Contest 2026',
+      materialLink: 'https://www.instagram.com/p/DVigIDnGZdD/',
+      testLink: 'https://forms.gle/JLhUCHe7mo917BV88'
     },
   ], []);
 
