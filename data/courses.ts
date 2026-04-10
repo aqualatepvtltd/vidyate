@@ -467,7 +467,7 @@ export const COURSES: Record<string, Course> = {
   "b-pharm": {
     id: "b-pharm",
     name: "B. Pharmacy",
-    description: "4-year PCI-based program (8 semesters).",
+    description: "B Pharmacy is a 4-year undergraduate course divided into 8 semesters.",
     resources: {
       notes: {
         id: "notes",
@@ -503,7 +503,7 @@ export const COURSES: Record<string, Course> = {
   "d-pharm": {
     id: "d-pharm",
     name: "D. Pharmacy",
-    description: "2-year PCI-approved diploma program.",
+    description: "D Pharmacy is a 2-year PCI-approved diploma program.",
     resources: {
       notes: {
         id: "notes",
