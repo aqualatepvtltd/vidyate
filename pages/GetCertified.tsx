@@ -6,6 +6,7 @@ interface CertificationCourse {
   name: string;
   materialLink: string;
   testLink: string;
+  quiz?: boolean;
 }
 
 const GetCertified: React.FC = () => {
@@ -14,6 +15,13 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
+    {
+      id: 'world-hypertension-day-quiz-2026',
+      name: 'World Hypertension Day Quiz 2026',
+      materialLink: 'https://www.instagram.com/p/DVigIDnGZdD/',
+      testLink: 'https://forms.gle/siM4yEwz9HAMTDE47',
+      quiz: true
+    },
     {
       id: 'pharmacovigilance',
       name: 'Pharmacovigilance',
@@ -36,13 +44,14 @@ const GetCertified: React.FC = () => {
       id: 'hplc',
       name: 'HPL Chromatography',
       materialLink: 'https://drive.google.com/file/d/19rZFmblhpbPDtOjVI1JBhzllXYg_s2HS/view?usp=drive_link',
-      testLink: 'https://forms.gle/afAvnEfT4wdaGJRCA'
+      testLink: 'https://forms.gle/afAvnEfT4wdaGJRCA',
     },
     {
       id: 'nped-quiz-contest-2026',
       name: 'NPED Quiz Contest 2026',
       materialLink: 'https://www.instagram.com/p/DVigIDnGZdD/',
-      testLink: 'https://forms.gle/JLhUCHe7mo917BV88'
+      testLink: 'https://forms.gle/JLhUCHe7mo917BV88',
+      quiz: true
     },
   ], []);
 
@@ -148,9 +157,16 @@ const GetCertified: React.FC = () => {
                 }}
               >
                 <div className="mb-6">
-                  <h3 className="text-xl font-black mb-2 group-hover:text-[#405cff] transition-colors" style={{ color: 'var(--text-main)' }}>
-                    {course.name}
-                  </h3>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-black group-hover:text-[#405cff] transition-colors" style={{ color: 'var(--text-main)' }}>
+                      {course.name}
+                    </h3>
+                    {course.quiz && (
+                      <span className="px-2 py-1 bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                        QUIZ
+                      </span>
+                    )}
+                  </div>
                   <div className="flex items-center gap-2 text-sm opacity-60" style={{ color: 'var(--text-main)' }}>
                     <span className="material-symbols-rounded text-base">verified</span>
                     <span>Official Certification</span>
@@ -158,20 +174,22 @@ const GetCertified: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-3">
-                  <button
-                    onClick={() => handleDownloadMaterial(course)}
-                    className="flex-1 px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-[#405cff]"
-                  >
-                    <span className="material-symbols-rounded text-lg">download</span>
-                    <span>Download Material</span>
-                  </button>
+                  {!course.quiz && (
+                    <button
+                      onClick={() => handleDownloadMaterial(course)}
+                      className="flex-1 px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-[#405cff]"
+                    >
+                      <span className="material-symbols-rounded text-lg">download</span>
+                      <span>Download Material</span>
+                    </button>
+                  )}
 
                   <button
                     onClick={() => handleAttemptTest(course)}
-                    className="flex-1 px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-[#8B5CF6]"
+                    className={`px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${course.quiz ? 'flex-1 bg-[#FF6B6B]' : 'flex-1 bg-[#8B5CF6]'}`}
                   >
                     <span className="material-symbols-rounded text-lg">assignment</span>
-                    <span>Attempt Test</span>
+                    <span>{course.quiz ? 'Join Quiz' : 'Attempt Test'}</span>
                   </button>
                 </div>
               </div>

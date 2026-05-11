@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import StripNav from './StripNav';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,16 +70,18 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${isScrolled
-          ? 'py-4 backdrop-blur-xl border-b'
-          : 'py-7 bg-transparent border-b border-transparent'
-          }`}
-        style={{
-          backgroundColor: isScrolled ? 'var(--glass-bg)' : 'transparent',
-          borderColor: isScrolled ? 'var(--glass-border)' : 'transparent'
-        }}
-      >
+      <div className="fixed top-0 left-0 right-0 z-[60]">
+        <StripNav />
+        <nav
+          className={`transition-all duration-500 ${isScrolled
+            ? 'py-4 backdrop-blur-xl border-b'
+            : 'py-7 bg-transparent border-b border-transparent'
+            }`}
+          style={{
+            backgroundColor: isScrolled ? 'var(--glass-bg)' : 'transparent',
+            borderColor: isScrolled ? 'var(--glass-border)' : 'transparent'
+          }}
+        >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group relative z-[70]">
             <img
@@ -174,6 +177,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </nav>
+      </div>
 
       {/* Modern Mobile Menu Overlay */}
       <div
