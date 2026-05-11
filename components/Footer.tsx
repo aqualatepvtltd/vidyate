@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex items-center gap-4 mt-4">
 
-            <a href="https://www.linkedin.com/in/vidyatestudenthub/" target="_blank" rel="noopener noreferrer" aria-label="Vidyate on LinkedIn" title="LinkedIn" className="opacity-60 hover:opacity-100 transition-all inline-flex items-center" style={{ color: 'var(--text-main)' }}>
+            <a href="https://www.linkedin.com/company/vidyate-student-hub/" target="_blank" rel="noopener noreferrer" aria-label="Vidyate on LinkedIn" title="LinkedIn" className="opacity-60 hover:opacity-100 transition-all inline-flex items-center" style={{ color: 'var(--text-main)' }}>
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v12h-4zM8 8h3.8v1.7h.1c.5-.9 1.7-1.8 3.5-1.8 3.8 0 4.5 2.5 4.5 5.8V20h-4v-5.2c0-1.2 0-2.8-1.7-2.8-1.7 0-2 1.4-2 2.7V20H8z" />
               </svg>
