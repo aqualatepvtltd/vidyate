@@ -57,7 +57,7 @@ const Home: React.FC = () => {
         keywords="Pharmacy Education, B.Pharm Notes, D.Pharm Resources, GPAT Preparation, Pharmacy Books, Medical Education, Vidyate, Pharmacy Career, Study Material"
       />
       {/* Hero Section - Full Height Fold */}
-      <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade py-12 md:py-0">
+      <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade pt-32 pb-12 md:py-0">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border text-[10px] md:text-xs font-bold mb-6 md:mb-8 uppercase tracking-[0.1em]" style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}>
           <span className="flex h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
           <span className="opacity-80">New: 2026 Question Bank is Live</span>
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
             <span className="material-symbols-rounded text-lg">article</span>
             <span>Visit Blogs</span>
           </a>
-          
+
           <Link
             to="/get-certified"
             className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 rounded-xl bg-[#10B981] text-white font-black text-sm md:text-base hover:shadow-[0_15px_30px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2"
