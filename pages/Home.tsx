@@ -56,7 +56,7 @@ const Home: React.FC = () => {
         description="Vidyate is India's premier academic hub for B.Pharm and D.Pharm students. Access verified notes, buy textbooks, get career guidance, and prepare for GPAT/NIPER exams."
         keywords="Pharmacy Education, B.Pharm Notes, D.Pharm Resources, GPAT Preparation, Pharmacy Books, Medical Education, Vidyate, Pharmacy Career, Study Material"
       />
-      {/* Hero Section - Full Height Fold */}
+      {/* Hero Section - Full Height Fold Yes*/}
       <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade pt-32 pb-12 md:py-0">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border text-[10px] md:text-xs font-bold mb-6 md:mb-8 uppercase tracking-[0.1em]" style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}>
           <span className="flex h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
