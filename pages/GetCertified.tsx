@@ -15,6 +15,13 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
+     {
+      id: 'intelligent-dispensing-ai-pharmacy',
+      name: 'Intelligent Dispensing The Role of Artificial Intelligence in Modern Pharmacy Practice - Basic (Ch. 1 to 4)',
+      materialLink: 'https://drive.google.com/file/d/1i7WIqyXsn4BR86lu9PAGuhIvvGsT1WBt/view?usp=sharing',
+      testLink: 'https://forms.gle/c3ieoeq6BSQjZFx58',
+      quiz: false
+    },
     {
       id: 'world-hypertension-day-quiz-2026',
       name: 'World Hypertension Day Quiz 2026',
