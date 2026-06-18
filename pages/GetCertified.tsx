@@ -15,6 +15,13 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
+    {
+      id: 'artificial-intelligence-pharmacovigilance',
+      name: 'Artificial Intelligence in Pharmacovigilance Enhancing Drug Safety Monitoring - Basic (Ch. 1 to 5)',
+      materialLink: 'https://drive.google.com/file/d/1YeE6AZpxNhEwYaNoE-Q1eoUgk4gpT99a/view?usp=drive_link',
+      testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8',
+      quiz: false
+    },
      {
       id: 'intelligent-dispensing-ai-pharmacy',
       name: 'Intelligent Dispensing The Role of Artificial Intelligence in Modern Pharmacy Practice - Basic (Ch. 1 to 4)',
