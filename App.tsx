@@ -11,18 +11,14 @@ import Home from './pages/Home';
 const CourseDetail = lazy(() => import('./pages/CourseDetail'));
 const ResourceSelection = lazy(() => import('./pages/ResourceSelection'));
 const About = lazy(() => import('./pages/About'));
-const Feedback = lazy(() => import('./pages/Feedback'));
-const Books = lazy(() => import('./pages/Books'));
-const BookDetail = lazy(() => import('./pages/BookDetail'));
-const Purchase = lazy(() => import('./pages/Purchase'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const RequestMaterial = lazy(() => import('./pages/RequestMaterial'));
 const Contact = lazy(() => import('./pages/Contact'));
-const AdmissionEnquiry = lazy(() => import('./pages/AdmissionEnquiry'));
 const WorkInProgress = lazy(() => import('./pages/WorkInProgress'));
 const GetCertified = lazy(() => import('./pages/GetCertified'));
 const CertificationTest = lazy(() => import('./pages/CertificationTest'));
+const PaidTestPage = lazy(() => import('./pages/PaidTestPage'));
 
 const App: React.FC = () => {
   // --- Maintenance Mode Flag ---
@@ -55,15 +51,11 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/feedback" element={<Feedback />} />
-              <Route path="/books" element={<Books />} />
-              <Route path="/books/:bookId" element={<BookDetail />} />
-              <Route path="/books/:bookId/purchase" element={<Purchase />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
-               <Route path="/admission-enquiry" element={<AdmissionEnquiry />} />
               <Route path="/get-certified" element={<GetCertified />} />
               <Route path="/certification-test/:courseId" element={<CertificationTest />} />
+              <Route path="/paid-certification-test/:courseId" element={<PaidTestPage />} />
 
               {/* Flattened Dynamic Course & Resource Routes */}
               {/* This prevents greedy matching or index collisions in nested structures */}

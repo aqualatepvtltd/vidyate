@@ -61,13 +61,6 @@ const Contact: React.FC = () => {
       description: 'Standard support for all resource-related queries.'
     },
     {
-      title: 'Academic Helpline',
-      value: '+91 8800-VIDYATE',
-      icon: 'call',
-      color: '#10B981',
-      description: 'Mon-Fri, 9AM to 6PM IST for emergency student support.'
-    },
-    {
       title: 'Headquarters',
       value: 'Bihar, India',
       icon: 'location_on',

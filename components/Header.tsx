@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import StripNav from './StripNav';
+// import StripNav from './StripNav';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,13 +57,12 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', icon: 'home' },
-    { name: 'Material', path: '/b-pharm', icon: 'auto_stories' },
-    { name: 'Book Store', path: '/books', icon: 'shopping_cart' },
     { name: 'Get Certified', path: '/get-certified', icon: 'verified' },
-    { name: 'Admission', path: '/admission-enquiry', icon: 'school' },
-    { name: 'About', path: '/about', icon: 'info' },
+    { name: 'Blogs', path: 'https://vidyatestudenthub.blogspot.com/', icon: 'rss_feed', external: true },
+    { name: 'Material', path: '/b-pharm', icon: 'auto_stories' },
     { name: 'Contact', path: '/contact', icon: 'alternate_email' },
-    { name: 'Feedback', path: '/feedback', icon: 'rate_review' },
+    { name: 'About', path: '/about', icon: 'info' },
+    
   ];
 
   const logoSrc = "https://vidyate-student-hub.vercel.app/vidyate-logo-main.webp";
@@ -71,7 +70,7 @@ const Header: React.FC = () => {
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-[60]">
-        <StripNav />
+        {/* <StripNav /> */}
         <nav
           className={`transition-all duration-500 ${isScrolled
             ? 'py-4 backdrop-blur-xl border-b'

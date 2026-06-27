@@ -7,6 +7,7 @@ interface CertificationCourse {
   materialLink: string;
   testLink: string;
   quiz?: boolean;
+  isPaid?: boolean;
 }
 
 const GetCertified: React.FC = () => {
@@ -16,10 +17,18 @@ const GetCertified: React.FC = () => {
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
     {
+      id: 'ai-driven-clinical-data-management',
+      name: 'AI-Driven Clinical Data Management: Automation, Quality, and Insights',
+      materialLink: 'https://drive.google.com/drive/folders/1tGrWAnTeXVvs5DKPT-r41puNpyAAmeDA?usp=drive_link',
+      testLink: 'https://forms.gle/zZcTWrVwt5tRfxEV9', // Example test link
+      isPaid: true,
+      quiz: false
+    },
+    {
       id: 'artificial-intelligence-pharmacovigilance',
       name: 'Artificial Intelligence in Pharmacovigilance Enhancing Drug Safety Monitoring - Basic (Ch. 1 to 5)',
       materialLink: 'https://drive.google.com/file/d/1YeE6AZpxNhEwYaNoE-Q1eoUgk4gpT99a/view?usp=drive_link',
-      testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8',
+      testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8', // Example test link
       quiz: false
     },
      {
@@ -94,7 +103,11 @@ const GetCertified: React.FC = () => {
   };
 
   const handleAttemptTest = (course: CertificationCourse) => {
-    navigate(`/certification-test/${course.id}`, { state: { testLink: course.testLink } });
+    if (course.isPaid) {
+      navigate(`/paid-certification-test/${course.id}`, { state: { testLink: course.testLink } });
+    } else {
+      navigate(`/certification-test/${course.id}`, { state: { testLink: course.testLink } });
+    }
   };
 
   return (
@@ -175,11 +188,18 @@ const GetCertified: React.FC = () => {
                     <h3 className="text-xl font-black group-hover:text-[#405cff] transition-colors" style={{ color: 'var(--text-main)' }}>
                       {course.name}
                     </h3>
-                    {course.quiz && (
-                      <span className="px-2 py-1 bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider rounded-md">
-                        QUIZ
-                      </span>
-                    )}
+                    <div className="flex-shrink-0 ml-4 flex items-center gap-2">
+                      {course.isPaid && (
+                        <span className="px-2 py-1 bg-[#10B981] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                          Advance
+                        </span>
+                      )}
+                      {course.quiz && (
+                        <span className="px-2 py-1 bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                          QUIZ
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 text-sm opacity-60" style={{ color: 'var(--text-main)' }}>
                     <span className="material-symbols-rounded text-base">verified</span>
