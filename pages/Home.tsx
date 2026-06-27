@@ -18,11 +18,15 @@ const Home: React.FC = () => {
     '/bharat.png',
     '/dpiit.jpeg',
     '/doaj.svg',
+    'slideshare.png',
+    'scribd.png',
     '/zenedo.png',
     '/google.png',
     '/bharat.png',
     '/dpiit.jpeg',
     '/doaj.svg',
+    'slideshare.png',
+    'scribd.png',
     '/zenedo.png',
   ];
 
