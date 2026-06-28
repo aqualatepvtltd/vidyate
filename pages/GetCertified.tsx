@@ -13,6 +13,13 @@ interface CertificationCourse {
 const GetCertified: React.FC = () => {
   const navigate = useNavigate();
   const [selectedCourse, setSelectedCourse] = useState<CertificationCourse | null>(null);
+  const [filter, setFilter] = useState<'advance' | 'basic' | 'quiz'>('advance');
+
+  const filters = [
+    { id: 'advance', label: 'Advance', color: '#10B981' },
+    { id: 'basic', label: 'Basic', color: '#0088ff' },
+    { id: 'quiz', label: 'Quiz', color: '#FF6B6B' },
+  ];
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
@@ -20,7 +27,7 @@ const GetCertified: React.FC = () => {
       id: 'ai-driven-clinical-data-management',
       name: 'AI-Driven Clinical Data Management: Automation, Quality, and Insights',
       materialLink: 'https://drive.google.com/drive/folders/1tGrWAnTeXVvs5DKPT-r41puNpyAAmeDA?usp=drive_link',
-      testLink: 'https://forms.gle/zZcTWrVwt5tRfxEV9', // Example test link
+      testLink: 'https://forms.gle/8dwyZLce7GyUdbwQA', // Example test link
       isPaid: true,
       quiz: false
     },
@@ -29,14 +36,14 @@ const GetCertified: React.FC = () => {
       name: 'Artificial Intelligence in Pharmacovigilance Enhancing Drug Safety Monitoring - Basic (Ch. 1 to 5)',
       materialLink: 'https://drive.google.com/file/d/1YeE6AZpxNhEwYaNoE-Q1eoUgk4gpT99a/view?usp=drive_link',
       testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8', // Example test link
-      quiz: false
+      quiz: false,
     },
      {
       id: 'intelligent-dispensing-ai-pharmacy',
       name: 'Intelligent Dispensing The Role of Artificial Intelligence in Modern Pharmacy Practice - Basic (Ch. 1 to 4)',
       materialLink: 'https://drive.google.com/file/d/1i7WIqyXsn4BR86lu9PAGuhIvvGsT1WBt/view?usp=sharing',
       testLink: 'https://forms.gle/c3ieoeq6BSQjZFx58',
-      quiz: false
+      quiz: false,
     },
     {
       id: 'world-hypertension-day-quiz-2026',
@@ -77,6 +84,20 @@ const GetCertified: React.FC = () => {
       quiz: true
     },
   ], []);
+
+  const filteredCourses = useMemo(() => {
+    switch (filter) {
+      case 'advance':
+        return certificationCourses.filter(course => course.isPaid);
+      case 'basic':
+        return certificationCourses.filter(course => !course.isPaid && !course.quiz);
+      case 'quiz':
+        return certificationCourses.filter(course => course.quiz);
+      default:
+        return certificationCourses;
+    }
+  }, [filter, certificationCourses]);
+
 
   const steps = [
     {
@@ -173,11 +194,32 @@ const GetCertified: React.FC = () => {
             Available Courses
           </h2>
 
+          {/* Filter Buttons */}
+          <div className="flex justify-center items-center gap-2 mb-8 p-2 rounded-xl glass border" style={{ borderColor: 'var(--glass-border)' }}>
+            {filters.map(f => (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id as any)}
+                className={`flex-1 px-4 py-2.5 rounded-lg font-black text-xs uppercase tracking-wider transition-all duration-300 ${
+                  filter === f.id
+                    ? 'text-white shadow-lg' // Active state
+                    : 'opacity-60 hover:opacity-100' // Inactive state
+                }`}
+                style={{
+                  backgroundColor: filter === f.id ? f.color : 'transparent',
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {certificationCourses.map((course) => (
+            {filteredCourses.map((course) => (
               <div
                 key={course.id}
-                className="group p-6 md:p-8 rounded-2xl glass border transition-all duration-300"
+                className="group p-6 md:p-8 rounded-2xl glass border transition-all duration-300 animate-subtle-fade"
                 style={{
                   borderColor: 'var(--glass-border)',
                   backgroundColor: 'var(--glass-bg)'
@@ -194,9 +236,14 @@ const GetCertified: React.FC = () => {
                           Advance
                         </span>
                       )}
-                      {course.quiz && (
+                      {!course.isPaid && course.quiz && (
                         <span className="px-2 py-1 bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider rounded-md">
                           QUIZ
+                        </span>
+                      )}
+                      {!course.isPaid && !course.quiz && (
+                        <span className="px-2 py-1 bg-[#0088ff] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                          Basic
                         </span>
                       )}
                     </div>
