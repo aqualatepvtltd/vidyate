@@ -18,15 +18,15 @@ const Home: React.FC = () => {
     '/bharat.png',
     '/dpiit.jpeg',
     '/doaj.svg',
-    'slideshare.png',
-    'scribd.png',
+    '/slideshare.png',
+    '/scribd.png',
     '/zenedo.png',
     '/google.png',
     '/bharat.png',
     '/dpiit.jpeg',
     '/doaj.svg',
-    'slideshare.png',
-    'scribd.png',
+    '/slideshare.png',
+    '/scribd.png',
     '/zenedo.png',
   ];
 
@@ -160,7 +160,7 @@ const Home: React.FC = () => {
         
         {/* Infinite Image Scroller */}
         <div 
-          className="w-full max-w-3xl mt-8 p-4 rounded-2xl border group overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]"
+          className="w-full max-w-3xl mt-8 p-4 rounded-xl border group overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]"
           style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--glass-bg)' }}
         >
           <div 
@@ -176,11 +176,11 @@ const Home: React.FC = () => {
                   alt={`Logo ${index + 1}`}
                   className="h-8 w-auto object-contain"
                   style={{
-                    filter: 'grayscale(1) opacity(0.4)',
+                    filter: 'grayscale(1) opacity(0.8)',
                     transition: 'filter 0.3s',
                   }}
                   onMouseOver={(e) => e.currentTarget.style.filter = 'grayscale(0) opacity(1)'}
-                  onMouseOut={(e) => e.currentTarget.style.filter = 'grayscale(1) opacity(0.4)'}
+                  onMouseOut={(e) => e.currentTarget.style.filter = 'grayscale(1) opacity(0.8)'}
                 />
               </div>
             ))}
