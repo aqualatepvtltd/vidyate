@@ -15,7 +15,7 @@ const WorkInProgress: React.FC = () => {
                     Work in Progress
                 </h1>
                 <p className="opacity-60 text-base md:text-lg max-w-md mx-auto leading-relaxed font-medium mb-10" style={{ color: 'var(--text-main)' }}>
-                    Our developer team is working on some extraordinary things. The site is temporarily undergoing maintenance. We'll be back shortly!
+                    Our developer team is working on resolving the issue. The site is temporarily undergoing maintenance. We'll be back shortly!
                 </p>
                 <div className="bg-slate-500/10 border border-slate-500/20 p-4 rounded-xl">
                     <p className="text-sm font-bold opacity-80" style={{ color: 'var(--text-main)' }}>
