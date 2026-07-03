@@ -23,6 +23,13 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
+     {
+      id: 'next-generation-pharmacovigilance',
+      name: 'Next-Generation Pharmacovigilance: AI, Automation, and Global Drug Safety',
+      materialLink: 'https://drive.google.com/drive/folders/1kwlcZV9ZTkGOIWuJ4X8SWn7PJ2GwZRfJ?usp=drive_link',
+      testLink: 'https://forms.gle/CimeeGkYENSsMcVDA', // Example test link
+      isPaid: true,
+    },
     {
       id: 'ai-driven-clinical-data-management',
       name: 'AI-Driven Clinical Data Management: Automation, Quality, and Insights',
