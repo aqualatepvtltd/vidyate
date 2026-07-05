@@ -68,7 +68,7 @@ const VerifyCertificate: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter" style={{ color: 'var(--text-main)' }}>Request Sent.</h2>
           <p className="opacity-60 text-base md:text-lg max-w-md mx-auto leading-relaxed font-medium mb-10" style={{ color: 'var(--text-main)' }}>
-            Thank you for your request. Our team will verify the certificate details and respond via email within 48 hours.
+            Thank you for your request. Our team will verify the certificate details and respond via email.
           </p>
           <Link 
             to="/get-certified"

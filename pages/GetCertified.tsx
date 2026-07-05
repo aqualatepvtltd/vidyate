@@ -37,13 +37,19 @@ const GetCertified: React.FC = () => {
       testLink: 'https://forms.gle/CimeeGkYENSsMcVDA', // Example test link
       isPaid: true,
     },
+     {
+      id: 'ai-powered-medical-writing',
+      name: 'Masterclass in AI-Powered Medical Writing, Research Publication & Scientific Communication',
+      materialLink: 'https://drive.google.com/drive/folders/1CZCoFBPBrWYABFsTcEWvMjxB1In5gQH9?usp=drive_link',
+      testLink: 'https://forms.gle/A8wHrAHLTV4uQ4jg8', // Example test link
+      isPaid: true,
+    },
     {
       id: 'ai-driven-clinical-data-management',
       name: 'AI-Driven Clinical Data Management: Automation, Quality, and Insights',
       materialLink: 'https://drive.google.com/drive/folders/1tGrWAnTeXVvs5DKPT-r41puNpyAAmeDA?usp=drive_link',
       testLink: 'https://forms.gle/8dwyZLce7GyUdbwQA', // Example test link
       isPaid: true,
-      quiz: false
     },
     {
       id: 'artificial-intelligence-pharmacovigilance',
@@ -317,7 +323,7 @@ const GetCertified: React.FC = () => {
               style={{ color: 'var(--text-main)' }}
             >
               <span className="material-symbols-rounded text-base">verified_user</span>
-              Verify Your Certificate
+              Verify Certificate
             </Link>
             <a 
               href="https://drive.google.com/drive/folders/1Di_q89YdmxBItvWHV21W0T7YiumnomnS?usp=drive_link"
