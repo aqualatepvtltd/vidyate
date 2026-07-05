@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 interface CertificationCourse {
   id: string;
@@ -23,6 +23,13 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
+    {
+      id: 'clinical-data-analyst-masterclass',
+      name: 'Clinical Data Analyst Masterclass Mastering Bioinformatics, Patient Outcomes, and Statistical Modeling in Pharmacy Research',
+      materialLink: 'https://drive.google.com/drive/folders/1gBS2QqVJDYgpdSO4Kcj5zdcsBkaV5P2b?usp=drive_link',
+      testLink: 'https://forms.gle/6cvYFMVF16MZsbik6', // Example test link
+      isPaid: true,
+    },
      {
       id: 'next-generation-pharmacovigilance',
       name: 'Next-Generation Pharmacovigilance: AI, Automation, and Global Drug Safety',
@@ -302,6 +309,26 @@ const GetCertified: React.FC = () => {
                 <li>✓ Share your achievement on LinkedIn and resumes</li>
               </ul>
             </div>
+          </div>
+          <div className="mt-6 pt-6 border-t flex flex-col sm:flex-row items-center justify-center gap-4" style={{ borderColor: 'var(--glass-border)' }}>
+            <Link 
+              to="/verify-certificate"
+              className="px-6 py-3 rounded-xl glass border border-transparent font-bold text-xs transition-all hover:border-white/20 hover:bg-white/5 flex items-center justify-center gap-2"
+              style={{ color: 'var(--text-main)' }}
+            >
+              <span className="material-symbols-rounded text-base">verified_user</span>
+              Verify Your Certificate
+            </Link>
+            <a 
+              href="https://drive.google.com/drive/folders/1Di_q89YdmxBItvWHV21W0T7YiumnomnS?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-xl glass border border-transparent font-bold text-xs transition-all hover:border-white/20 hover:bg-white/5 flex items-center justify-center gap-2"
+              style={{ color: 'var(--text-main)' }}
+            >
+              <span className="material-symbols-rounded text-base">description</span>
+              Terms & Conditions
+            </a>
           </div>
         </div>
       </div>
