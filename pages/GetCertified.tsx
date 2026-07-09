@@ -23,13 +23,13 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
-    {
-      id: 'bioinformatics-excellence-program',
-      name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
-      materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
-      testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
-      isPaid: true,
-    },
+    // {
+    //   id: 'bioinformatics-excellence-program',
+    //   name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
+    //   materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
+    //   testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
+    //   isPaid: true,
+    // },
     {
       id: 'pharmaceutical-quality-assurance-masterclass',
       name: 'Pharmaceutical Quality Assurance Masterclass GMP, Validation, and Executive Skills',
