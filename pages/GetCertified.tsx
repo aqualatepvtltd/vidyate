@@ -24,20 +24,41 @@ const GetCertified: React.FC = () => {
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
     {
+      id: 'bioinformatics-excellence-program',
+      name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
+      materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
+      testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
+      isPaid: true,
+    },
+    {
+      id: 'pharmaceutical-quality-assurance-masterclass',
+      name: 'Pharmaceutical Quality Assurance Masterclass GMP, Validation, and Executive Skills',
+      materialLink: 'https://drive.google.com/drive/folders/1ykrG0jFdMvRJ8r4sJ2xdtr-FKiZkX5tA?usp=drive_link',
+      testLink: 'https://forms.gle/guK5eFywtFd9mCQx7',
+      isPaid: true,
+    },
+    {
+      id: 'pharma-quality-control-analyst-accelerator',
+      name: 'Pharma quality control Analyst Accelerator Core Lab Skills & Compliance',
+      materialLink: 'https://drive.google.com/drive/folders/1_uiCnF6VgO5CFIQi0d9Q-nxgFlHokjlZ?usp=drive_link',
+      testLink: 'https://forms.gle/VQp73Mm3cLXtNapCA',
+      isPaid: true,
+    },
+    {
       id: 'clinical-data-analyst-masterclass',
       name: 'Clinical Data Analyst Masterclass Mastering Bioinformatics, Patient Outcomes, and Statistical Modeling in Pharmacy Research',
       materialLink: 'https://drive.google.com/drive/folders/1gBS2QqVJDYgpdSO4Kcj5zdcsBkaV5P2b?usp=drive_link',
       testLink: 'https://forms.gle/6cvYFMVF16MZsbik6', // Example test link
       isPaid: true,
     },
-     {
+    {
       id: 'next-generation-pharmacovigilance',
       name: 'Next-Generation Pharmacovigilance: AI, Automation, and Global Drug Safety',
       materialLink: 'https://drive.google.com/drive/folders/1kwlcZV9ZTkGOIWuJ4X8SWn7PJ2GwZRfJ?usp=drive_link',
       testLink: 'https://forms.gle/CimeeGkYENSsMcVDA', // Example test link
       isPaid: true,
     },
-     {
+    {
       id: 'ai-powered-medical-writing',
       name: 'Masterclass in AI-Powered Medical Writing, Research Publication & Scientific Communication',
       materialLink: 'https://drive.google.com/drive/folders/1CZCoFBPBrWYABFsTcEWvMjxB1In5gQH9?usp=drive_link',
@@ -58,7 +79,7 @@ const GetCertified: React.FC = () => {
       testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8', // Example test link
       quiz: false,
     },
-     {
+    {
       id: 'intelligent-dispensing-ai-pharmacy',
       name: 'Intelligent Dispensing The Role of Artificial Intelligence in Modern Pharmacy Practice - Basic (Ch. 1 to 4)',
       materialLink: 'https://drive.google.com/file/d/1i7WIqyXsn4BR86lu9PAGuhIvvGsT1WBt/view?usp=sharing',
@@ -220,11 +241,10 @@ const GetCertified: React.FC = () => {
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id as any)}
-                className={`flex-1 px-4 py-2.5 rounded-lg font-black text-xs uppercase tracking-wider transition-all duration-300 ${
-                  filter === f.id
+                className={`flex-1 px-4 py-2.5 rounded-lg font-black text-xs uppercase tracking-wider transition-all duration-300 ${filter === f.id
                     ? 'text-white shadow-lg' // Active state
                     : 'opacity-60 hover:opacity-100' // Inactive state
-                }`}
+                  }`}
                 style={{
                   backgroundColor: filter === f.id ? f.color : 'transparent',
                 }}
@@ -317,15 +337,15 @@ const GetCertified: React.FC = () => {
             </div>
           </div>
           <div className="mt-6 pt-6 border-t flex flex-col sm:flex-row items-center justify-center gap-4" style={{ borderColor: 'var(--glass-border)' }}>
-            <Link 
+            {/* <Link 
               to="/verify-certificate"
               className="px-6 py-3 rounded-xl glass border border-transparent font-bold text-xs transition-all hover:border-white/20 hover:bg-white/5 flex items-center justify-center gap-2"
               style={{ color: 'var(--text-main)' }}
             >
               <span className="material-symbols-rounded text-base">verified_user</span>
               Verify Certificate
-            </Link>
-            <a 
+            </Link> */}
+            <a
               href="https://drive.google.com/drive/folders/1Di_q89YdmxBItvWHV21W0T7YiumnomnS?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
