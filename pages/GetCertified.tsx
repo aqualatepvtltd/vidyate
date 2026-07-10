@@ -13,6 +13,7 @@ interface CertificationCourse {
 const GetCertified: React.FC = () => {
   const navigate = useNavigate();
   const [selectedCourse, setSelectedCourse] = useState<CertificationCourse | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState<'advance' | 'basic' | 'quiz'>('advance');
 
   const filters = [
@@ -133,18 +134,50 @@ const GetCertified: React.FC = () => {
     },
   ], []);
 
-  const filteredCourses = useMemo(() => {
-    switch (filter) {
-      case 'advance':
-        return certificationCourses.filter(course => course.isPaid);
-      case 'basic':
-        return certificationCourses.filter(course => !course.isPaid && !course.quiz);
-      case 'quiz':
-        return certificationCourses.filter(course => course.quiz);
-      default:
-        return certificationCourses;
+  const { coursesToShow, suggestion } = useMemo(() => {
+    const getCoursesByFilter = (f: typeof filter) => {
+      switch (f) {
+        case 'advance': return certificationCourses.filter(c => c.isPaid);
+        case 'basic': return certificationCourses.filter(c => !c.isPaid && !c.quiz);
+        case 'quiz': return certificationCourses.filter(c => c.quiz);
+        default: return [];
+      }
+    };
+
+    if (searchQuery.trim() === '') {
+      return { coursesToShow: getCoursesByFilter(filter), suggestion: null };
     }
-  }, [filter, certificationCourses]);
+
+    const allMatchingCourses = certificationCourses.filter(course =>
+      course.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (allMatchingCourses.length === 0) {
+      return { coursesToShow: [], suggestion: { type: 'not_found' as const } };
+    }
+
+    const coursesInCurrentFilter = allMatchingCourses.filter(course => {
+      const currentFilterCourses = getCoursesByFilter(filter);
+      return currentFilterCourses.some(c => c.id === course.id);
+    });
+
+    if (coursesInCurrentFilter.length > 0) {
+      return { coursesToShow: coursesInCurrentFilter, suggestion: null };
+    }
+
+    // If not in current filter, find which filter it belongs to
+    const firstMatch = allMatchingCourses[0];
+    let targetFilter: 'advance' | 'basic' | 'quiz' | null = null;
+    if (firstMatch.isPaid) targetFilter = 'advance';
+    else if (firstMatch.quiz) targetFilter = 'quiz';
+    else if (!firstMatch.isPaid && !firstMatch.quiz) targetFilter = 'basic';
+
+    if (targetFilter && targetFilter !== filter) {
+      return { coursesToShow: [], suggestion: { type: 'switch_filter' as const, target: targetFilter } };
+    }
+
+    return { coursesToShow: [], suggestion: { type: 'not_found' as const } };
+  }, [filter, certificationCourses, searchQuery]);
 
 
   const steps = [
@@ -242,6 +275,21 @@ const GetCertified: React.FC = () => {
             Available Courses
           </h2>
 
+          {/* Search Bar */}
+          <div className="mb-8 relative">
+            <input
+              type="text"
+              placeholder="Search for a course..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-4 pl-12 rounded-xl glass border text-base font-medium focus:outline-none focus:ring-2 focus:ring-[#405cff]/50"
+              style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
+            />
+            <span className="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 opacity-40" style={{ color: 'var(--text-main)' }}>
+              search
+            </span>
+          </div>
+
           {/* Filter Buttons */}
           <div className="flex justify-center items-center gap-2 mb-8 p-2 rounded-xl glass border" style={{ borderColor: 'var(--glass-border)' }}>
             {filters.map(f => (
@@ -262,67 +310,91 @@ const GetCertified: React.FC = () => {
           </div>
 
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredCourses.map((course) => (
-              <div
-                key={course.id}
-                className="group p-6 md:p-8 rounded-2xl glass border transition-all duration-300 animate-subtle-fade"
-                style={{
-                  borderColor: 'var(--glass-border)',
-                  backgroundColor: 'var(--glass-bg)'
-                }}
+          {suggestion?.type === 'not_found' && (
+            <div className="text-center py-12 glass rounded-2xl border border-dashed" style={{ borderColor: 'var(--glass-border)' }}>
+              <span className="material-symbols-rounded text-5xl opacity-20 mb-4" style={{ color: 'var(--text-main)' }}>search_off</span>
+              <h3 className="text-xl font-black" style={{ color: 'var(--text-main)' }}>No Courses Found</h3>
+              <p className="opacity-50 mt-1" style={{ color: 'var(--text-main)' }}>Try a different search term or check other categories.</p>
+            </div>
+          )}
+
+          {suggestion?.type === 'switch_filter' && (
+            <div className="text-center py-12 glass rounded-2xl border" style={{ borderColor: 'var(--glass-border)' }}>
+              <span className="material-symbols-rounded text-5xl opacity-20 mb-4" style={{ color: 'var(--text-main)' }}>move_item</span>
+              <h3 className="text-xl font-black" style={{ color: 'var(--text-main)' }}>Course found in another category!</h3>
+              <p className="opacity-50 mt-2 mb-6" style={{ color: 'var(--text-main)' }}>Click below to switch to the '{suggestion.target}' tab.</p>
+              <button
+                onClick={() => setFilter(suggestion.target)}
+                className="px-8 py-3 rounded-xl bg-[#405cff] text-white font-black text-sm uppercase tracking-widest hover:shadow-lg active:scale-95 transition-all"
               >
-                <div className="mb-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-black group-hover:text-[#405cff] transition-colors" style={{ color: 'var(--text-main)' }}>
-                      {course.name}
-                    </h3>
-                    <div className="flex-shrink-0 ml-4 flex items-center gap-2">
-                      {course.isPaid && (
-                        <span className="px-2 py-1 bg-[#10B981] text-white text-xs font-black uppercase tracking-wider rounded-md">
-                          Advance
-                        </span>
-                      )}
-                      {!course.isPaid && course.quiz && (
-                        <span className="px-2 py-1 bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider rounded-md">
-                          QUIZ
-                        </span>
-                      )}
-                      {!course.isPaid && !course.quiz && (
-                        <span className="px-2 py-1 bg-[#0088ff] text-white text-xs font-black uppercase tracking-wider rounded-md">
-                          Basic
-                        </span>
-                      )}
+                Switch to {suggestion.target}
+              </button>
+            </div>
+          )}
+
+          {coursesToShow.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {coursesToShow.map((course) => (
+                <div
+                  key={course.id}
+                  className="group p-6 md:p-8 rounded-2xl glass border transition-all duration-300 animate-subtle-fade"
+                  style={{
+                    borderColor: 'var(--glass-border)',
+                    backgroundColor: 'var(--glass-bg)'
+                  }}
+                >
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xl font-black group-hover:text-[#405cff] transition-colors" style={{ color: 'var(--text-main)' }}>
+                        {course.name}
+                      </h3>
+                      <div className="flex-shrink-0 ml-4 flex items-center gap-2">
+                        {course.isPaid && (
+                          <span className="px-2 py-1 bg-[#10B981] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                            Advance
+                          </span>
+                        )}
+                        {!course.isPaid && course.quiz && (
+                          <span className="px-2 py-1 bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                            QUIZ
+                          </span>
+                        )}
+                        {!course.isPaid && !course.quiz && (
+                          <span className="px-2 py-1 bg-[#0088ff] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                            Basic
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm opacity-60" style={{ color: 'var(--text-main)' }}>
+                      <span className="material-symbols-rounded text-base">verified</span>
+                      <span>Official Certification</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm opacity-60" style={{ color: 'var(--text-main)' }}>
-                    <span className="material-symbols-rounded text-base">verified</span>
-                    <span>Official Certification</span>
+
+                  <div className="flex flex-col md:flex-row gap-3">
+                    {!course.quiz && (
+                      <button
+                        onClick={() => handleDownloadMaterial(course)}
+                        className="flex-1 px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-[#405cff]"
+                      >
+                        <span className="material-symbols-rounded text-lg">download</span>
+                        <span>Download Material</span>
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => handleAttemptTest(course)}
+                      className={`px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${course.quiz ? 'flex-1 bg-[#FF6B6B]' : 'flex-1 bg-[#8B5CF6]'}`}
+                    >
+                      <span className="material-symbols-rounded text-lg">assignment</span>
+                      <span>{course.quiz ? 'Join Quiz' : 'Attempt Test'}</span>
+                    </button>
                   </div>
                 </div>
-
-                <div className="flex flex-col md:flex-row gap-3">
-                  {!course.quiz && (
-                    <button
-                      onClick={() => handleDownloadMaterial(course)}
-                      className="flex-1 px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-[#405cff]"
-                    >
-                      <span className="material-symbols-rounded text-lg">download</span>
-                      <span>Download Material</span>
-                    </button>
-                  )}
-
-                  <button
-                    onClick={() => handleAttemptTest(course)}
-                    className={`px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${course.quiz ? 'flex-1 bg-[#FF6B6B]' : 'flex-1 bg-[#8B5CF6]'}`}
-                  >
-                    <span className="material-symbols-rounded text-lg">assignment</span>
-                    <span>{course.quiz ? 'Join Quiz' : 'Attempt Test'}</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Info Section */}
