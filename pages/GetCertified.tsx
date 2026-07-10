@@ -282,12 +282,21 @@ const GetCertified: React.FC = () => {
               placeholder="Search for a course..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-4 pl-12 rounded-xl glass border text-base font-medium focus:outline-none focus:ring-2 focus:ring-[#405cff]/50"
+              className="w-full p-4 pl-12 pr-12 rounded-xl glass border text-base font-medium focus:outline-none focus:ring-2 focus:ring-[#405cff]/50"
               style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
             />
             <span className="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 opacity-40" style={{ color: 'var(--text-main)' }}>
               search
             </span>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute top-1/2 -translate-y-1/2 opacity-30 hover:opacity-80 transition-opacity "
+                aria-label="Clear search"
+              >
+                <span className="material-symbols-rounded absolute right-4 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-main)' }}>close</span>
+              </button>
+            )}
           </div>
 
           {/* Filter Buttons */}
