@@ -23,13 +23,6 @@ const GetCertified: React.FC = () => {
 
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
-    // {
-    //   id: 'bioinformatics-excellence-program',
-    //   name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
-    //   materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
-    //   testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
-    //   isPaid: true,
-    // },
     {
       id: 'pharmaceutical-quality-assurance-masterclass',
       name: 'Pharmaceutical Quality Assurance Masterclass GMP, Validation, and Executive Skills',
@@ -48,35 +41,49 @@ const GetCertified: React.FC = () => {
       id: 'clinical-data-analyst-masterclass',
       name: 'Clinical Data Analyst Masterclass Mastering Bioinformatics, Patient Outcomes, and Statistical Modeling in Pharmacy Research',
       materialLink: 'https://drive.google.com/drive/folders/1gBS2QqVJDYgpdSO4Kcj5zdcsBkaV5P2b?usp=drive_link',
-      testLink: 'https://forms.gle/6cvYFMVF16MZsbik6', // Example test link
+      testLink: 'https://forms.gle/6cvYFMVF16MZsbik6',
       isPaid: true,
     },
     {
       id: 'next-generation-pharmacovigilance',
       name: 'Next-Generation Pharmacovigilance: AI, Automation, and Global Drug Safety',
       materialLink: 'https://drive.google.com/drive/folders/1kwlcZV9ZTkGOIWuJ4X8SWn7PJ2GwZRfJ?usp=drive_link',
-      testLink: 'https://forms.gle/CimeeGkYENSsMcVDA', // Example test link
+      testLink: 'https://forms.gle/CimeeGkYENSsMcVDA',
       isPaid: true,
     },
     {
       id: 'ai-powered-medical-writing',
       name: 'Masterclass in AI-Powered Medical Writing, Research Publication & Scientific Communication',
       materialLink: 'https://drive.google.com/drive/folders/1CZCoFBPBrWYABFsTcEWvMjxB1In5gQH9?usp=drive_link',
-      testLink: 'https://forms.gle/A8wHrAHLTV4uQ4jg8', // Example test link
+      testLink: 'https://forms.gle/A8wHrAHLTV4uQ4jg8',
+      isPaid: true,
+    },
+    {
+      id: 'pharmaceutical-regulatory-affairs-masterclass',
+      name: 'Pharmaceutical Regulatory Affairs Masterclass Global Regulations, CTDeCTD Documentation & Regulatory Submission',
+      materialLink: 'https://drive.google.com/drive/folders/1g_z53DW390rwC1-exHSCdD8tktnJFMHe?usp=drive_link',
+      testLink: 'https://forms.gle/i734fY97uuWHYSdv9',
+      isPaid: true,
+    },
+    {
+      id: 'bioinformatics-excellence-program',
+      name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
+      materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
+      testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
       isPaid: true,
     },
     {
       id: 'ai-driven-clinical-data-management',
       name: 'AI-Driven Clinical Data Management: Automation, Quality, and Insights',
       materialLink: 'https://drive.google.com/drive/folders/1tGrWAnTeXVvs5DKPT-r41puNpyAAmeDA?usp=drive_link',
-      testLink: 'https://forms.gle/8dwyZLce7GyUdbwQA', // Example test link
+      testLink: 'https://forms.gle/8dwyZLce7GyUdbwQA',
       isPaid: true,
     },
     {
       id: 'artificial-intelligence-pharmacovigilance',
       name: 'Artificial Intelligence in Pharmacovigilance Enhancing Drug Safety Monitoring - Basic (Ch. 1 to 5)',
       materialLink: 'https://drive.google.com/file/d/1YeE6AZpxNhEwYaNoE-Q1eoUgk4gpT99a/view?usp=drive_link',
-      testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8', // Example test link
+      testLink: 'https://forms.gle/zXbWvdjMzUzmptNZ8',
       quiz: false,
     },
     {
