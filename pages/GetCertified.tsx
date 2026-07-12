@@ -25,6 +25,20 @@ const GetCertified: React.FC = () => {
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
     {
+      id: 'pharmaceutical-regulatory-affairs-masterclass',
+      name: 'Pharmaceutical Regulatory Affairs Masterclass Global Regulations, CTDeCTD Documentation & Regulatory Submission',
+      materialLink: 'https://drive.google.com/drive/folders/1g_z53DW390rwC1-exHSCdD8tktnJFMHe?usp=drive_link',
+      testLink: 'https://forms.gle/i734fY97uuWHYSdv9',
+      isPaid: true,
+    },
+    {
+      id: 'bioinformatics-excellence-program',
+      name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
+      materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
+      testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
+      isPaid: true,
+    },
+    {
       id: 'pharmaceutical-quality-assurance-masterclass',
       name: 'Pharmaceutical Quality Assurance Masterclass GMP, Validation, and Executive Skills',
       materialLink: 'https://drive.google.com/drive/folders/1ykrG0jFdMvRJ8r4sJ2xdtr-FKiZkX5tA?usp=drive_link',
@@ -57,20 +71,6 @@ const GetCertified: React.FC = () => {
       name: 'Masterclass in AI-Powered Medical Writing, Research Publication & Scientific Communication',
       materialLink: 'https://drive.google.com/drive/folders/1CZCoFBPBrWYABFsTcEWvMjxB1In5gQH9?usp=drive_link',
       testLink: 'https://forms.gle/A8wHrAHLTV4uQ4jg8',
-      isPaid: true,
-    },
-    {
-      id: 'pharmaceutical-regulatory-affairs-masterclass',
-      name: 'Pharmaceutical Regulatory Affairs Masterclass Global Regulations, CTDeCTD Documentation & Regulatory Submission',
-      materialLink: 'https://drive.google.com/drive/folders/1g_z53DW390rwC1-exHSCdD8tktnJFMHe?usp=drive_link',
-      testLink: 'https://forms.gle/i734fY97uuWHYSdv9',
-      isPaid: true,
-    },
-    {
-      id: 'bioinformatics-excellence-program',
-      name: 'Bioinformatics Excellence Program Modern Tools for Research, Biotechnology & Pharmaceutical Innovation',
-      materialLink: 'https://drive.google.com/drive/folders/1iqqw50q6QShZWmggP9Pn4ma2pyP3FnjB?usp=drive_link',
-      testLink: 'https://forms.gle/BQen6U3KXWwo6fqf6',
       isPaid: true,
     },
     {
