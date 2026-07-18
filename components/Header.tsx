@@ -62,6 +62,7 @@ const Header: React.FC = () => {
     { name: 'Material', path: '/b-pharm', icon: 'auto_stories' },
     { name: 'Contact', path: '/contact', icon: 'alternate_email' },
     { name: 'About', path: '/about', icon: 'info' },
+    { name: 'Install App', path: '/install-app', icon: 'android' }
     
   ];
 
@@ -96,7 +97,7 @@ const Header: React.FC = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-5">
             <div className="flex items-center gap-5">
-              {navLinks.map((link) => (
+              {navLinks.filter(l => l.name !== 'Install App').map((link) => (
                 link.name === 'Material' ? (
                   <div
                     key={link.path}
@@ -221,7 +222,23 @@ const Header: React.FC = () => {
                     )}
                   </div>
                 ) : (
-                  <Link
+                  link.name === 'Install App' ? (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group border-2 border-[#405cff] bg-[#405cff]/10 text-[#405cff]`}
+                      style={{
+                        transitionDelay: `${idx * 40}ms`,
+                      }}
+                    >
+                      <span className={`material-symbols-rounded text-xl text-[#405cff]`}>
+                        {link.icon}
+                      </span>
+                      <span className="text-sm font-black tracking-tight">{link.name}</span>
+                    </Link>
+                  ) :
+                  (
+                    <Link
                     key={link.path}
                     to={link.path}
                     className={`flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group ${location.pathname === link.path
@@ -241,6 +258,7 @@ const Header: React.FC = () => {
                       <div className="ml-auto w-1 h-4 bg-[#405cff] rounded-full"></div>
                     )}
                   </Link>
+                  )
                 )
               ))}
             </div>

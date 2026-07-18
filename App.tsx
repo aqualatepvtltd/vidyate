@@ -20,6 +20,7 @@ const GetCertified = lazy(() => import('./pages/GetCertified'));
 const CertificationTest = lazy(() => import('./pages/CertificationTest'));
 const PaidTestPage = lazy(() => import('./pages/PaidTestPage'));
 const VerifyCertificate = lazy(() => import('./pages/VerifyCertificate'));
+const InstallApp = lazy(() => import('./pages/InstallApp'));
 
 const App: React.FC = () => {
   // --- Maintenance Mode Flag ---
@@ -58,6 +59,7 @@ const App: React.FC = () => {
               <Route path="/certification-test/:courseId" element={<CertificationTest />} />
               <Route path="/paid-certification-test/:courseId" element={<PaidTestPage />} />
               <Route path="/verify-certificate" element={<VerifyCertificate />} />
+              <Route path="/install-app" element={<InstallApp />} />
 
               {/* Flattened Dynamic Course & Resource Routes */}
               {/* This prevents greedy matching or index collisions in nested structures */}

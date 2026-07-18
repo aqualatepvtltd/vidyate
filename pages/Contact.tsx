@@ -107,7 +107,6 @@ const Contact: React.FC = () => {
       />
       {/* Hero Header */}
       <div className="text-center mb-16">
-        <span className="text-[#405cff] font-black text-[11px] tracking-[0.3em] uppercase mb-4 block">Get In Touch</span>
         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
           We're Here <span className="opacity-30">to Help.</span>
         </h1>
@@ -135,8 +134,8 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-[11px] font-black uppercase tracking-widest opacity-40 mb-1" style={{ color: 'var(--text-main)' }}>{info.title}</h3>
-                    <p className="text-xl font-black mb-2 tracking-tight" style={{ color: 'var(--text-main)' }}>{info.value}</p>
-                    <p className="text-sm opacity-50 leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>{info.description}</p>
+                    <p className="text-l font-black mb-2 tracking-tight" style={{ color: 'var(--text-main)' }}>{info.value}</p>
+                    <p className="text-xs opacity-50 leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>{info.description}</p>
                   </div>
                 </div>
               </div>
