@@ -41,7 +41,6 @@ const InstallApp: React.FC = () => {
       
       {/* Header */}
       <div className="text-center mb-12 md:mb-16">
-        <span className="text-[#405cff] font-black text-[11px] tracking-[0.3em] uppercase mb-4 block">Early Access</span>
         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
           Get the <span className="text-[#405cff]">Vidyate App</span>
         </h1>
