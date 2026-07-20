@@ -52,7 +52,7 @@ const InstallApp: React.FC = () => {
       {/* Download Button */}
       <div className="text-center mb-16">
         <a 
-          href="/vidyate-app.apk" 
+          href="/vidyate-one.apk" 
           download
           className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#405cff] text-white font-black rounded-2xl text-lg shadow-xl hover:shadow-[0_20px_40px_rgba(64,92,255,0.3)] hover:-translate-y-1 active:scale-95 transition-all"
         >
