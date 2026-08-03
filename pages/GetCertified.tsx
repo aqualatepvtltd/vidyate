@@ -25,6 +25,20 @@ const GetCertified: React.FC = () => {
   // Sample certification courses - you can update these with actual course data
   const certificationCourses: CertificationCourse[] = useMemo(() => [
     {
+      id: 'patent-drafting-expert-program',
+      name: 'Patent Drafting Expert Program for Pharmaceutical Sciences',
+      materialLink: 'https://drive.google.com/drive/folders/17irTKN1SRTJ_g3j3m1SqkEabvu3bQgpK?usp=drive_link',
+      testLink: 'https://forms.gle/kduUuHbawQQArrje9',
+      isPaid: true,
+    },
+    {
+      id: 'ai-for-pharma-manufacturing',
+      name: 'AI for Pharmaceutical Manufacturing Industry 4.0',
+      materialLink: 'https://drive.google.com/drive/folders/113ETMGOrRss9pSayHgthaB72LE3pAnRa?usp=drive_link',
+      testLink: 'https://forms.gle/RFs477ErpVrAHjHJ7',
+      isPaid: true,
+    },
+    {
       id: 'pharmaceutical-regulatory-affairs-masterclass',
       name: 'Pharmaceutical Regulatory Affairs Masterclass Global Regulations, CTDeCTD Documentation & Regulatory Submission',
       materialLink: 'https://drive.google.com/drive/folders/1g_z53DW390rwC1-exHSCdD8tktnJFMHe?usp=drive_link',

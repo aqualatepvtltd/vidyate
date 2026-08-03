@@ -20,7 +20,6 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setSubmitError(null);
 
     const payload = {
