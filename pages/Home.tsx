@@ -128,6 +128,17 @@ const Home: React.FC = () => {
         <p className="opacity-60 text-sm md:text-lg max-w-xl mb-8 md:mb-10 font-medium leading-relaxed px-2" style={{ color: 'var(--text-main)' }}>
           The ultimate digital ecosystem for pharmaceutical students. Access verified notes, question banks and career guidance.
         </p>
+        <div className="mb-4">
+          <Link
+            to="https://forms.gle/oJbT2cuW84U9t88p6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500 text-white text-sm font-black hover:bg-orange-600 transition-colors"
+            style={{ textDecoration: 'none' }}
+          >
+            <span className="flex h-2 w-2 rounded-full bg-white animate-pulse"></span>
+            <span className="text-white">Independence Day Quiz is Live!</span>
+            <span className="material-symbols-rounded text-lg">arrow_forward</span>
+          </Link>
+        </div>
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
 
           <a
