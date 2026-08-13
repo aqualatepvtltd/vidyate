@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 
 const CertificationTest: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -111,9 +111,15 @@ const CertificationTest: React.FC = () => {
                 <p className="text-lg font-black opacity-60 mb-2" style={{ color: 'var(--text-main)' }}>
                   Test Form Not Available
                 </p>
-                <p className="text-sm opacity-40 max-w-sm" style={{ color: 'var(--text-main)' }}>
-                  The test form could not be loaded. Please try again later or contact support.
+                <p className="text-sm opacity-40 max-w-sm mb-6" style={{ color: 'var(--text-main)' }}>
+                  The test form could not be loaded. Please go back to the Get Certified page and find the course.
                 </p>
+                <Link
+                  to="/get-certified"
+                  className="px-8 py-3 rounded-xl bg-[#405cff] text-white font-black text-sm uppercase tracking-widest hover:shadow-lg active:scale-95 transition-all"
+                >
+                  Go to Get Certified
+                </Link>
               </div>
             )}
           </div>
