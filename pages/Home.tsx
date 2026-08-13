@@ -130,7 +130,7 @@ const Home: React.FC = () => {
         </p>
         <div className="mb-4">
           <Link
-            to="https://forms.gle/oJbT2cuW84U9t88p6"
+            to="/get-certified"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500 text-white text-sm font-black hover:bg-orange-600 transition-colors"
             style={{ textDecoration: 'none' }}
           >
