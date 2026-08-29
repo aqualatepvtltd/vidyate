@@ -12,7 +12,8 @@ export const certificationCourses: CertificationCourse[] = [
     id: 'national-level-aptitude-test-dosage-form',
     name: 'National Level Aptitude Test - Dosage Form',
     materialLink: '#',
-    testLink: 'https://forms.gle/oefjjrN5GnLCsXDp9'
+    testLink: 'https://forms.gle/oefjjrN5GnLCsXDp9',
+    quiz: true,
   },
   {
     id: 'national-pharmacology-day-quiz',
