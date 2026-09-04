@@ -9,6 +9,20 @@ export interface CertificationCourse {
 
 export const certificationCourses: CertificationCourse[] = [
   {
+    id: 'pharmacovigilance-aggregate-reporting',
+    name: 'Pharmacovigilance Aggregate Reporting',
+    materialLink: 'https://drive.google.com/drive/folders/1IT94_EsY9kOpRDq_GRHJEEyIWdxXLtaD?usp=drive_link',
+    testLink: 'https://forms.gle/epbLP62GtKy1oDiaA',
+    isPaid: true,
+  },
+  {
+    id: 'artificial-intelligence-in-healthcare-data-analytics',
+    name: 'Artificial Intelligence in Healthcare Data Analytics Applications & Innovation',
+    materialLink: 'https://drive.google.com/drive/folders/1nQffET-q93Cv9zH19rVEY-XMtFw9ogXT?usp=drive_link',
+    testLink: 'https://forms.gle/tWmHGpYDbxd4WTPt6',
+    isPaid: true,
+  },
+  {
     id: 'national-level-aptitude-test-dosage-form',
     name: 'National Level Aptitude Test - Dosage Form',
     materialLink: '#',
