@@ -802,7 +802,7 @@ const TestingPortal: React.FC = () => {
                 Welcome, {currentUser.name}
               </h2>
               <p className="text-xs opacity-60" style={{ color: 'var(--text-main)' }}>
-                ID: {currentUser.id} • Roll: {currentUser.rollNo} • {currentUser.batch}
+                ID: {currentUser.id}
               </p>
             </div>
             <button
