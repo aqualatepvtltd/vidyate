@@ -55,24 +55,24 @@ const VerifyCertificate: React.FC = () => {
   };
 
   const inputClasses = "w-full glass rounded-xl p-4 transition-all focus:outline-none ring-slate-500/0 focus:ring-2 focus:ring-slate-500/50 border-slate-500/10 focus:border-slate-500 text-base font-medium";
-  const labelClasses = "text-[11px] font-black uppercase tracking-widest opacity-40 ml-1 mb-2 block";
+  const labelClasses = "text-xs font-black uppercase tracking-wider opacity-50 ml-1 mb-2 block";
 
   if (isSubmitted) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center animate-scale-up">
         <SEO title="Verification Request Sent" />
-        <div className="glass p-12 md:p-20 rounded-3xl border shadow-2xl relative overflow-hidden">
+        <div className="glass p-10 md:p-16 rounded-3xl border shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-[#10B981]"></div>
-          <div className="w-20 h-20 bg-[#10B981]/10 rounded-full flex items-center justify-center mx-auto mb-8">
-            <span className="material-symbols-rounded text-4xl text-[#10B981]">task_alt</span>
+          <div className="w-16 h-16 bg-[#10B981]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span className="material-symbols-rounded text-3xl text-[#10B981]">task_alt</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter" style={{ color: 'var(--text-main)' }}>Request Sent.</h2>
-          <p className="opacity-60 text-base md:text-lg max-w-md mx-auto leading-relaxed font-medium mb-10" style={{ color: 'var(--text-main)' }}>
+          <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>Request Sent.</h2>
+          <p className="opacity-70 text-sm md:text-base max-w-md mx-auto leading-relaxed font-medium mb-8" style={{ color: 'var(--text-main)' }}>
             Thank you for your request. Our team will verify the certificate details and respond via email.
           </p>
           <Link 
             to="/get-certified"
-            className="px-10 py-4 bg-[#405cff] text-white font-black rounded-xl text-sm uppercase tracking-widest hover:shadow-lg active:scale-95 transition-all"
+            className="px-8 py-3.5 bg-[#405cff] text-white font-black rounded-xl text-xs uppercase tracking-wider hover:shadow-lg active:scale-95 transition-all"
           >
             Back to Certifications
           </Link>
@@ -88,12 +88,12 @@ const VerifyCertificate: React.FC = () => {
         description="Submit your certificate ID for verification. Ensure the authenticity of your Vidyate certification."
         keywords="Verify Certificate, Vidyate Verification, Certificate Check, Student Certification"
       />
-      <div className="text-center mb-12">
-        <span className="text-[#405cff] font-black text-[11px] tracking-[0.3em] uppercase mb-4 block">Authenticity Check</span>
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-10">
+        <span className="text-[#405cff] font-black text-xs tracking-widest uppercase mb-3 block">Authenticity Check</span>
+        <h1 className="text-3xl md:text-4xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
           Verify a Certificate
         </h1>
-        <p className="opacity-50 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
           Enter the details below to request manual verification of a certificate issued by Vidyate.
         </p>
       </div>

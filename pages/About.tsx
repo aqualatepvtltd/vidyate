@@ -19,28 +19,28 @@ const About: React.FC = () => {
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#8B5CF6]/10 rounded-full blur-[100px] animate-pulse delay-500"></div>
         </div>
         
-        <span className="text-[#405cff] font-black text-[10px] tracking-[0.4em] uppercase mb-6 block">The Vidyate Manifest</span>
-        <h1 className="text-4xl md:text-7xl font-black mb-6 leading-[1.1] tracking-tighter" style={{ color: 'var(--text-main)' }}>
+        <span className="text-[#405cff] font-black text-xs tracking-widest uppercase mb-4 block">The Vidyate Manifest</span>
+        <h1 className="text-3xl md:text-4xl font-black mb-4 leading-tight tracking-tight" style={{ color: 'var(--text-main)' }}>
           Dedicated to <br/>
           <span className="text-[#405cff]">Academic</span> Clarity.
         </h1>
-        <p className="opacity-60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium mb-12" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium mb-10" style={{ color: 'var(--text-main)' }}>
           Vidyate is a high-performance academic ecosystem designed to accelerate the learning curve for Pharmacy students globally.
         </p>
       </section>
 
       {/* Our Mission Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-20">
         <div 
           className="glass p-8 md:p-12 rounded-3xl border relative overflow-hidden grid grid-cols-1 lg:grid-cols-5 gap-12 items-center"
           style={{ borderColor: 'var(--glass-border)' }}
         >
           <div className="lg:col-span-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-xs font-black uppercase tracking-wider mb-4">
               <span className="material-symbols-rounded text-sm">radar</span>
               Our Mission
             </div>
-            <h2 className="text-3xl md:text-4xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>Resource Minimalism, Maximum Impact.</h2>
+            <h2 className="text-2xl md:text-3xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>Resource Minimalism, Maximum Impact.</h2>
             <div className="space-y-4 opacity-70 leading-relaxed font-medium text-sm md:text-base" style={{ color: 'var(--text-main)' }}>
               <p>
                 Pharmacy education is burdened by data overload. Students waste countless hours searching for reliable materials instead of learning. We solve this by applying a simple principle: <strong>Resource Minimalism</strong>.
@@ -68,10 +68,10 @@ const About: React.FC = () => {
       </section>
 
       {/* Curation Process Section */}
-      <section className="py-16 md:py-24">
-        <div className="text-center mb-12">
-          <span className="text-[#8B5CF6] font-black text-[10px] tracking-[0.3em] uppercase mb-4 block">The Pipeline</span>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tighter" style={{ color: 'var(--text-main)' }}>Our Curation Process.</h2>
+      <section className="py-16 md:py-20">
+        <div className="text-center mb-10">
+          <span className="text-[#8B5CF6] font-black text-xs tracking-widest uppercase mb-3 block">The Pipeline</span>
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight" style={{ color: 'var(--text-main)' }}>Our Curation Process.</h2>
         </div>
         
         <div className="relative max-w-2xl mx-auto">
@@ -86,8 +86,8 @@ const About: React.FC = () => {
                 <span className="material-symbols-rounded text-3xl text-[#8B5CF6]">{item.icon}</span>
               </div>
               <div className="pt-2">
-                <h3 className="text-xl font-black mb-2" style={{ color: 'var(--text-main)' }}>{item.title}</h3>
-                <p className="opacity-60 font-medium leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-black mb-1" style={{ color: 'var(--text-main)' }}>{item.title}</h3>
+                <p className="opacity-60 text-sm font-medium leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -95,12 +95,12 @@ const About: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:pb-24">
-        <div className="glass p-8 md:p-16 rounded-3xl border text-center relative overflow-hidden shadow-2xl bg-gradient-to-br from-[#405cff]/10 to-transparent">
-          <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <section className="py-16 md:pb-20">
+        <div className="glass p-8 md:p-14 rounded-3xl border text-center relative overflow-hidden shadow-2xl bg-gradient-to-br from-[#405cff]/10 to-transparent">
+          <h2 className="text-2xl md:text-3xl font-black mb-4 leading-tight tracking-tight" style={{ color: 'var(--text-main)' }}>
             Your Academic <br/> Competitive <span className="text-[#405cff]">Advantage</span>.
           </h2>
-          <p className="opacity-60 text-base md:text-lg font-medium mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-main)' }}>
+          <p className="opacity-70 text-sm md:text-base font-medium mb-8 max-w-xl mx-auto" style={{ color: 'var(--text-main)' }}>
             Stop searching, start learning. Explore the ecosystem that thousands of students trust.
           </p>
           <Link 

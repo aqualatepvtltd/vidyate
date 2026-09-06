@@ -1,11 +1,13 @@
 
 import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
+
+// Analytics stripped per migration guidelines
+const Analytics: React.FC = () => null;
 
 // Lazy load pages. It's best practice to omit file extensions for bundler compatibility.
 const CourseDetail = lazy(() => import('./pages/CourseDetail'));
@@ -21,6 +23,7 @@ const CertificationTest = lazy(() => import('./pages/CertificationTest'));
 const PaidTestPage = lazy(() => import('./pages/PaidTestPage'));
 const VerifyCertificate = lazy(() => import('./pages/VerifyCertificate'));
 const InstallApp = lazy(() => import('./pages/InstallApp'));
+const TestingPortal = lazy(() => import('./pages/TestingPortal'));
 
 const App: React.FC = () => {
   // --- Maintenance Mode Flag ---
@@ -60,6 +63,8 @@ const App: React.FC = () => {
               <Route path="/paid-certification-test/:courseId" element={<PaidTestPage />} />
               <Route path="/verify-certificate" element={<VerifyCertificate />} />
               <Route path="/install-app" element={<InstallApp />} />
+              <Route path="/testing-portal" element={<TestingPortal />} />
+              <Route path="/vidyate-testing-portal" element={<TestingPortal />} />
 
               {/* Flattened Dynamic Course & Resource Routes */}
               {/* This prevents greedy matching or index collisions in nested structures */}

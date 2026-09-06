@@ -132,11 +132,11 @@ const PaidTestPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 animate-subtle-fade">
       <SEO title="Advance Course Test | Proctoring Setup" />
 
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-10">
+        <h1 className="text-2xl md:text-3xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>
           Advance Course Test
         </h1>
-        <p className="opacity-60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
+        <p className="opacity-70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium">
           This certification is part of our premium offering, designed with advanced content to provide you with a competitive edge. Please complete the proctoring setup to proceed.
         </p>
       </div>

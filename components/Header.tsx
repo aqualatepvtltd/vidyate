@@ -57,6 +57,7 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', icon: 'home' },
+    // { name: 'Testing Portal', path: '/testing-portal', icon: 'timer' },
     { name: 'Get Certified', path: '/get-certified', icon: 'verified' },
     { name: 'Blogs', path: 'https://vidyatestudenthub.blogspot.com/', icon: 'rss_feed', external: true },
     { name: 'Material', path: '/b-pharm', icon: 'auto_stories' },
@@ -106,7 +107,7 @@ const Header: React.FC = () => {
                     onMouseLeave={() => setIsMaterialOpen(false)}
                   >
                     <button
-                      className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group flex items-center gap-2`}
+                      className={`text-xs font-bold uppercase tracking-wider transition-all relative py-2 group flex items-center gap-2`}
                       style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
                       onClick={() => setIsMaterialOpen((s) => !s)}
                     >
@@ -125,7 +126,7 @@ const Header: React.FC = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group`}
+                    className={`text-xs font-bold uppercase tracking-wider transition-all relative py-2 group`}
                     style={{ color: location.pathname === link.path ? '#405cff' : 'var(--text-main)' }}
                   >
                     <span className={location.pathname === link.path ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}>
@@ -198,7 +199,7 @@ const Header: React.FC = () => {
         >
           <div className="flex flex-col h-full pt-24 px-6 pb-10">
             <div className="space-y-1 mb-10">
-              <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30 ml-2 mb-4 block" style={{ color: 'var(--text-main)' }}>Navigation</span>
+              <span className="text-xs font-bold uppercase tracking-wider opacity-40 ml-2 mb-4 block" style={{ color: 'var(--text-main)' }}>Navigation</span>
               {navLinks.map((link, idx) => (
                 link.name === 'Material' ? (
                   <div

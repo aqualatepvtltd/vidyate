@@ -79,8 +79,8 @@ const Contact: React.FC = () => {
           <div className="w-20 h-20 bg-[#10B981]/10 rounded-full flex items-center justify-center mx-auto mb-8">
             <span className="material-symbols-rounded text-4xl text-[#10B981]">mark_email_read</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter" style={{ color: 'var(--text-main)' }}>Message Sent.</h2>
-          <p className="opacity-60 text-base md:text-lg max-w-md mx-auto leading-relaxed font-medium mb-10" style={{ color: 'var(--text-main)' }}>
+          <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>Message Sent.</h2>
+          <p className="opacity-70 text-sm md:text-base max-w-md mx-auto leading-relaxed font-medium mb-8" style={{ color: 'var(--text-main)' }}>
             Thank you for reaching out. A Vidyate team member will review your inquiry and respond via email within 24 hours.
           </p>
           <button 
@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
               setIsSubmitted(false);
               setFormData({ name: '', email: '', subject: '', message: '' });
             }}
-            className="px-10 py-4 bg-[#405cff] text-white font-black rounded-xl text-sm uppercase tracking-widest hover:shadow-lg active:scale-95 transition-all"
+            className="px-8 py-3.5 bg-[#405cff] text-white font-black rounded-xl text-xs uppercase tracking-wider hover:shadow-lg active:scale-95 transition-all"
           >
             Send Another
           </button>
@@ -105,11 +105,11 @@ const Contact: React.FC = () => {
         keywords="Contact Vidyate, Student Support, Pharmacy Academic Help, Technical Support, Customer Service, Education Query, Vidyate Helpline"
       />
       {/* Hero Header */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-12">
+        <h1 className="text-3xl md:text-4xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
           We're Here <span className="opacity-30">to Help.</span>
         </h1>
-        <p className="opacity-50 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
           Whether you have a technical question or need academic guidance, our team is dedicated to your success.
         </p>
       </div>
@@ -132,9 +132,9 @@ const Contact: React.FC = () => {
                     <span className="material-symbols-rounded text-2xl">{info.icon}</span>
                   </div>
                   <div>
-                    <h3 className="text-[11px] font-black uppercase tracking-widest opacity-40 mb-1" style={{ color: 'var(--text-main)' }}>{info.title}</h3>
-                    <p className="text-l font-black mb-2 tracking-tight" style={{ color: 'var(--text-main)' }}>{info.value}</p>
-                    <p className="text-xs opacity-50 leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>{info.description}</p>
+                    <h3 className="text-xs font-black uppercase tracking-wider opacity-50 mb-1" style={{ color: 'var(--text-main)' }}>{info.title}</h3>
+                    <p className="text-base font-bold mb-1 tracking-tight" style={{ color: 'var(--text-main)' }}>{info.value}</p>
+                    <p className="text-xs opacity-60 leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>{info.description}</p>
                   </div>
                 </div>
               </div>

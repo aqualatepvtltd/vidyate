@@ -37,8 +37,8 @@ const CertificationTest: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-[var(--bg-color)] to-[var(--bg-secondary)]">
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
         {/* Header */}
-        <div className="mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2" style={{ color: 'var(--text-main)' }}>
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2" style={{ color: 'var(--text-main)' }}>
             Certification <span className="text-[#405cff]">Test</span>
           </h1>
           <p className="text-sm opacity-60" style={{ color: 'var(--text-main)' }}>
@@ -56,7 +56,7 @@ const CertificationTest: React.FC = () => {
                 </div>
               </div>
               <div>
-                <h2 className="text-2xl font-black mb-4" style={{ color: 'var(--text-main)' }}>
+                <h2 className="text-xl md:text-2xl font-black mb-3" style={{ color: 'var(--text-main)' }}>
                   Test Instructions
                 </h2>
                 <ul className="space-y-3">

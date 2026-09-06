@@ -117,15 +117,17 @@ const Home: React.FC = () => {
       <ScrollerStyles />
       {/* Hero Section - Full Height Fold Yes*/}
       <section className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center text-center relative overflow-visible animate-subtle-fade pt-32 pb-12 md:py-0"> 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter mb-4 md:mb-6 leading-[1.1] md:leading-[1.05]" style={{ color: 'var(--text-main)' }}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 md:mb-5 leading-tight" style={{ color: 'var(--text-main)' }}>
           Elevate Your 
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#405cff] via-[#8B5CF6] to-[#10B981] drop-shadow-sm pr-1 "> Pharmacy</span>Journey
         </h1>
-        <p className="opacity-60 text-sm md:text-lg max-w-xl mb-8 md:mb-10 font-medium leading-relaxed px-2" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-70 text-sm md:text-base max-w-xl mb-8 md:mb-10 font-medium leading-relaxed px-2" style={{ color: 'var(--text-main)' }}>
           The ultimate digital ecosystem for pharmaceutical students. Access verified notes, question banks and career guidance.
         </p>
         
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
+
+          
 
           <a
             href="https://vidyatestudenthub.blogspot.com/"
@@ -197,14 +199,14 @@ const Home: React.FC = () => {
         <div className="glass p-8 md:p-12 rounded-3xl border text-center relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#10B981]/10 blur-[100px] rounded-full -z-10"></div>
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-xs font-black uppercase tracking-wider mb-6">
               <span className="material-symbols-rounded text-sm">verified_user</span>
               Skill Validation
             </div>
-            <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+            <h2 className="text-2xl md:text-3xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
               Get <span className="text-[#10B981]">Certified</span>, Stand Out.
             </h2>
-            <p className="opacity-60 text-sm md:text-lg max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+            <p className="opacity-70 text-sm md:text-base max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
               Validate your knowledge with our official certification courses. Enhance your resume and demonstrate your expertise to potential employers.
             </p>
             <Link 
@@ -220,13 +222,13 @@ const Home: React.FC = () => {
 
       {/* Course Selection */}
       <section id="tracks" className="py-16 md:py-20">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 md:mb-12 gap-4 text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-8 md:mb-10 gap-4 text-center md:text-left">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#405cff]/10 text-[#405cff] text-[10px] font-black uppercase tracking-[0.2em] mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#405cff]/10 text-[#405cff] text-xs font-black uppercase tracking-wider mb-2">
               <span className="material-symbols-rounded text-sm">stairs</span>
               Learning Pathways
             </div>
-            <h2 className="text-2xl md:text-4xl font-black" style={{ color: 'var(--text-main)' }}>Choose Your Path</h2>
+            <h2 className="text-2xl md:text-3xl font-black" style={{ color: 'var(--text-main)' }}>Choose Your Path</h2>
           </div>
         </div>
 
@@ -240,7 +242,7 @@ const Home: React.FC = () => {
               color={course.id === 'b-pharm' ? '#405cff' : '#8B5CF6'}
               onClick={() => navigate(`/${course.id}`)}
               footer={
-                <div className="flex items-center gap-2 font-black text-[10px] md:text-xs group-hover:gap-4 transition-all uppercase tracking-[0.2em]" style={{ color: course.id === 'b-pharm' ? '#405cff' : '#8B5CF6' }}>
+                <div className="flex items-center gap-2 font-black text-xs group-hover:gap-4 transition-all uppercase tracking-wider" style={{ color: course.id === 'b-pharm' ? '#405cff' : '#8B5CF6' }}>
                   Enter Dashboard <span className="material-symbols-rounded text-sm">arrow_forward</span>
                 </div>
               }
@@ -251,13 +253,13 @@ const Home: React.FC = () => {
 
       {/* Why Vidyate? */}
       <section className="py-16 md:py-20">
-        <div className="text-center mb-10 md:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#10B981]/10 text-[#10B981] text-[10px] font-black uppercase tracking-[0.2em] mb-3">
+        <div className="text-center mb-8 md:mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#10B981]/10 text-[#10B981] text-xs font-black uppercase tracking-wider mb-2">
             <span className="material-symbols-rounded text-sm">verified</span>
             Quality Assurance
           </div>
-          <h2 className="text-3xl md:text-5xl font-black" style={{ color: 'var(--text-main)' }}>Why Vidyate?</h2>
-          <p className="opacity-60 text-sm md:text-lg max-w-xl mx-auto font-medium leading-relaxed">
+          <h2 className="text-2xl md:text-3xl font-black mb-3" style={{ color: 'var(--text-main)' }}>Why Vidyate?</h2>
+          <p className="opacity-70 text-sm md:text-base max-w-xl mx-auto font-medium leading-relaxed">
             We're not just another resource website. We are a complete ecosystem built on three core pillars of quality and accessibility.
           </p>
         </div>
@@ -298,14 +300,14 @@ const Home: React.FC = () => {
         <div className="glass p-8 md:p-12 rounded-3xl border flex flex-col lg:flex-row items-center justify-between gap-10 relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
           <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#405cff]/10 blur-[80px] rounded-full -z-10"></div>
           <div className="relative z-10 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#405cff]/10 text-[#405cff] text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#405cff]/10 text-[#405cff] text-xs font-black uppercase tracking-wider mb-4">
               <span className="material-symbols-rounded text-sm">visibility</span>
               Our Vision
             </div>
-            <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tight leading-[1.1]" style={{ color: 'var(--text-main)' }}>
+            <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tight leading-tight" style={{ color: 'var(--text-main)' }}>
               Academic Excellence, <br/> Digitally Perfected.
             </h2>
-            <p className="opacity-50 text-sm md:text-base font-medium leading-relaxed mb-8 max-w-2xl">
+            <p className="opacity-70 text-sm md:text-base font-medium leading-relaxed mb-8 max-w-2xl">
               Vidyate is more than just a website; it's a complete learning hub. We combine trusted academic content with modern technology to accelerate your learning curve and career readiness.
             </p>
             <Link 
@@ -331,12 +333,12 @@ const Home: React.FC = () => {
           
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
             <div className="max-w-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#405cff]/20 text-[#405cff] text-[9px] font-black uppercase tracking-[0.2em] mb-4 md:mb-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#405cff]/20 text-[#405cff] text-xs font-black uppercase tracking-wider mb-3">
                 <span className="material-symbols-rounded text-sm">mail</span>
                 Academic Newsletter
               </div>
-              <h2 className="text-2xl md:text-4xl font-black mb-4 md:mb-6 leading-[1.1]" style={{ color: 'var(--text-main)' }}>Subscribe Newsletter</h2>
-              <p className="opacity-50 text-sm md:text-lg font-medium" style={{ color: 'var(--text-main)' }}>
+              <h2 className="text-2xl md:text-3xl font-black mb-3 leading-tight" style={{ color: 'var(--text-main)' }}>Subscribe Newsletter</h2>
+              <p className="opacity-70 text-sm md:text-base font-medium" style={{ color: 'var(--text-main)' }}>
                 Stay updated with Vidyate Student Hub. Join our newsletter for exclusive insights and resources.
               </p>
             </div>

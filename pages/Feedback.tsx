@@ -110,10 +110,10 @@ const Feedback: React.FC = () => {
         description="Your voice matters. Share your feedback, report bugs, or request new study materials to help us build the ultimate pharmacy education platform."
         keywords="Vidyate Feedback, Report Bug, Request Resources, Student Suggestions, Improve Education Platform, Pharmacy Community Feedback"
       />
-      <div className="text-center mb-12">
-        <span className="text-[#405cff] font-black text-[11px] tracking-[0.2em] uppercase mb-3 block">Help Us Grow</span>
-        <h1 className="text-3xl md:text-5xl font-black mb-4" style={{ color: 'var(--text-main)' }}>Share Your Thoughts.</h1>
-        <p className="opacity-50 text-base max-w-xl mx-auto font-medium" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-10">
+        <span className="text-[#405cff] font-black text-xs tracking-wider uppercase mb-2 block">Help Us Grow</span>
+        <h1 className="text-2xl md:text-3xl font-black mb-3" style={{ color: 'var(--text-main)' }}>Share Your Thoughts.</h1>
+        <p className="opacity-60 text-sm md:text-base max-w-xl mx-auto font-medium" style={{ color: 'var(--text-main)' }}>
           Found a bug? Missing a subject? Or just want to say hi? Your feedback is the catalyst for our improvement.
         </p>
       </div>

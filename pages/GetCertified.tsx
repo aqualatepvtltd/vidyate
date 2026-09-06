@@ -95,15 +95,15 @@ const GetCertified: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--bg-color)] to-[var(--bg-secondary)]">
       {/* Header Section */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
-        <div className="text-center mb-12 md:mb-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14">
+        <div className="text-center mb-10 md:mb-12">
           <h1
-            className="text-4xl md:text-5xl font-black tracking-tight mb-4"
+            className="text-3xl md:text-4xl font-black tracking-tight mb-3"
             style={{ color: 'var(--text-main)' }}
           >
             Get <span className="text-[#405cff]">Certified</span>
           </h1>
-          <p className="text-lg opacity-60 max-w-2xl mx-auto" style={{ color: 'var(--text-main)' }}>
+          <p className="text-sm md:text-base opacity-70 max-w-2xl mx-auto font-medium" style={{ color: 'var(--text-main)' }}>
             Complete our certification courses and showcase your expertise with official certificates
           </p>
         </div>

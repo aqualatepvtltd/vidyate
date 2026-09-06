@@ -42,19 +42,19 @@ const ResourceSelection: React.FC = () => {
         description={`Download high-quality ${resource.name.toLowerCase()} for ${course.name}. Select your year to access verified subjects, notes, and question papers.`}
         keywords={`${course.name} ${resource.name}, Pharmacy ${resource.name}, B.Pharm ${resource.name}, D.Pharm ${resource.name}, Academic Resources, Study Material`}
       />
-      <div className="flex flex-col gap-4 mb-8">
-        <nav className="flex items-center flex-wrap gap-2 text-[9px] font-bold uppercase tracking-widest opacity-40" style={{ color: 'var(--text-main)' }}>
+      <div className="flex flex-col gap-3 mb-6 md:mb-8">
+        <nav className="flex items-center flex-wrap gap-2 text-xs font-bold uppercase tracking-wider opacity-60" style={{ color: 'var(--text-main)' }}>
           <Link to={`/${courseId}`} className="hover:text-[#405cff] transition-colors">{course.name}</Link>
-          <span className="material-symbols-rounded text-[10px]">chevron_right</span>
-          <span className="opacity-60">{resource.name}</span>
+          <span className="material-symbols-rounded text-sm">chevron_right</span>
+          <span className="opacity-70">{resource.name}</span>
         </nav>
-        <h1 className="text-2xl md:text-4xl font-black" style={{ color: 'var(--text-main)' }}>{resource.name}</h1>
+        <h1 className="text-2xl md:text-3xl font-black tracking-tight" style={{ color: 'var(--text-main)' }}>{resource.name}</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Year Sidebar / Horizontal Selector */}
         <div className="lg:col-span-1">
-          <h3 className="text-[9px] font-black text-theme-muted uppercase tracking-[0.2em] px-1 mb-3">Academic Year</h3>
+          <h3 className="text-xs font-bold text-theme-muted uppercase tracking-wider px-1 mb-3">Academic Year</h3>
           
           {/* Desktop Sidebar (visible on lg+) */}
           <div className="hidden lg:flex flex-col gap-2">

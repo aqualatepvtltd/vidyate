@@ -73,17 +73,17 @@ const AdmissionEnquiry: React.FC = () => {
         <SEO title="Enquiry Submitted" />
         <div className="glass p-12 md:p-20 rounded-3xl border shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-[#405cff]"></div>
-          <div className="w-20 h-20 bg-[#405cff]/10 rounded-full flex items-center justify-center mx-auto mb-8">
-            <span className="material-symbols-rounded text-4xl text-[#405cff]">how_to_reg</span>
+          <div className="w-16 h-16 bg-[#405cff]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span className="material-symbols-rounded text-3xl text-[#405cff]">how_to_reg</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter" style={{ color: 'var(--text-main)' }}>Request Received.</h2>
-          <p className="opacity-60 text-base md:text-lg max-w-md mx-auto leading-relaxed font-medium mb-10" style={{ color: 'var(--text-main)' }}>
+          <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>Request Received.</h2>
+          <p className="opacity-70 text-sm md:text-base max-w-md mx-auto leading-relaxed font-medium mb-8" style={{ color: 'var(--text-main)' }}>
             Your admission enquiry has been sent to our counselors. We will review your profile and contact you within 48 hours to guide you through the process.
           </p>
           <div className="flex justify-center gap-4">
             <Link 
               to="/"
-              className="px-10 py-4 bg-[#405cff] text-white font-black rounded-xl text-sm uppercase tracking-widest hover:shadow-lg active:scale-95 transition-all"
+              className="px-8 py-3.5 bg-[#405cff] text-white font-black rounded-xl text-xs uppercase tracking-wider hover:shadow-lg active:scale-95 transition-all"
             >
               Back to Home
             </Link>
@@ -102,12 +102,12 @@ const AdmissionEnquiry: React.FC = () => {
       />
       
       {/* Header */}
-      <div className="text-center mb-16">
-        <span className="text-[#405cff] font-black text-[11px] tracking-[0.3em] uppercase mb-4 block">College Admission Desk</span>
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-12">
+        <span className="text-[#405cff] font-black text-xs tracking-widest uppercase mb-3 block">College Admission Desk</span>
+        <h1 className="text-3xl md:text-4xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
           Unlock Your <span className="text-[#405cff]">Campus.</span>
         </h1>
-        <p className="opacity-50 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
           Whether you're targeting premier universities or diploma colleges, our team helps bridge the gap between your ambition and the right institution.
         </p>
       </div>

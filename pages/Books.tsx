@@ -12,12 +12,12 @@ const Books: React.FC = () => {
         description="Explore our curated collection of essential pharmacy textbooks. From K.D. Tripathi to standard reference books, find everything you need for your academic success at student-friendly prices."
         keywords="Pharmacy Book Store, Buy B.Pharm Books, D.Pharm Textbooks, Medical Books India, Pharmacy Reference Books, GPAT Preparation Books, Online Book Store"
       />
-      <div className="text-center mb-12 animate-subtle-fade">
-        <span className="text-[#405cff] font-black text-[10px] tracking-[0.3em] uppercase mb-3 block">Store</span>
-        <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-10 animate-subtle-fade">
+        <span className="text-[#405cff] font-black text-xs tracking-wider uppercase mb-2 block">Store</span>
+        <h1 className="text-2xl md:text-3xl font-black mb-3 leading-tight tracking-tight" style={{ color: 'var(--text-main)' }}>
           Curated <span className="text-[#405cff]">Pharmacy</span> Library
         </h1>
-        <p className="opacity-50 text-sm md:text-lg max-w-xl mx-auto font-medium" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-60 text-sm md:text-base max-w-xl mx-auto font-medium" style={{ color: 'var(--text-main)' }}>
           Access the most recommended textbooks for pharmacy students, hand-picked by academic experts.
         </p>
       </div>
@@ -79,10 +79,10 @@ const Books: React.FC = () => {
         <div className="glass p-8 md:p-12 rounded-3xl border relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12" style={{ borderColor: 'var(--glass-border)' }}>
           <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#405cff]/10 blur-[80px] rounded-full"></div>
           <div className="max-w-lg relative z-10">
-            <h2 className="text-2xl md:text-4xl font-black mb-4 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+            <h2 className="text-xl md:text-2xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>
               Looking for something specific?
             </h2>
-            <p className="opacity-50 text-sm md:text-base font-medium mb-6 md:mb-8" style={{ color: 'var(--text-main)' }}>
+            <p className="opacity-60 text-sm md:text-base font-medium mb-6 md:mb-8" style={{ color: 'var(--text-main)' }}>
               If you can't find a book, let us know and we'll try to source it for you at a discounted rate.
             </p>
             <Link to="/feedback" className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#405cff] text-white rounded-xl font-black text-sm shadow-lg hover:-translate-y-1 transition-all">

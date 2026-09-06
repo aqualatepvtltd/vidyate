@@ -40,11 +40,11 @@ const InstallApp: React.FC = () => {
       />
       
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16">
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+      <div className="text-center mb-10 md:mb-12">
+        <h1 className="text-3xl md:text-4xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
           Get the <span className="text-[#405cff]">Vidyate App</span>
         </h1>
-        <p className="opacity-60 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
+        <p className="opacity-70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
           Experience a more personalized and streamlined learning journey with the beta version of our Android app.
         </p>
       </div>

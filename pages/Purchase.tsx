@@ -170,8 +170,8 @@ IMPORTANT: PLEASE ATTACH YOUR PAYMENT SCREENSHOT TO THIS EMAIL BEFORE SENDING!
         <SEO title="Order Prepared" />
         <div className="glass p-10 md:p-16 rounded-3xl border-[#10B981] border shadow-2xl">
           <span className="material-symbols-rounded text-6xl text-[#10B981] mb-6 animate-bounce">forward_to_inbox</span>
-          <h1 className="text-3xl md:text-4xl font-black mb-4" style={{ color: 'var(--text-main)' }}>Email Prepared!</h1>
-          <p className="opacity-70 text-base font-medium mb-6 leading-relaxed" style={{ color: 'var(--text-main)' }}>
+          <h1 className="text-2xl md:text-3xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>Email Prepared!</h1>
+          <p className="opacity-70 text-sm md:text-base font-medium mb-6 leading-relaxed" style={{ color: 'var(--text-main)' }}>
             Your order email has been generated. <span className="text-[#405cff] font-bold">Attach your payment screenshot</span> in your email app and hit <b>Send</b>.
           </p>
           <div className="bg-[#405cff]/10 border border-[#405cff]/20 p-4 rounded-xl mb-10">

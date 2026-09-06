@@ -43,8 +43,8 @@ const BookDetail: React.FC = () => {
 
         {/* Book Info */}
         <div className="flex flex-col">
-          <span className="text-[#405cff] font-black text-[10px] tracking-[0.2em] uppercase mb-3 block">Book Detail</span>
-          <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+          <span className="text-[#405cff] font-black text-xs tracking-wider uppercase mb-2 block">Book Detail</span>
+          <h1 className="text-2xl md:text-3xl font-black mb-3 md:mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
             {book.name}
           </h1>
           
@@ -52,13 +52,13 @@ const BookDetail: React.FC = () => {
           <div className="flex items-baseline gap-3 mb-6 md:mb-8">
             <p className="text-xl md:text-2xl font-black text-[#405cff]">₹{book.selling_price}</p>
             <p className="text-sm md:text-base font-bold text-theme-muted line-through">₹{book.original_price}</p>
-            <span className="px-2 py-1 rounded-md bg-[#10B981]/10 text-[#10B981] text-[10px] font-black uppercase tracking-widest">
+            <span className="px-2 py-1 rounded-md bg-[#10B981]/10 text-xs font-black uppercase tracking-wider">
               {Math.round(((book.original_price - book.selling_price) / book.original_price) * 100)}% OFF
             </span>
           </div>
 
           <div className="glass p-6 md:p-8 rounded-2xl border mb-8" style={{ borderColor: 'var(--glass-border)' }}>
-            <h3 className="text-[10px] uppercase font-black tracking-widest opacity-40 mb-3" style={{ color: 'var(--text-main)' }}>Description</h3>
+            <h3 className="text-xs uppercase font-black tracking-wider opacity-50 mb-3" style={{ color: 'var(--text-main)' }}>Description</h3>
             <p className="opacity-70 text-sm md:text-base leading-relaxed font-medium" style={{ color: 'var(--text-main)' }}>
               {book.description}
             </p>
@@ -68,13 +68,13 @@ const BookDetail: React.FC = () => {
           <div className="grid grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-12">
             <div className="glass p-4 rounded-xl text-center border" style={{ borderColor: 'var(--glass-border)' }}>
               <span className="material-symbols-rounded text-[#8B5CF6] mb-2 text-xl">book</span>
-              <p className="text-[9px] uppercase font-black opacity-30">Format</p>
+              <p className="text-[11px] uppercase font-bold opacity-40">Format</p>
               <p className="font-bold text-xs md:text-sm">{book.format}</p>
             </div>
             <div className="glass p-4 rounded-xl text-center border" style={{ borderColor: 'var(--glass-border)' }}>
               <span className="material-symbols-rounded text-[#FF6B6B] mb-2 text-xl">apartment</span>
-              <p className="text-[9px] uppercase font-black opacity-30">Publisher</p>
-              <p className="font-bold text-[9px] truncate">{book.publisher}</p>
+              <p className="text-[11px] uppercase font-bold opacity-40">Publisher</p>
+              <p className="font-bold text-xs truncate">{book.publisher}</p>
             </div>
           </div>
 

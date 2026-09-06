@@ -10,13 +10,13 @@ const Terms: React.FC = () => {
         description="Review the Terms and Conditions for using Vidyate's academic platform, resources, and services."
         keywords="Terms of Service, Usage Policy, Academic Disclaimer, Vidyate Rules, Student Agreement"
       />
-      <Link to="/" className="inline-flex items-center gap-2 text-theme-muted hover:text-[#405cff] transition-all font-black text-[10px] uppercase tracking-widest mb-8">
+      <Link to="/" className="inline-flex items-center gap-2 text-theme-muted hover:text-[#405cff] transition-all font-bold text-xs uppercase tracking-wider mb-6">
         <span className="material-symbols-rounded text-sm">home</span>
         Back to Home
       </Link>
 
       <div className="glass p-8 md:p-12 rounded-2xl border" style={{ borderColor: 'var(--glass-border)' }}>
-        <h1 className="text-3xl md:text-4xl font-black mb-2 tracking-tighter" style={{ color: 'var(--text-main)' }}>
+        <h1 className="text-2xl md:text-3xl font-black mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>
           Terms and Conditions
         </h1>
         <div className="prose prose-sm md:prose-base prose-invert max-w-none" style={{ color: 'var(--text-main)' }}>

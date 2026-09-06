@@ -27,12 +27,12 @@ const CourseDetail: React.FC = () => {
         description={`Access comprehensive resources for ${course.name}. Get verified notes, question banks, and syllabus details tailored for ${course.name} students.`} 
         keywords={`${course.name}, Pharmacy Course, ${course.name} Syllabus, ${course.name} Notes, B.Pharm Subjects, D.Pharm Curriculum, Pharmacy Study Material`}
       />
-      <div className="mb-10">
-        <Link to="/" className="text-theme-muted hover:text-[#405cff] transition-colors flex items-center gap-2 mb-4 text-[10px] font-black uppercase tracking-widest">
+      <div className="mb-8 md:mb-10">
+        <Link to="/" className="text-theme-muted hover:text-[#405cff] transition-colors flex items-center gap-2 mb-3 text-xs font-bold uppercase tracking-wider">
           <span className="material-symbols-rounded text-sm">arrow_back</span>
           All Tracks
         </Link>
-        <h1 className="text-3xl md:text-5xl font-black mb-3 md:mb-4 tracking-tight" style={{ color: 'var(--text-main)' }}>{course.name}</h1>
+        <h1 className="text-2xl md:text-3xl font-black mb-2 md:mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>{course.name}</h1>
         <p className="text-theme-muted text-sm md:text-base max-w-xl font-medium leading-relaxed">{course.description}</p>
       </div>
 
@@ -46,7 +46,7 @@ const CourseDetail: React.FC = () => {
             color={resource.color}
             onClick={() => navigate(`/${courseId}/${resource.id}`)}
             footer={
-              <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-[0.15em] opacity-40" style={{ color: 'var(--text-main)' }}>
+              <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider opacity-60" style={{ color: 'var(--text-main)' }}>
                 <span>{resource.years.length} Section</span>
                 <span className="material-symbols-rounded text-sm">chevron_right</span>
               </div>
