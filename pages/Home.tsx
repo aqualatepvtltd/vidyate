@@ -122,24 +122,12 @@ const Home: React.FC = () => {
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#405cff] via-[#8B5CF6] to-[#10B981] drop-shadow-sm pr-1 "> Pharmacy</span>Journey
         </h1>
         <p className="opacity-70 text-sm md:text-base max-w-xl mb-8 md:mb-10 font-medium leading-relaxed px-2" style={{ color: 'var(--text-main)' }}>
-          The ultimate digital ecosystem for pharmaceutical students. Access verified notes, question banks and career guidance.
+       The ultimate digital ecosystem for pharmacy students - verified notes, smart question banks, certification courses, and end to end career guidance, all in one place.
         </p>
         
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
 
           
-
-          <a
-            href="https://vidyatestudenthub.blogspot.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 rounded-xl bg-[#8B5CF6] text-white font-black text-sm md:text-base hover:shadow-[0_15px_30px_rgba(139,92,246,0.3)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 relative"
-            style={{ textDecoration: 'none' }}
-          >
-            <span className="material-symbols-rounded text-lg">article</span>
-            <span>Visit Blogs</span>
-          </a>
-
           <Link
             to="/get-certified"
             className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 rounded-xl bg-[#10B981] text-white font-black text-sm md:text-base hover:shadow-[0_15px_30px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2"
