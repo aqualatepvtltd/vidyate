@@ -16,10 +16,6 @@ export default defineConfig(({ mode }) => {
         minify: 'terser',
       },
       plugins: [react()],
-      define: {
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.VITE_GEMINI_API_KEY || ''),
-        'process.env.VITE_GEMINI_API_KEY': JSON.stringify(env.VITE_GEMINI_API_KEY || ''),
-      },
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
