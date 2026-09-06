@@ -99,34 +99,6 @@ export const DEFAULT_GOOGLE_SHEET_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbz1ialpZm20BK1H2GCbcHywXBNj92xMN5YwuvHn1X5s7C9LgMMsrebOHV4Vzot28grB/exec';
 
 /**
- * Retrieves the current configured Google Apps Script Web App URL.
- * Checks localStorage first (for runtime overrides), then Vite env, and defaults to production URL.
- */
-export const getGoogleSheetScriptUrl = (): string => {
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem('vidyate_gas_url');
-    if (saved && saved.trim()) return saved.trim().replace(/^["'`]+|["'`]+$/g, '').trim();
-  }
-  const envUrl = (import.meta.env.VITE_GOOGLE_SHEET_SCRIPT_URL as string) || '';
-  if (envUrl && envUrl.trim()) return envUrl.trim().replace(/^["'`]+|["'`]+$/g, '').trim();
-  return DEFAULT_GOOGLE_SHEET_SCRIPT_URL;
-};
-
-/**
- * Saves a Google Apps Script Web App URL to localStorage.
- */
-export const setGoogleSheetScriptUrl = (url: string): void => {
-  if (typeof window !== 'undefined') {
-    const cleaned = url.trim().replace(/^["'`]+|["'`]+$/g, '').trim();
-    if (cleaned) {
-      localStorage.setItem('vidyate_gas_url', cleaned);
-    } else {
-      localStorage.removeItem('vidyate_gas_url');
-    }
-  }
-};
-
-/**
  * Tests connectivity to a Google Apps Script Web App URL.
  */
 export const testGasConnection = async (
@@ -299,10 +271,9 @@ export const submitViaHiddenForm = (
  * the same request to be sent again through a fallback transport.
  */
 export const submitTestToGoogleSheet = async (
-  data: TestSubmissionData
+  data: TestSubmissionData,
+  scriptUrl: string = DEFAULT_GOOGLE_SHEET_SCRIPT_URL
 ): Promise<SubmissionResponse> => {
-  const scriptUrl = getGoogleSheetScriptUrl();
-
   if (!scriptUrl || scriptUrl.trim() === '') {
     return {
       success: false,
@@ -363,11 +334,7 @@ export const sendSampleTestSubmission = async (
     submission_time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
   };
 
-  if (overrideUrl && overrideUrl.trim()) {
-    setGoogleSheetScriptUrl(overrideUrl);
-  }
-
-  return submitTestToGoogleSheet(sampleData);
+  return submitTestToGoogleSheet(sampleData, overrideUrl || DEFAULT_GOOGLE_SHEET_SCRIPT_URL);
 };
 
 

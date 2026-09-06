@@ -5,6 +5,9 @@ import { userCredentials, UserCredential } from '../data/user-cred';
 import { testQuestions, TestQuestion } from '../data/test-data';
 import { submitTestToGoogleSheet } from '../services/googleSheets';
 
+const GOOGLE_SHEET_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbz1ialpZm20BK1H2GCbcHywXBNj92xMN5YwuvHn1X5s7C9LgMMsrebOHV4Vzot28grB/exec';
+
 type TestStage = 'countdown' | 'login' | 'proctor_check' | 'active' | 'verification' | 'submitting' | 'completed';
 
 interface AnswerState {
@@ -498,13 +501,16 @@ const TestingPortal: React.FC = () => {
     setIsSubmittingForm(true);
     setSubmitError(null);
 
-    const result = await submitTestToGoogleSheet({
-      name: verificationName,
-      email: verificationEmail,
-      test_name: verificationTestName,
-      score: verificationScore,
-      submission_time: verificationTime,
-    });
+    const result = await submitTestToGoogleSheet(
+      {
+        name: verificationName,
+        email: verificationEmail,
+        test_name: verificationTestName,
+        score: verificationScore,
+        submission_time: verificationTime,
+      },
+      GOOGLE_SHEET_SCRIPT_URL
+    );
 
     if (result.success) {
       setStage('completed');
