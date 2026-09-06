@@ -1,0 +1,11 @@
+{
+  "name": "Vidyate - Pharmacy Academic Hub",
+  "description": "A high-performance academic hub for Pharmacy students featuring curated resources for B.Pharm and Pharm.D.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
