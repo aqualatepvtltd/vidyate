@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
           </div>
           <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tight" style={{ color: 'var(--text-main)' }}>Message Sent.</h2>
           <p className="opacity-70 text-sm md:text-base max-w-md mx-auto leading-relaxed font-medium mb-8" style={{ color: 'var(--text-main)' }}>
-            Thank you for reaching out. A Vidyate team member will review your inquiry and respond via email within 24 hours.
+            Thank you for reaching out. Vidyate team member will review your inquiry and respond via email within 24 hours.
           </p>
           <button 
             onClick={() => {
