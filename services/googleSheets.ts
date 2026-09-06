@@ -295,8 +295,8 @@ export const submitViaHiddenForm = (
 
 /**
  * Sends test results to the deployed Google Apps Script Web App.
- * Uses a robust dual approach: attempts fetch first, and seamlessly falls back
- * to a native HTML form submission (which bypasses CORS and ensures row insertion).
+ * Uses one native HTML form submission so a CORS response failure cannot cause
+ * the same request to be sent again through a fallback transport.
  */
 export const submitTestToGoogleSheet = async (
   data: TestSubmissionData
@@ -320,80 +320,19 @@ export const submitTestToGoogleSheet = async (
 
   const targetUrl = validation.cleanUrl;
 
-  try {
-    // Attempt standard fetch first (using text/plain to avoid preflight CORS where possible)
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
+  const formSuccess = await submitViaHiddenForm(targetUrl, data);
 
-    const response = await fetch(targetUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-      },
-      body: JSON.stringify(data),
-      redirect: 'follow',
-      signal: controller.signal,
-    });
-
-    clearTimeout(timeoutId);
-
-    const responseText = await response.text();
-    let json: any = null;
-
-    try {
-      json = JSON.parse(responseText);
-    } catch {
-      if (responseText.toLowerCase().includes('success')) {
-        json = { result: 'success' };
-      }
-    }
-
-    const isSuccess =
-      json &&
-      (json.result === 'success' ||
-        json.saved === true ||
-        json.success === true ||
-        json.status === 'success' ||
-        json.status === 200);
-
-    if (isSuccess) {
-      return {
-        success: true,
-        message: 'Submission successfully recorded in Google Sheet.',
-        data: json,
-      };
-    }
-
-    // If fetch returned a non-success response, try form submission as reliable fallback
-    const formOk = await submitViaHiddenForm(targetUrl, data);
-    if (formOk) {
-      return {
-        success: true,
-        message: 'Submission successfully recorded in Google Sheet.',
-      };
-    }
-
+  if (formSuccess) {
     return {
-      success: false,
-      message: 'Unable to record submission. Please try again.',
-    };
-  } catch (error: any) {
-    console.warn('Direct fetch failed or was blocked by CORS, executing form submission fallback...', error);
-    // Standard HTML form submission ignores CORS restrictions
-    const formSuccess = await submitViaHiddenForm(targetUrl, data);
-
-    if (formSuccess) {
-      return {
-        success: true,
-        message: 'Submission successfully recorded in Google Sheet.',
-      };
-    }
-
-    return {
-      success: false,
-      message: 'Network error communicating with Google Sheets. Please check your connection.',
+      success: true,
+      message: 'Submission successfully recorded in Google Sheet.',
     };
   }
+
+  return {
+    success: false,
+    message: 'Unable to record submission. Please check your connection and try again.',
+  };
 };
 
 /**

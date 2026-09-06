@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { userCredentials, UserCredential } from '../user-cred';
-import { testQuestions, TestQuestion } from '../test-data';
-import { submitTestToGoogleSheet, getGoogleSheetScriptUrl } from '../services/googleSheets';
+import { userCredentials, UserCredential } from '../data/user-cred';
+import { testQuestions, TestQuestion } from '../data/test-data';
+import { submitTestToGoogleSheet } from '../services/googleSheets';
 
 type TestStage = 'countdown' | 'login' | 'proctor_check' | 'active' | 'verification' | 'submitting' | 'completed';
 
@@ -491,23 +491,28 @@ const TestingPortal: React.FC = () => {
     setStage('verification');
   };
 
-  const handleVerificationFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    setIsSubmittingForm(true);
+  const handleVerificationFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSubmittingForm) return;
 
-    // Also trigger submitTestToGoogleSheet as background redundancy
-    submitTestToGoogleSheet({
+    setIsSubmittingForm(true);
+    setSubmitError(null);
+
+    const result = await submitTestToGoogleSheet({
       name: verificationName,
       email: verificationEmail,
       test_name: verificationTestName,
       score: verificationScore,
       submission_time: verificationTime,
-    }).catch(() => {});
+    });
 
-    // Transition to completed scorecard screen after giving browser time to dispatch POST
-    setTimeout(() => {
-      setIsSubmittingForm(false);
+    if (result.success) {
       setStage('completed');
-    }, 1800);
+    } else {
+      setSubmitError(result.message);
+    }
+
+    setIsSubmittingForm(false);
   };
 
   const handleManualRetry = async () => {
@@ -1037,9 +1042,6 @@ const TestingPortal: React.FC = () => {
                 <div>
                   {/* Category & Badge */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-[#405cff]/10 text-[#405cff]">
-                      {currentQuestion.category || 'General Pharmacy'}
-                    </span>
                     <span className="text-xs font-mono opacity-50" style={{ color: 'var(--text-main)' }}>
                       Marks: +1.0 / -0.0
                     </span>
@@ -1297,21 +1299,15 @@ const TestingPortal: React.FC = () => {
               <p className="text-xs opacity-70 font-medium leading-relaxed" style={{ color: 'var(--text-main)' }}>
                 Please confirm your details below to finalize your assessment submission and register your test record.
               </p>
+              {submitError && (
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold">
+                  {submitError}
+                </div>
+              )}
             </div>
-
-            {/* Hidden Target Iframe */}
-            <iframe
-              name="gas_submission_iframe"
-              id="gas_submission_iframe"
-              title="Submission Frame"
-              style={{ display: 'none', width: 0, height: 0, border: 'none' }}
-            />
 
             {/* Verification Form */}
             <form
-              action={getGoogleSheetScriptUrl()}
-              method="POST"
-              target="gas_submission_iframe"
               onSubmit={handleVerificationFormSubmit}
               className="space-y-4 pt-1 text-left"
             >
@@ -1514,9 +1510,6 @@ const TestingPortal: React.FC = () => {
                         style={{ borderColor: 'var(--glass-border)' }}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-black text-[#405cff]">
-                            Question {q.id} • {q.category}
-                          </span>
                           {candidateAnswer === undefined ? (
                             <span className="px-2.5 py-0.5 rounded bg-slate-500/20 text-slate-400 text-[10px] font-bold">
                               Not Attempted
@@ -1570,12 +1563,6 @@ const TestingPortal: React.FC = () => {
                             );
                           })}
                         </div>
-
-                        {q.explanation && (
-                          <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 text-[11px] leading-relaxed opacity-90 text-blue-300">
-                            <strong>Rationale:</strong> {q.explanation}
-                          </div>
-                        )}
                       </div>
                     );
                   })}
