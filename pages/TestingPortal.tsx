@@ -31,7 +31,7 @@ interface ReviewState {
 }
 
 const TestingPortal: React.FC = () => {
-  const PERMISSION_REQUIRED = false;
+  const PERMISSION_REQUIRED = true;
 
   // Test schedule target: September 10, 2026 10:00:00 PM IST (default)
   // Or can be toggled by the candidate/examiner to test both countdown and live exam states
