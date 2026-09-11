@@ -17,6 +17,61 @@ export const testQuestions: TestQuestion[] = [
     ],
     answer: 1,
   },
+   {
+    id: 2,
+    question: "Which of the following receptors is an example of a G-protein-coupled receptor (GPCR)?",
+    options: [
+      "Nicotinic acetylcholine receptor",
+      "Muscarinic acetylcholine receptor",
+      "GABA-A receptor",
+      "Insulin tyrosine kinase receptor"
+    ],
+    answer: 1,
+  },
+   {
+    id: 3,
+    question: "Which of the following receptors is an example of a G-protein-coupled receptor (GPCR)?",
+    options: [
+      "Nicotinic acetylcholine receptor",
+      "Muscarinic acetylcholine receptor",
+      "GABA-A receptor",
+      "Insulin tyrosine kinase receptor"
+    ],
+    answer: 1,
+  },
+   {
+    id: 4,
+    question: "Which of the following receptors is an example of a G-protein-coupled receptor (GPCR)?",
+    options: [
+      "Nicotinic acetylcholine receptor",
+      "Muscarinic acetylcholine receptor",
+      "GABA-A receptor",
+      "Insulin tyrosine kinase receptor"
+    ],
+    answer: 1,
+  },
+   {
+    id: 5,
+    question: "Which of the following receptors is an example of a G-protein-coupled receptor (GPCR)?",
+    options: [
+      "Nicotinic acetylcholine receptor",
+      "Muscarinic acetylcholine receptor",
+      "GABA-A receptor",
+      "Insulin tyrosine kinase receptor"
+    ],
+    answer: 1,
+  },
+   {
+    id: 6,
+    question: "Which of the following receptors is an example of a G-protein-coupled receptor (GPCR)?",
+    options: [
+      "Nicotinic acetylcholine receptor",
+      "Muscarinic acetylcholine receptor",
+      "GABA-A receptor",
+      "Insulin tyrosine kinase receptor"
+    ],
+    answer: 1,
+  },
  ];
 
 export default testQuestions;

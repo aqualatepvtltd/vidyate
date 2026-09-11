@@ -8,6 +8,18 @@ import { submitTestToGoogleSheet } from '../services/googleSheets';
 const GOOGLE_SHEET_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbz1ialpZm20BK1H2GCbcHywXBNj92xMN5YwuvHn1X5s7C9LgMMsrebOHV4Vzot28grB/exec';
 
+const TEST_SCHEDULE_ISO = '2026-09-11T22:00:00+05:30';
+
+const TEST_SCHEDULE_LABEL = new Intl.DateTimeFormat('en-IN', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true,
+  timeZone: 'Asia/Kolkata',
+}).format(new Date(TEST_SCHEDULE_ISO));
+
 type TestStage = 'countdown' | 'login' | 'proctor_check' | 'active' | 'verification' | 'submitting' | 'completed';
 
 interface AnswerState {
@@ -19,9 +31,11 @@ interface ReviewState {
 }
 
 const TestingPortal: React.FC = () => {
-  // Test schedule target: September 10, 2026 10:00:00 IST (default)
+  const PERMISSION_REQUIRED = false;
+
+  // Test schedule target: September 10, 2026 10:00:00 PM IST (default)
   // Or can be toggled by the candidate/examiner to test both countdown and live exam states
-  const defaultTargetDate = useMemo(() => new Date('2026-09-5T10:00:00+05:30'), []);
+  const defaultTargetDate = useMemo(() => new Date(TEST_SCHEDULE_ISO), []);
   const [targetDate] = useState<Date>(defaultTargetDate);
   const [forceLive, setForceLive] = useState<boolean>(false);
 
@@ -49,6 +63,9 @@ const TestingPortal: React.FC = () => {
   const [netChecked, setNetChecked] = useState(false);
   const [rulesAgreed, setRulesAgreed] = useState(false);
   const [proctorSimProgress, setProctorSimProgress] = useState(0);
+  const [mediaError, setMediaError] = useState<string | null>(null);
+  const [mediaRequestVersion, setMediaRequestVersion] = useState(0);
+  const [micLevel, setMicLevel] = useState(0);
 
   // Security violation alert
   const [violationMessage, setViolationMessage] = useState<string | null>(null);
@@ -105,8 +122,12 @@ const TestingPortal: React.FC = () => {
   const [termsAgreed, setTermsAgreed] = useState(true);
 
   // Video and audio visualizer refs for proctoring UI
+  const videoPreviewRef = useRef<HTMLVideoElement>(null);
   const visualizerBarsRef = useRef<HTMLDivElement>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const audioAnalyserRef = useRef<AnalyserNode | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
   const isTerminatingRef = useRef<boolean>(false);
 
   // ----------------------------------------------------
@@ -141,17 +162,75 @@ const TestingPortal: React.FC = () => {
       setCameraChecked(false);
       setMicChecked(false);
       setNetChecked(false);
+      setMediaError(null);
       setProctorSimProgress(0);
 
-      const t1 = setTimeout(() => {
-        setCameraChecked(true);
-        setProctorSimProgress(35);
-      }, 1000);
+      let cancelled = false;
+      const requestMediaAccess = async () => {
+        if (!PERMISSION_REQUIRED) {
+          setCameraChecked(true);
+          setMicChecked(true);
+          setProctorSimProgress(70);
+          return;
+        }
 
-      const t2 = setTimeout(() => {
-        setMicChecked(true);
-        setProctorSimProgress(70);
-      }, 2000);
+        if (!navigator.mediaDevices?.getUserMedia) {
+          setMediaError('This browser does not support camera and microphone access.');
+          return;
+        }
+
+        mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+        mediaStreamRef.current = null;
+        audioAnalyserRef.current = null;
+        if (animationFrameRef.current !== null) {
+          cancelAnimationFrame(animationFrameRef.current);
+          animationFrameRef.current = null;
+        }
+        if (audioContextRef.current) {
+          audioContextRef.current.close().catch(() => {});
+          audioContextRef.current = null;
+        }
+        setMicLevel(0);
+
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+          if (cancelled) {
+            stream.getTracks().forEach((track) => track.stop());
+            return;
+          }
+
+          mediaStreamRef.current = stream;
+          if (videoPreviewRef.current) {
+            videoPreviewRef.current.srcObject = stream;
+          }
+
+          const audioContext = new AudioContext();
+          const analyser = audioContext.createAnalyser();
+          const audioSource = audioContext.createMediaStreamSource(stream);
+          const audioData = new Uint8Array(analyser.frequencyBinCount);
+          analyser.fftSize = 64;
+          audioSource.connect(analyser);
+          audioContextRef.current = audioContext;
+          audioAnalyserRef.current = analyser;
+
+          const updateMicLevel = () => {
+            analyser.getByteFrequencyData(audioData);
+            const average = audioData.reduce((sum, value) => sum + value, 0) / audioData.length;
+            setMicLevel(Math.min(100, Math.round((average / 255) * 100)));
+            animationFrameRef.current = requestAnimationFrame(updateMicLevel);
+          };
+
+          updateMicLevel();
+          setCameraChecked(true);
+          setMicChecked(true);
+          setProctorSimProgress(70);
+        } catch (error) {
+          console.error('Camera and microphone access denied:', error);
+          setMediaError('Camera and microphone access is required. Allow both devices in your browser and try again.');
+        }
+      };
+
+      requestMediaAccess();
 
       const t3 = setTimeout(() => {
         setNetChecked(true);
@@ -159,12 +238,19 @@ const TestingPortal: React.FC = () => {
       }, 3000);
 
       return () => {
-        clearTimeout(t1);
-        clearTimeout(t2);
+        cancelled = true;
         clearTimeout(t3);
       };
     }
-  }, [stage]);
+  }, [stage, mediaRequestVersion]);
+
+  useEffect(() => {
+    return () => {
+      mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+      if (animationFrameRef.current !== null) cancelAnimationFrame(animationFrameRef.current);
+      audioContextRef.current?.close().catch(() => {});
+    };
+  }, []);
 
   // ----------------------------------------------------
   // 3. LOGOUT / SECURITY TERMINATION HANDLER
@@ -177,6 +263,15 @@ const TestingPortal: React.FC = () => {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     }
+    mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+    mediaStreamRef.current = null;
+    if (animationFrameRef.current !== null) cancelAnimationFrame(animationFrameRef.current);
+    animationFrameRef.current = null;
+    audioAnalyserRef.current = null;
+    audioContextRef.current?.close().catch(() => {});
+    audioContextRef.current = null;
+    if (videoPreviewRef.current) videoPreviewRef.current.srcObject = null;
+    setMicLevel(0);
 
     setViolationMessage(reason);
     // Reset test progress
@@ -276,6 +371,12 @@ const TestingPortal: React.FC = () => {
     return () => clearInterval(timer);
   }, [stage]);
 
+  useEffect(() => {
+    if (stage === 'active') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }, [stage, currentQuestionIndex]);
+
   // ----------------------------------------------------
   // 6. LOGIN AUTHENTICATION (from user-cred.ts)
   // ----------------------------------------------------
@@ -294,7 +395,7 @@ const TestingPortal: React.FC = () => {
 
     const matchedUser = userCredentials.find(
       (u) =>
-        (u.id.toLowerCase() === trimmedId || u.email.toLowerCase() === trimmedId) &&
+        (u.email.toLowerCase() === trimmedId) &&
         u.pass === trimmedPass
     );
 
@@ -302,12 +403,12 @@ const TestingPortal: React.FC = () => {
       setCurrentUser(matchedUser);
       setStage('proctor_check');
     } else {
-      setLoginError('Invalid ID or Password. Check credentials in user-cred.ts.');
+      setLoginError('Invalid ID or Password. Please check your credentials and try again.');
     }
   };
 
   const handleQuickLogin = (user: UserCredential) => {
-    setInputId(user.id);
+    setInputId(user.email);
     setInputPass(user.pass);
     setLoginError(null);
   };
@@ -316,7 +417,7 @@ const TestingPortal: React.FC = () => {
   // 7. START TEST & REQUEST FULLSCREEN
   // ----------------------------------------------------
   const handleStartTest = async () => {
-    if (!cameraChecked || !micChecked || !netChecked || !rulesAgreed) {
+    if ((PERMISSION_REQUIRED && (!cameraChecked || !micChecked)) || !netChecked || !rulesAgreed) {
       return;
     }
 
@@ -553,19 +654,13 @@ const TestingPortal: React.FC = () => {
       {/* SECTION 1: TEST DESCRIPTION & SCHEDULE COUNTDOWN     */}
       {/* ---------------------------------------------------- */}
       {stage === 'countdown' && (
-        <div className="max-w-4xl mx-auto space-y-10 animate-subtle-fade">
+        <div className="max-w-4xl mx-auto space-y-5 mt-5 animate-subtle-fade">
           {/* Header & Description */}
           <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border text-xs font-black uppercase tracking-[0.2em] text-[#405cff]" style={{ borderColor: 'var(--glass-border)' }}>
-              <span className="w-2 h-2 rounded-full bg-[#405cff] animate-ping"></span>
-              Official Testing Portal
-            </div>
+            
             <h1 className="text-2xl md:text-3xl font-black tracking-tight" style={{ color: 'var(--text-main)' }}>
               Vidyate <span className="text-[#405cff]">Testing Portal</span>
             </h1>
-            <p className="opacity-70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-main)' }}>
-              National Pharmacy Assessment & Certification Examination (VNPA-2026). Test your mastery across Pharmacology, Pharmaceutics, Medicinal Chemistry, and Clinical Pharmacy in a secured, AI-proctored environment.
-            </p>
           </div>
 
           {/* Test Schedule Countdown Card */}
@@ -573,9 +668,7 @@ const TestingPortal: React.FC = () => {
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#405cff]/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="flex flex-col items-center justify-center space-y-3 mb-8">
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#405cff]">
-                Examination Schedule
-              </span>
+
               <h2 className="text-xl md:text-2xl font-black" style={{ color: 'var(--text-main)' }}>
                 {scheduleTimeLeft.isPast ? (
                   <span className="text-emerald-500 flex items-center justify-center gap-2">
@@ -583,7 +676,7 @@ const TestingPortal: React.FC = () => {
                     The Test is LIVE Now!
                   </span>
                 ) : (
-                  <span>Scheduled Test: 10 September 2026</span>
+                  <span>Scheduled Test: {TEST_SCHEDULE_LABEL}</span>
                 )}
               </h2>
               <p className="text-sm opacity-60 font-medium" style={{ color: 'var(--text-main)' }}>
@@ -634,10 +727,7 @@ const TestingPortal: React.FC = () => {
                 </button>
               ) : (
                 <>
-                  <div className="p-4 rounded-xl glass border text-xs opacity-75 max-w-md text-left flex items-center gap-3" style={{ borderColor: 'var(--glass-border)' }}>
-                    <span className="material-symbols-rounded text-[#405cff]">schedule</span>
-                    <span>Waiting for scheduled examination time. Test portal unlocks when timer hits zero.</span>
-                  </div>
+                 
                   {/* Simulator button so users can test immediately */}
                   <button
                     onClick={() => {
@@ -685,22 +775,13 @@ const TestingPortal: React.FC = () => {
       {/* SECTION 2: LOGIN AREA (Credentials in user-cred.ts)  */}
       {/* ---------------------------------------------------- */}
       {stage === 'login' && (
-        <div className="max-w-xl mx-auto space-y-8 animate-subtle-fade">
+        <div className="max-w-xl mx-auto space-y-5 mt-5 animate-subtle-fade">
           <div className="text-center space-y-3">
-            <button
-              onClick={() => setStage('countdown')}
-              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] opacity-60 hover:opacity-100 hover:text-[#405cff] transition-all mb-2"
-              style={{ color: 'var(--text-main)' }}
-            >
-              <span className="material-symbols-rounded text-sm">arrow_back</span>
-              Back to Test Schedule
-            </button>
+            
             <h2 className="text-2xl md:text-3xl font-black tracking-tight" style={{ color: 'var(--text-main)' }}>
               Candidate <span className="text-[#405cff]">Login</span>
             </h2>
-            <p className="text-sm opacity-60 font-medium" style={{ color: 'var(--text-main)' }}>
-              Enter your assigned Student ID or Email and Password from <code>user-cred.ts</code> to access the examination hall.
-            </p>
+            
           </div>
 
           {/* Login Form Box */}
@@ -715,7 +796,7 @@ const TestingPortal: React.FC = () => {
             <form onSubmit={handleLogin} className="space-y-5">
               <div>
                 <label className="block text-xs font-black uppercase tracking-[0.2em] mb-2 opacity-70" style={{ color: 'var(--text-main)' }}>
-                  Email Address or Student ID
+                  Login ID / Email
                 </label>
                 <div className="relative">
                   <span className="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 opacity-40 text-lg">
@@ -725,8 +806,8 @@ const TestingPortal: React.FC = () => {
                     type="text"
                     value={inputId}
                     onChange={(e) => setInputId(e.target.value)}
-                    placeholder="e.g. student@vidyate.com or candidate101"
-                    className="w-full glass rounded-xl pl-12 pr-4 py-3.5 text-sm font-medium border focus:outline-none focus:border-[#405cff] transition-all"
+                    placeholder="e.g. student@vidyate.com"
+                    className="w-full glass rounded-xl pl-4 pr-4 py-3.5 text-sm font-medium border focus:outline-none focus:border-[#405cff] transition-all"
                     style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
                     required
                   />
@@ -745,8 +826,8 @@ const TestingPortal: React.FC = () => {
                     type="password"
                     value={inputPass}
                     onChange={(e) => setInputPass(e.target.value)}
-                    placeholder="Enter examination password"
-                    className="w-full glass rounded-xl pl-12 pr-4 py-3.5 text-sm font-medium border focus:outline-none focus:border-[#405cff] transition-all"
+                    placeholder="Enter password"
+                    className="w-full glass rounded-xl pl-4 pr-4 py-3.5 text-sm font-medium border focus:outline-none focus:border-[#405cff] transition-all"
                     style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
                     required
                   />
@@ -770,7 +851,7 @@ const TestingPortal: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {userCredentials.slice(0, 4).map((cred) => (
                   <button
-                    key={cred.id}
+                    key={cred.email}
                     type="button"
                     onClick={() => handleQuickLogin(cred)}
                     className="p-2.5 rounded-xl border text-left glass hover:border-[#405cff] transition-all group"
@@ -780,7 +861,7 @@ const TestingPortal: React.FC = () => {
                       {cred.name}
                     </div>
                     <div className="text-[10px] font-mono opacity-50 truncate" style={{ color: 'var(--text-main)' }}>
-                      ID: {cred.id} • Pass: {cred.pass}
+                      ID: {cred.email} • Pass: {cred.pass}
                     </div>
                   </button>
                 ))}
@@ -795,18 +876,25 @@ const TestingPortal: React.FC = () => {
       {/* ---------------------------------------------------- */}
       {stage === 'proctor_check' && currentUser && (
         <div className="max-w-4xl mx-auto space-y-8 animate-subtle-fade">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 glass rounded-2xl border" style={{ borderColor: 'var(--glass-border)' }}>
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-4 p-6 glass rounded-2xl border" style={{ borderColor: 'var(--glass-border)' }}>
             <div>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#405cff]">Candidate Verified</span>
+              
               <h2 className="text-2xl font-black" style={{ color: 'var(--text-main)' }}>
                 Welcome, {currentUser.name}
               </h2>
-              <p className="text-xs opacity-60" style={{ color: 'var(--text-main)' }}>
-                ID: {currentUser.id}
-              </p>
+              
             </div>
             <button
               onClick={() => {
+                mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+                mediaStreamRef.current = null;
+                if (animationFrameRef.current !== null) cancelAnimationFrame(animationFrameRef.current);
+                animationFrameRef.current = null;
+                audioAnalyserRef.current = null;
+                audioContextRef.current?.close().catch(() => {});
+                audioContextRef.current = null;
+                if (videoPreviewRef.current) videoPreviewRef.current.srcObject = null;
+                setMicLevel(0);
                 setCurrentUser(null);
                 setStage('login');
               }}
@@ -822,9 +910,7 @@ const TestingPortal: React.FC = () => {
             <div className="flex items-center justify-between border-b pb-4" style={{ borderColor: 'var(--glass-border)' }}>
               <div>
                 <h3 className="text-xl font-black" style={{ color: 'var(--text-main)' }}>Proctor Readiness Checks</h3>
-                <p className="text-xs opacity-60 font-medium" style={{ color: 'var(--text-main)' }}>
-                  Camera, microphone, and secure network connection are validated and kept active throughout the test.
-                </p>
+                
               </div>
               <div className="text-right">
                 <span className="text-xs font-mono font-black text-[#405cff]">{proctorSimProgress}% Checked</span>
@@ -850,11 +936,20 @@ const TestingPortal: React.FC = () => {
                     </span>
                   )}
                 </div>
-                {/* Visualizer viewport */}
-                <div className="h-28 rounded-xl bg-black/40 border flex items-center justify-center relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                    <span className="material-symbols-rounded text-6xl text-slate-500">face</span>
-                  </div>
+                {/* Live camera preview */}
+                <div className="h-28 rounded-xl bg-white/40 border flex items-center justify-center relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
+                  <video
+                    ref={videoPreviewRef}
+                    autoPlay
+                    playsInline
+                    muted
+                    className={`w-full h-full object-cover ${cameraChecked ? 'block' : 'hidden'}`}
+                  />
+                  {!cameraChecked && (
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      Waiting for camera permission
+                    </span>
+                  )}
                   {cameraChecked && (
                     <div className="absolute inset-2 border-2 border-dashed border-emerald-500/60 rounded-lg flex items-start justify-between p-2">
                       <span className="text-[9px] font-mono bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">
@@ -886,23 +981,20 @@ const TestingPortal: React.FC = () => {
                     </span>
                   )}
                 </div>
-                {/* Audio Waves Simulation */}
-                <div className="h-28 rounded-xl bg-black/40 border flex items-center justify-center gap-1.5 px-4" style={{ borderColor: 'var(--glass-border)' }}>
-                  {[12, 28, 45, 18, 60, 32, 50, 22, 38, 15].map((h, idx) => (
+                {/* Live microphone level */}
+                <div ref={visualizerBarsRef} className="h-28 rounded-xl bg-white/40 border flex items-end justify-center gap-1.5 px-4 py-5" style={{ borderColor: 'var(--glass-border)' }}>
+                  {[0.35, 0.65, 0.9, 0.5, 1, 0.72, 0.88, 0.55, 0.75, 0.42].map((scale, idx) => (
                     <div
                       key={idx}
-                      className={`w-1.5 rounded-full transition-all duration-300 ${
-                        micChecked ? 'bg-[#405cff]' : 'bg-slate-600'
-                      }`}
+                      className={`w-1.5 rounded-full transition-all duration-100 ${micChecked ? 'bg-[#405cff]' : 'bg-slate-600'}`}
                       style={{
-                        height: micChecked ? `${Math.max(14, (h * (idx % 2 === 0 ? 1.2 : 0.8)))}%` : '15%',
-                        animation: micChecked ? `bounce 1.2s infinite ease-in-out ${idx * 0.1}s` : 'none',
+                        height: `${Math.max(8, micLevel * scale)}%`,
                       }}
                     ></div>
                   ))}
                 </div>
                 <p className="text-[11px] opacity-60 mt-2 text-center" style={{ color: 'var(--text-main)' }}>
-                  Ambient noise filter calibrated
+                  Live microphone level: {micLevel}%
                 </p>
               </div>
 
@@ -934,6 +1026,19 @@ const TestingPortal: React.FC = () => {
               </div>
             </div>
 
+            {mediaError && (
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+                <span>{mediaError}</span>
+                <button
+                  type="button"
+                  onClick={() => setMediaRequestVersion((version) => version + 1)}
+                  className="shrink-0 rounded-lg border border-red-400/40 px-3 py-2 text-xs font-bold text-red-200 transition-colors hover:bg-red-500/20"
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+
             {/* Test Rules & Code of Conduct */}
             <div className="p-6 rounded-2xl bg-[#405cff]/5 border border-[#405cff]/20 space-y-3">
               <h4 className="text-sm font-black flex items-center gap-2 text-[#405cff]">
@@ -964,7 +1069,7 @@ const TestingPortal: React.FC = () => {
             {/* Start Button */}
             <button
               onClick={handleStartTest}
-              disabled={!cameraChecked || !micChecked || !netChecked || !rulesAgreed}
+              disabled={(PERMISSION_REQUIRED && (!cameraChecked || !micChecked)) || !netChecked || !rulesAgreed}
               className="w-full py-5 bg-[#405cff] disabled:opacity-40 disabled:cursor-not-allowed text-white font-black text-base rounded-2xl shadow-xl hover:shadow-[0_20px_40px_rgba(64,92,255,0.4)] active:scale-95 transition-all flex items-center justify-center gap-3"
             >
               <span className="material-symbols-rounded">fullscreen</span>
@@ -999,7 +1104,7 @@ const TestingPortal: React.FC = () => {
                   </span>
                 </div>
                 <span className="text-[10px] opacity-50 font-mono" style={{ color: 'var(--text-main)' }}>
-                  ID: {currentUser.id} • Q {currentQuestionIndex + 1} of {testQuestions.length}
+                  ID: {currentUser.email} • Q {currentQuestionIndex + 1} of {testQuestions.length}
                 </span>
               </div>
             </div>
@@ -1295,15 +1400,12 @@ const TestingPortal: React.FC = () => {
             style={{ borderColor: 'var(--glass-border)' }}
           >
             <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#405cff]/10 text-[#405cff] text-xs font-black uppercase tracking-wider">
-                <span className="material-symbols-rounded text-sm">verified_user</span>
-                Candidate Verification
-              </div>
+              
               <h3 className="text-2xl font-black tracking-tight" style={{ color: 'var(--text-main)' }}>
                 Credentials Verification
               </h3>
               <p className="text-xs opacity-70 font-medium leading-relaxed" style={{ color: 'var(--text-main)' }}>
-                Please confirm your details below to finalize your assessment submission and register your test record.
+                Please confirm your details below to finalize your assessment submission.
               </p>
               {submitError && (
                 <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold">
@@ -1333,7 +1435,7 @@ const TestingPortal: React.FC = () => {
                     onChange={(e) => setVerificationName(e.target.value)}
                     required
                     placeholder="Enter your full name"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border bg-black/40 text-sm font-semibold focus:outline-none focus:border-[#405cff] transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border bg-white/40 text-sm font-semibold focus:outline-none focus:border-[#405cff] transition-colors"
                     style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
                   />
                 </div>
@@ -1355,7 +1457,7 @@ const TestingPortal: React.FC = () => {
                     onChange={(e) => setVerificationEmail(e.target.value)}
                     required
                     placeholder="Enter registered email"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border bg-black/40 text-sm font-semibold focus:outline-none focus:border-[#405cff] transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border bg-white/40 text-sm font-semibold focus:outline-none focus:border-[#405cff] transition-colors"
                     style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
                   />
                 </div>
@@ -1410,175 +1512,20 @@ const TestingPortal: React.FC = () => {
           <div className="glass p-8 md:p-12 rounded-3xl border shadow-2xl text-center relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            {/* Success Icon */}
-            <div className="w-20 h-20 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl ring-8 ring-emerald-500/10">
-              <span className="material-symbols-rounded text-5xl">verified</span>
-            </div>
-
-            <span className="text-xs font-black uppercase tracking-[0.25em] text-emerald-400 block mb-2">
-              Proctor Verified Submission
-            </span>
+            
             <h2 className="text-2xl md:text-3xl font-black mb-3" style={{ color: 'var(--text-main)' }}>
               Test Successfully Submitted!
             </h2>
-            <p className="text-sm opacity-70 max-w-xl mx-auto mb-8 font-medium leading-relaxed" style={{ color: 'var(--text-main)' }}>
+            <p className="text-sm opacity-70 max-w-xl mx-auto  font-medium leading-relaxed" style={{ color: 'var(--text-main)' }}>
               Congratulations {currentUser.name}! Your responses have been officially recorded and saved to the evaluation database.
             </p>
 
-            {/* Scorecard Hero Card */}
-            <div className="p-6 md:p-8 rounded-2xl bg-black/30 border glass max-w-lg mx-auto mb-8 space-y-6" style={{ borderColor: 'var(--glass-border)' }}>
-              <div className="flex items-center justify-between border-b pb-4" style={{ borderColor: 'var(--glass-border)' }}>
-                <div className="text-left">
-                  <div className="text-xs font-black uppercase tracking-wider opacity-50" style={{ color: 'var(--text-main)' }}>Candidate</div>
-                  <div className="text-base font-black" style={{ color: 'var(--text-main)' }}>{currentUser.name}</div>
-                  <div className="text-xs font-mono opacity-50" style={{ color: 'var(--text-main)' }}>{currentUser.id}</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-xs font-black uppercase tracking-wider opacity-50" style={{ color: 'var(--text-main)' }}>Reference ID</div>
-                  <div className="text-xs font-mono font-bold text-[#405cff]">{submissionResult.submissionId}</div>
-                </div>
-              </div>
-
-              {/* Score Circular / Large Badge */}
-              <div className="py-2 text-center">
-                <div className="text-5xl md:text-6xl font-black font-mono text-[#405cff] tracking-tight mb-1">
-                  {submissionResult.score} <span className="text-2xl text-slate-400 font-sans font-normal">/ {submissionResult.total}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400">
-                  <span className="material-symbols-rounded text-sm">stars</span>
-                  <span>Accuracy: {submissionResult.percentage}% • {submissionResult.passed ? 'PASSED' : 'NEEDS REVISION'}</span>
-                </div>
-              </div>
-
-              {/* Details metrics */}
-              <div className="grid grid-cols-2 gap-4 text-left pt-2 border-t text-xs" style={{ borderColor: 'var(--glass-border)' }}>
-                <div>
-                  <span className="opacity-50 block font-medium">Time Taken:</span>
-                  <span className="font-bold" style={{ color: 'var(--text-main)' }}>{submissionResult.timeTaken}</span>
-                </div>
-                <div>
-                  <span className="opacity-50 block font-medium">Verification Status:</span>
-                  <span className="font-bold text-emerald-400">Database Recorded</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => setShowReviewModal(true)}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl border glass font-black text-xs uppercase tracking-wider hover:bg-white/10 transition-all flex items-center justify-center gap-2"
-                style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
-              >
-                <span className="material-symbols-rounded text-sm">visibility</span>
-                <span>Review All Questions & Solutions</span>
-              </button>
-
-              <Link
-                to="/"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#405cff] text-white font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-              >
-                <span className="material-symbols-rounded text-sm">home</span>
-                <span>Return to Vidyate Hub</span>
-              </Link>
-            </div>
           </div>
 
-          {/* Solutions & Explanations Modal */}
-          {showReviewModal && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg animate-fade-in">
-              <div className="glass max-w-3xl w-full max-h-[85vh] rounded-3xl border shadow-2xl flex flex-col" style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)' }}>
-                <div className="p-6 border-b flex items-center justify-between" style={{ borderColor: 'var(--glass-border)' }}>
-                  <div>
-                    <h3 className="text-xl font-black" style={{ color: 'var(--text-main)' }}>
-                      Question Solutions & Review
-                    </h3>
-                    <p className="text-xs opacity-60 font-medium">Comprehensive answer key with rationale for all 50 questions.</p>
-                  </div>
-                  <button
-                    onClick={() => setShowReviewModal(false)}
-                    className="w-9 h-9 rounded-xl glass border flex items-center justify-center hover:bg-white/10"
-                    style={{ borderColor: 'var(--glass-border)', color: 'var(--text-main)' }}
-                  >
-                    <span className="material-symbols-rounded">close</span>
-                  </button>
-                </div>
-
-                <div className="p-6 overflow-y-auto space-y-6 custom-scrollbar">
-                  {testQuestions.map((q) => {
-                    const candidateAnswer = answers[q.id];
-                    const isCorrect = candidateAnswer === q.answer;
-
-                    return (
-                      <div
-                        key={q.id}
-                        className="p-5 rounded-2xl border glass space-y-3 text-left"
-                        style={{ borderColor: 'var(--glass-border)' }}
-                      >
-                        <div className="flex items-center justify-between">
-                          {candidateAnswer === undefined ? (
-                            <span className="px-2.5 py-0.5 rounded bg-slate-500/20 text-slate-400 text-[10px] font-bold">
-                              Not Attempted
-                            </span>
-                          ) : isCorrect ? (
-                            <span className="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">
-                              Correct (+1.0)
-                            </span>
-                          ) : (
-                            <span className="px-2.5 py-0.5 rounded bg-red-500/20 text-red-400 text-[10px] font-bold">
-                              Incorrect
-                            </span>
-                          )}
-                        </div>
-
-                        <p className="text-sm font-bold" style={{ color: 'var(--text-main)' }}>
-                          {q.question}
-                        </p>
-
-                        <div className="space-y-1.5 text-xs">
-                          {q.options.map((opt, optIdx) => {
-                            const isSelected = candidateAnswer === optIdx;
-                            const isTheRightAnswer = q.answer === optIdx;
-
-                            let optStyle = 'opacity-70 border-transparent';
-                            if (isTheRightAnswer) {
-                              optStyle = 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400 font-bold';
-                            } else if (isSelected && !isTheRightAnswer) {
-                              optStyle = 'bg-red-500/15 border-red-500/40 text-red-400 font-bold';
-                            }
-
-                            return (
-                              <div
-                                key={optIdx}
-                                className={`p-2.5 rounded-xl border flex items-center justify-between ${optStyle}`}
-                              >
-                                <span>
-                                  {String.fromCharCode(65 + optIdx)}. {opt}
-                                </span>
-                                {isTheRightAnswer && (
-                                  <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-bold">
-                                    Correct Option
-                                  </span>
-                                )}
-                                {isSelected && !isTheRightAnswer && (
-                                  <span className="text-[10px] uppercase tracking-wider text-red-400 font-bold">
-                                    Your Choice
-                                  </span>
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+         </div>
           )}
         </div>
-      )}
-    </div>
+      
   );
 };
 

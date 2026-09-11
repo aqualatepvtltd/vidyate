@@ -1,5 +1,4 @@
 export interface UserCredential {
-  id: string;
   pass: string;
   name: string;
   email: string;
@@ -8,8 +7,7 @@ export interface UserCredential {
 
 export const userCredentials: UserCredential[] = [
   {
-    id: "student@vidyate.com",
-    pass: "vidyate2026",
+    pass: "12345",
     name: "Aditya Sharma",
     email: "student@vidyate.com",
   },
