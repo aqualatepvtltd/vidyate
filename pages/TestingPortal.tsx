@@ -166,6 +166,7 @@ const TestingPortal: React.FC = () => {
       setProctorSimProgress(0);
 
       let cancelled = false;
+      let mediaVerificationTimer: ReturnType<typeof setTimeout> | null = null;
       const requestMediaAccess = async () => {
         if (!PERMISSION_REQUIRED) {
           setCameraChecked(true);
@@ -221,9 +222,25 @@ const TestingPortal: React.FC = () => {
           };
 
           updateMicLevel();
-          setCameraChecked(true);
-          setMicChecked(true);
           setProctorSimProgress(70);
+          mediaVerificationTimer = setTimeout(() => {
+            if (cancelled) return;
+            setCameraChecked(true);
+            setMicChecked(true);
+            setProctorSimProgress(85);
+
+            mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+            mediaStreamRef.current = null;
+            if (animationFrameRef.current !== null) {
+              cancelAnimationFrame(animationFrameRef.current);
+              animationFrameRef.current = null;
+            }
+            audioAnalyserRef.current = null;
+            audioContextRef.current?.close().catch(() => {});
+            audioContextRef.current = null;
+            if (videoPreviewRef.current) videoPreviewRef.current.srcObject = null;
+            setMicLevel(0);
+          }, 3000);
         } catch (error) {
           console.error('Camera and microphone access denied:', error);
           setMediaError('Camera and microphone access is required. Allow both devices in your browser and try again.');
@@ -240,6 +257,7 @@ const TestingPortal: React.FC = () => {
       return () => {
         cancelled = true;
         clearTimeout(t3);
+        if (mediaVerificationTimer !== null) clearTimeout(mediaVerificationTimer);
       };
     }
   }, [stage, mediaRequestVersion]);
@@ -799,9 +817,7 @@ const TestingPortal: React.FC = () => {
                   Login ID / Email
                 </label>
                 <div className="relative">
-                  <span className="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 opacity-40 text-lg">
-                    badge
-                  </span>
+                  
                   <input
                     type="text"
                     value={inputId}
@@ -819,9 +835,7 @@ const TestingPortal: React.FC = () => {
                   Password
                 </label>
                 <div className="relative">
-                  <span className="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 opacity-40 text-lg">
-                    lock
-                  </span>
+                  
                   <input
                     type="password"
                     value={inputPass}
@@ -838,9 +852,10 @@ const TestingPortal: React.FC = () => {
                 type="submit"
                 className="w-full py-4 bg-[#405cff] text-white font-black text-sm rounded-xl shadow-lg hover:shadow-[0_15px_30px_rgba(64,92,255,0.4)] active:scale-95 transition-all flex items-center justify-center gap-2"
               >
-                <span>Verify Credentials & Enter</span>
-                <span className="material-symbols-rounded">arrow_forward</span>
+                <span>Login</span>
+                
               </button>
+              
             </form>
 
             {/* Quick-Fill Demo Credentials from user-cred.ts */}
@@ -923,12 +938,12 @@ const TestingPortal: React.FC = () => {
               <div className="p-5 rounded-2xl border glass relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-rounded text-[#405cff]">videocam</span>
+                    
                     <span className="text-sm font-black" style={{ color: 'var(--text-main)' }}>Camera Feed</span>
                   </div>
                   {cameraChecked ? (
                     <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-500">
-                      <span className="material-symbols-rounded text-sm">check_circle</span> Active
+                      <span className="material-symbols-rounded text-sm">check_circle</span> Verified
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 text-xs font-bold text-yellow-500 animate-pulse">
@@ -943,19 +958,25 @@ const TestingPortal: React.FC = () => {
                     autoPlay
                     playsInline
                     muted
-                    className={`w-full h-full object-cover ${cameraChecked ? 'block' : 'hidden'}`}
+                    className={`w-full h-full object-cover ${proctorSimProgress >= 70 ? 'block' : 'hidden'}`}
                   />
-                  {!cameraChecked && (
+                  {proctorSimProgress < 70 && (
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
                       Waiting for camera permission
                     </span>
                   )}
+                  {!cameraChecked && proctorSimProgress >= 70 && (
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/25 text-xs font-bold uppercase tracking-wider text-white">
+                      Calibrating...
+                    </span>
+                  )}
                   {cameraChecked && (
-                    <div className="absolute inset-2 border-2 border-dashed border-emerald-500/60 rounded-lg flex items-start justify-between p-2">
-                      <span className="text-[9px] font-mono bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">
-                        AI FACE REC: LOCKED
+                    <div className="absolute inset-2 border-2 border-dashed border-emerald-500/60 rounded-lg flex items-center justify-center">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-300">
+                        <span className="material-symbols-rounded text-sm">check_circle</span>
+                        Verified
                       </span>
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                      
                     </div>
                   )}
                 </div>
@@ -968,12 +989,12 @@ const TestingPortal: React.FC = () => {
               <div className="p-5 rounded-2xl border glass relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-rounded text-[#405cff]">mic</span>
+                    
                     <span className="text-sm font-black" style={{ color: 'var(--text-main)' }}>Audio / Mic</span>
                   </div>
                   {micChecked ? (
                     <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-500">
-                      <span className="material-symbols-rounded text-sm">check_circle</span> Active
+                      <span className="material-symbols-rounded text-sm">check_circle</span> Verified
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 text-xs font-bold text-yellow-500 animate-pulse">
@@ -982,19 +1003,22 @@ const TestingPortal: React.FC = () => {
                   )}
                 </div>
                 {/* Live microphone level */}
-                <div ref={visualizerBarsRef} className="h-28 rounded-xl bg-white/40 border flex items-end justify-center gap-1.5 px-4 py-5" style={{ borderColor: 'var(--glass-border)' }}>
+                <div ref={visualizerBarsRef} className="relative h-28 rounded-xl bg-white/40 border flex items-end justify-center gap-1.5 px-4 py-5" style={{ borderColor: 'var(--glass-border)' }}>
                   {[0.35, 0.65, 0.9, 0.5, 1, 0.72, 0.88, 0.55, 0.75, 0.42].map((scale, idx) => (
                     <div
                       key={idx}
-                      className={`w-1.5 rounded-full transition-all duration-100 ${micChecked ? 'bg-[#405cff]' : 'bg-slate-600'}`}
+                      className={`w-1.5 rounded-full transition-all duration-100 ${proctorSimProgress >= 70 ? 'bg-[#405cff]' : 'bg-slate-600'}`}
                       style={{
                         height: `${Math.max(8, micLevel * scale)}%`,
                       }}
                     ></div>
                   ))}
+                  <span className={`absolute inset-0 flex items-center justify-center text-xs font-bold uppercase tracking-wider ${micChecked ? 'text-emerald-300' : 'text-white'}`}>
+                    {micChecked ? 'Verified' : 'Calibrating...'}
+                  </span>
                 </div>
                 <p className="text-[11px] opacity-60 mt-2 text-center" style={{ color: 'var(--text-main)' }}>
-                  Live microphone level: {micLevel}%
+                  {micChecked ? `Verified microphone level: ${micLevel}%` : 'Verifying microphone...'}
                 </p>
               </div>
 
@@ -1002,7 +1026,7 @@ const TestingPortal: React.FC = () => {
               <div className="p-5 rounded-2xl border glass relative overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="material-symbols-rounded text-[#405cff]">wifi</span>
+                    
                     <span className="text-sm font-black" style={{ color: 'var(--text-main)' }}>Network Latency</span>
                   </div>
                   {netChecked ? (
@@ -1015,16 +1039,20 @@ const TestingPortal: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <div className="h-28 rounded-xl bg-black/40 border flex flex-col items-center justify-center p-3" style={{ borderColor: 'var(--glass-border)' }}>
-                  <span className="material-symbols-rounded text-3xl text-emerald-400 mb-1">speed</span>
-                  <span className="text-xs font-mono font-bold text-emerald-400">100% Reliable</span>
-                  <span className="text-[10px] opacity-50" style={{ color: 'var(--text-main)' }}>Packet loss: 0.00%</span>
+                <div className="h-28 rounded-xl bg-white/40 border flex flex-col items-center justify-center p-3" style={{ borderColor: 'var(--glass-border)' }}>
+                 
+                  <span className="text-xs font-mono font-bold text-emerald-400">Working...</span>
+                  
                 </div>
                 <p className="text-[11px] opacity-60 mt-2 text-center" style={{ color: 'var(--text-main)' }}>
                   Secure encrypted transmission
                 </p>
               </div>
             </div>
+
+            <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-center text-xs font-bold text-amber-200">
+              In any case of suspicious activity, this will be considered as digital proof.
+            </p>
 
             {mediaError && (
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
@@ -1042,7 +1070,7 @@ const TestingPortal: React.FC = () => {
             {/* Test Rules & Code of Conduct */}
             <div className="p-6 rounded-2xl bg-[#405cff]/5 border border-[#405cff]/20 space-y-3">
               <h4 className="text-sm font-black flex items-center gap-2 text-[#405cff]">
-                <span className="material-symbols-rounded">gavel</span>
+            
                 Examination Regulations & Security Policy
               </h4>
               <ul className="text-xs space-y-2 opacity-80 list-disc list-inside font-medium" style={{ color: 'var(--text-main)' }}>
@@ -1050,6 +1078,7 @@ const TestingPortal: React.FC = () => {
                 <li><strong>MANDATORY FULLSCREEN:</strong> Clicking &quot;Start Test&quot; will expand your browser to fullscreen.</li>
                 <li><strong>TAB SWITCH BLOCK:</strong> Switching browser tabs, minimizing, opening another window, or canceling fullscreen will <strong>immediately terminate your session and log you out</strong>.</li>
                 <li>Upon completion, your scorecard is automatically verified and recorded into the official evaluation records.</li>
+                <li> The faster you complete and submit the test, the higher your chances of winning the contest!</li>
               </ul>
             </div>
 
@@ -1118,9 +1147,6 @@ const TestingPortal: React.FC = () => {
                 <div className={`text-xl sm:text-2xl font-black ${secondsRemaining < 300 ? 'text-red-500' : 'text-[#405cff]'}`}>
                   {formatTime(secondsRemaining)}
                 </div>
-                <div className="text-[9px] uppercase tracking-widest opacity-40 -mt-1 font-sans font-bold" style={{ color: 'var(--text-main)' }}>
-                  Time Remaining
-                </div>
               </div>
             </div>
 
@@ -1152,11 +1178,7 @@ const TestingPortal: React.FC = () => {
               <div className="glass p-6 md:p-8 rounded-3xl border shadow-xl min-h-[460px] flex flex-col justify-between" style={{ borderColor: 'var(--glass-border)' }}>
                 <div>
                   {/* Category & Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono opacity-50" style={{ color: 'var(--text-main)' }}>
-                      Marks: +1.0 / -0.0
-                    </span>
-                  </div>
+                  
 
                   {/* Question Text */}
                   <h3 className="text-lg md:text-xl font-black leading-snug mb-8" style={{ color: 'var(--text-main)' }}>
@@ -1261,10 +1283,10 @@ const TestingPortal: React.FC = () => {
               <div className="glass p-6 rounded-3xl border shadow-xl space-y-5" style={{ borderColor: 'var(--glass-border)' }}>
                 <div className="flex items-center justify-between border-b pb-3" style={{ borderColor: 'var(--glass-border)' }}>
                   <h4 className="text-sm font-black uppercase tracking-wider" style={{ color: 'var(--text-main)' }}>
-                    Question Palette (50)
+                    Question Palette
                   </h4>
                   <span className="text-xs font-mono font-bold text-[#405cff]">
-                    {answeredCount}/50 Answered
+                    {answeredCount}/{testQuestions.length} Answered
                   </span>
                 </div>
 
@@ -1288,8 +1310,8 @@ const TestingPortal: React.FC = () => {
                   </div>
                 </div>
 
-                {/* 50 Questions Grid */}
-                <div className="grid grid-cols-5 gap-2 max-h-[340px] overflow-y-auto pr-1 custom-scrollbar">
+                {/* Questions Grid */}
+                <div className="grid grid-cols-5 gap-2 max-h-[340px] overflow-y-auto pr-1 custom-scrollbar p-4">
                   {testQuestions.map((q, idx) => {
                     const isCurrent = idx === currentQuestionIndex;
                     const isAnswered = answers[q.id] !== undefined;
@@ -1312,7 +1334,7 @@ const TestingPortal: React.FC = () => {
                           setShowQuestionPaletteMobile(false);
                         }}
                         className={`h-10 rounded-xl text-xs font-bold border transition-all flex items-center justify-center relative ${badgeColor} ${
-                          isCurrent ? 'ring-2 ring-[#405cff] ring-offset-2 ring-offset-[#03040b] scale-105 z-10' : 'hover:scale-105'
+                          isCurrent ? 'ring-2 ring-[#405cff] scale-105 z-10' : 'hover:scale-105'
                         }`}
                       >
                         {idx + 1}
@@ -1340,9 +1362,7 @@ const TestingPortal: React.FC = () => {
           {showSubmitModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
               <div className="glass max-w-md w-full p-6 md:p-8 rounded-3xl border shadow-2xl space-y-6 text-center" style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)' }}>
-                <span className="material-symbols-rounded text-5xl text-emerald-500 block mx-auto">
-                  contact_support
-                </span>
+               
                 <div>
                   <h3 className="text-2xl font-black mb-2" style={{ color: 'var(--text-main)' }}>
                     Submit Examination?
@@ -1381,7 +1401,7 @@ const TestingPortal: React.FC = () => {
                     className="w-1/2 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-lg transition-all flex items-center justify-center gap-2"
                   >
                     <span>Yes, Submit</span>
-                    <span className="material-symbols-rounded text-sm">check</span>
+                   
                   </button>
                 </div>
               </div>

@@ -64,7 +64,6 @@ const App: React.FC = () => {
               <Route path="/verify-certificate" element={<VerifyCertificate />} />
               <Route path="/install-app" element={<InstallApp />} />
               <Route path="/testing-portal" element={<TestingPortal />} />
-              <Route path="/vidyate-testing-portal" element={<TestingPortal />} />
 
               {/* Flattened Dynamic Course & Resource Routes */}
               {/* This prevents greedy matching or index collisions in nested structures */}
