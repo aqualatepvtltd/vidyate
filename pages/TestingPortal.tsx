@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import ScrollToTop from '../components/ScrollToTop';
 import { userCredentials, UserCredential } from '../data/user-cred';
 import { testQuestions, TestQuestion } from '../data/test-data';
 import { submitTestToGoogleSheet } from '../services/googleSheets';
@@ -651,6 +652,7 @@ const TestingPortal: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-16 pt-2 px-4 md:px-6">
+      <ScrollToTop key={stage} />
       <SEO
         title="Vidyate Testing Portal | Online Proctored Examination"
         description="Official Vidyate Testing Portal for Pharmacy examinations, GPAT mock tests, and certification assessments."
@@ -1101,8 +1103,8 @@ const TestingPortal: React.FC = () => {
               disabled={(PERMISSION_REQUIRED && (!cameraChecked || !micChecked)) || !netChecked || !rulesAgreed}
               className="w-full py-5 bg-[#405cff] disabled:opacity-40 disabled:cursor-not-allowed text-white font-black text-base rounded-2xl shadow-xl hover:shadow-[0_20px_40px_rgba(64,92,255,0.4)] active:scale-95 transition-all flex items-center justify-center gap-3"
             >
-              <span className="material-symbols-rounded">fullscreen</span>
-              <span>Lock Fullscreen & Begin 60-Minute Test</span>
+              
+              <span>Start Test</span>
             </button>
           </div>
         </div>
@@ -1117,34 +1119,27 @@ const TestingPortal: React.FC = () => {
           <div className="glass p-4 md:p-5 rounded-2xl border shadow-xl flex flex-wrap items-center justify-between gap-4 sticky top-2 z-40" style={{ borderColor: 'var(--glass-border)', backgroundColor: 'var(--bg-color)' }}>
             {/* Candidate & Proctor indicator */}
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-10 h-10 rounded-xl bg-black/60 border flex items-center justify-center overflow-hidden" style={{ borderColor: 'var(--glass-border)' }}>
-                  <span className="material-symbols-rounded text-xl text-slate-400">videocam</span>
-                </div>
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
-              </div>
+             
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black" style={{ color: 'var(--text-main)' }}>
                     {currentUser.name}
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">
-                    PROCTOR ON
-                  </span>
+                 
                 </div>
                 <span className="text-[10px] opacity-50 font-mono" style={{ color: 'var(--text-main)' }}>
-                  ID: {currentUser.email} • Q {currentQuestionIndex + 1} of {testQuestions.length}
+                  ID: {currentUser.email}
                 </span>
               </div>
             </div>
 
             {/* Countdown Timer */}
-            <div className="flex items-center gap-2 px-5 py-2.5 rounded-xl border glass font-mono shadow-inner" style={{ borderColor: 'var(--glass-border)' }}>
+            <div className="flex items-center  gap-2 px-4 py-2 rounded-xl border glass font-mono shadow-inner" style={{ borderColor: 'var(--glass-border)' }}>
               <span className={`material-symbols-rounded text-xl ${secondsRemaining < 300 ? 'text-red-500 animate-ping' : 'text-[#405cff]'}`}>
                 timer
               </span>
               <div className="text-right">
-                <div className={`text-xl sm:text-2xl font-black ${secondsRemaining < 300 ? 'text-red-500' : 'text-[#405cff]'}`}>
+                <div className={`text-xl sm:text-xl font-black ${secondsRemaining < 300 ? 'text-red-500' : 'text-[#405cff]'}`}>
                   {formatTime(secondsRemaining)}
                 </div>
               </div>

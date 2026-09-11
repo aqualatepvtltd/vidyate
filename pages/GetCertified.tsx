@@ -11,7 +11,7 @@ const GetCertified: React.FC = () => {
   const filters = [
     { id: 'advance', label: 'Advance', color: '#10B981' },
     { id: 'basic', label: 'Basic', color: '#0088ff' },
-    { id: 'quiz', label: 'Quiz', color: '#FF671F' },
+    { id: 'quiz', label: 'Quiz', color: '#FF8D28' },
   ];
 
   const { coursesToShow, suggestion } = useMemo(() => {
@@ -244,7 +244,7 @@ const GetCertified: React.FC = () => {
                           </span>
                         )}
                         {!course.isPaid && course.quiz && (
-                          <span className="px-2 py-1 bg-[#FF671F] text-white text-xs font-black uppercase tracking-wider rounded-md">
+                          <span className="px-2 py-1 bg-[#FF8D28] text-white text-xs font-black uppercase tracking-wider rounded-md">
                             QUIZ
                           </span>
                         )}
@@ -274,7 +274,7 @@ const GetCertified: React.FC = () => {
 
                     <button
                       onClick={() => handleAttemptTest(course)}
-                      className={`px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${course.quiz ? 'flex-1 bg-[#FF671F]' : 'flex-1 bg-[#8B5CF6]'}`}
+                      className={`px-4 py-3 rounded-xl font-black text-white transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${course.quiz ? 'flex-1 bg-[#FF8D28]' : 'flex-1 bg-[#8B5CF6]'}`}
                     >
                       <span className="material-symbols-rounded text-lg">assignment</span>
                       <span>{course.quiz ? 'Join Quiz' : 'Attempt Test'}</span>
